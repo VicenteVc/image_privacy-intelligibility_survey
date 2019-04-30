@@ -5,7 +5,7 @@ var isIntel = Boolean(1 - isPrivacy)
 
 var condIndex = Math.floor(Math.random() * 10)
 if (condIndex == 3 || condIndex == 7) condIndex--;
-condIndex = 8
+// condIndex = 8
 
 var imgCond = parseInt(condIndex / 4)
 var camCond = condIndex % 4
@@ -235,6 +235,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question44",
+       width: "520px",
        readOnly: true,
        titleLocation: "hidden",
        choices: [
@@ -247,7 +248,6 @@ var surveyJSON =
          imageLink: "figures/common/training2.png"
         }
        ],
-       colCount: 2,
        imageFit: "fill",
        imageHeight: 160,
        imageWidth: 220,
@@ -256,7 +256,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question48",
-       width: "14%",
+       width: "120px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -643,7 +643,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question5",
-       width: "35%",
+       width: "260px",
        titleLocation: "hidden",
        choices: [
         {
@@ -658,7 +658,8 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question5",
-       width: "35%",
+       width: "260px",
+       startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
@@ -674,7 +675,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question48",
-       width: "13%",
+       width: "110px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -694,11 +695,11 @@ var surveyJSON =
      type: "html",
      name: "question4",
      html: "<h4 style=\"font-weight:500;\"> Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"? </h4> <h4 style=\"font-weight:500;\"> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least <strong>ONE</strong> activity as <strong>NOT very unlikely</strong>. You may select more than one as more likely. </span></h4> "
+     
     },
     {
      type: "matrix",
      name: "q1-1",
-     width: "100",
      defaultValue: {
       "Walking Outdoors": "1 (Very Unlikely)",
       Biking: "1 (Very Unlikely)",
