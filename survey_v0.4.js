@@ -43,7 +43,8 @@ var surveyJSON =
       }
      ]
     }
-  ]
+  ],
+  // visible: false,
  }, 
  {
    name: "Introduction",
@@ -127,7 +128,8 @@ var surveyJSON =
       }
      ]
     }
-   ]
+   ],
+   // visible: false,
   },
   {
    name: "Consent",
@@ -180,7 +182,8 @@ var surveyJSON =
       }
      ]
     }
-   ]
+   ],
+   // visible: false,
   },
   {
    name: "Training",
@@ -232,7 +235,6 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question44",
-       // width: "60%",
        readOnly: true,
        titleLocation: "hidden",
        choices: [
@@ -304,7 +306,8 @@ var surveyJSON =
      visible: withBlur,
      readOnly: true
     }
-   ]
+   ],
+   // visible: false,
   },
   {
    name: "WarmUp",
@@ -685,91 +688,50 @@ var surveyJSON =
        imageHeight: 160,
        imageWidth: 70
       },
-      {
-       type: "matrix",
-       name: "q1-1",
-       visible: isIntel,
-       width: "90%",
-       title: "Which activity do you think you were doing when the Smart Camera took the photo? (Hint: it is one of the following activities and you must select at least one activity as NOT very unlikely.)",
-       titleLocation: "hidden",
-       defaultValue: {
-        "Walking Outdoors": "1 (Very Unlikely)",
-        Biking: "1 (Very Unlikely)",
-        Eating: "1 (Very Unlikely)",
-        "Public Transport": "1 (Very Unlikely)",
-        Shopping: "1 (Very Unlikely)",
-        "Talking and Socializing": "1 (Very Unlikely)",
-        "Watching TV": "1 (Very Unlikely)",
-        "Cleaning and chores": "1 (Very Unlikely)",
-        Cooking: "1 (Very Unlikely)"
-       },
-       isRequired: true,
-       columns: [
-        "1 (Very unlikely)",
-        "2",
-        "3",
-        "4 (Neither Unlikely nor Likely)",
-        "5",
-        "6",
-        "7 (Very likely)"
-       ],
-       rows: [
-        "Walking Outdoors",
-        "Biking",
-        "Public Transport",
-        "Eating",
-        "Shopping",
-        "Talking and Socializing",
-        "Watching TV",
-        "Cleaning and chores",
-        "Cooking"
-       ],
-       horizontalScroll: false,
-       isAllRowRequired: true
-      },
-      {
-       type: "matrix",
-       name: "q1-2",
-       visible: isPrivacy,
-       width: "90%",
-       titleLocation: "hidden",
-       title: "Which activity do you think the Smart Camera wearer was doing? (Hint: it is one of the following activities and you must select at least one activity as NOT very unlikely.)",
-       defaultValue: {
-        "Walking Outdoors": "1 (Very Unlikely)",
-        Biking: "1 (Very Unlikely)",
-        Eating: "1 (Very Unlikely)",
-        "Public Transport": "1 (Very Unlikely)",
-        Shopping: "1 (Very Unlikely)",
-        "Talking and Socializing": "1 (Very Unlikely)",
-        "Watching TV": "1 (Very Unlikely)",
-        "Cleaning and chores": "1 (Very Unlikely)",
-        Cooking: "1 (Very Unlikely)"
-       },
-       isRequired: true,
-       columns: [
-        "1 (Very unlikely)",
-        "2",
-        "3",
-        "4 (Neither Unlikely nor Likely)",
-        "5",
-        "6",
-        "7 (Very likely)"
-       ],
-       rows: [
-        "Walking Outdoors",
-        "Biking",
-        "Public Transport",
-        "Eating",
-        "Shopping",
-        "Talking and Socializing",
-        "Watching TV",
-        "Cleaning and chores",
-        "Cooking"
-       ],
-       horizontalScroll: false,
-       isAllRowRequired: true
-      },
      ]
+    },
+    {
+     type: "html",
+     name: "question4",
+     html: "<h4 style=\"font-weight:500;\"> Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"? </h4> <h4 style=\"font-weight:500;\"> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least <strong>ONE</strong> activity as <strong>NOT very unlikely</strong>. You may select more than one as more likely. </span></h4> "
+    },
+    {
+     type: "matrix",
+     name: "q1-1",
+     width: "100",
+     defaultValue: {
+      "Walking Outdoors": "1 (Very Unlikely)",
+      Biking: "1 (Very Unlikely)",
+      Eating: "1 (Very Unlikely)",
+      "Public Transport": "1 (Very Unlikely)",
+      Shopping: "1 (Very Unlikely)",
+      "Talking and Socializing": "1 (Very Unlikely)",
+      "Watching TV": "1 (Very Unlikely)",
+      "Cleaning and chores": "1 (Very Unlikely)",
+      Cooking: "1 (Very Unlikely)"
+     },
+     isRequired: true,
+     titleLocation: "hidden",
+     columns: [
+      "1 (Very Unlikely)",
+      "2",
+      "3",
+      "4 (Neither Unlikely nor Likely)",
+      "5",
+      "6",
+      "7 (Very Likely)"
+     ],
+     rows: [
+      "Walking Outdoors",
+      "Biking",
+      "Public Transport",
+      "Eating",
+      "Shopping",
+      "Talking and Socializing",
+      "Watching TV",
+      "Cleaning and chores",
+      "Cooking"
+     ],
     },
     {
      type: "panel",
@@ -777,19 +739,18 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q1-3",
-       title: "In a few words, specify how you identified the activity."
+       name: "q1-2",
+       title: "In a few words, explain how you identified the activity."
       },
       {
        type: "html",
        name: "question27",
-       html: "\n<p style=\"font-size:14px;\"><strong>Please indicate which parts of the image that <i>you think</i> are most relevant to identifying the activity. Select checkboxes corresponding to the grid cell that you identify. You can select more than 1 cell. </strong></p>"
+       html: "\n<p style=\"font-size:14px;\"><strong>Please indicate which parts of the image that <i>you think</i> are most important to identifying the activity. \n Check the box(es) corresponding to the grid cell on the photo that you want to select. You may select more than one box. </strong></p>"
       },
       {
        type: "matrixdropdown",
-       name: "q1-4",
+       name: "q1-3",
        width: "55%",
-       title: "Please indicate which parts of the image that you think are most relevant to identifying the activity. Select checkboxes corresponding to the grid cell that you identify. You can select more than 1 cell.",
        defaultValue: {
         "1": {
          A: false,
@@ -872,7 +833,7 @@ var surveyJSON =
        imageFit: "fill",
        imageHeight: 180,
        imageWidth: 245
-      }
+      },
      ]
     },
     {
@@ -881,7 +842,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q1-5",
+       name: "q1-4",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -891,7 +852,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q1-6",
+       name: "q1-5",
        title: "I do not mind storing my images blurred to the level shown, in order to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
@@ -901,7 +862,7 @@ var surveyJSON =
       },
       {
        type: "text",
-       name: "q1-7",
+       name: "q1-6",
        visible: true,
        title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
       }
@@ -915,7 +876,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q1-8",
+       name: "q1-7",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -925,7 +886,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q1-9",
+       name: "q1-8",
        title: "I do not mind being captured in a wearable camera photo like the one shown.",
        isRequired: true,
        rateMin: -3,
@@ -935,7 +896,7 @@ var surveyJSON =
       },
       {
        type: "text",
-       name: "q1-10",
+       name: "q1-9",
        visible: true,
        title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
       }
@@ -949,17 +910,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q1-11",
-       title: "I can understand the heatmap well.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "rating",
-       name: "q1-12",
+       name: "q1-10",
        title: "The heatmap is helpful for me to identify the activity.",
        isRequired: true,
        rateMin: -3,
@@ -1087,7 +1038,6 @@ var surveyJSON =
        maxRateDescription: "Strongly agree"
       },
      ],
-     // visible: isIntel,
      title: "Do you agree or disagree with the following statement?"
     },
    ],
