@@ -2,7 +2,6 @@
 var isPilot = true
 var isPrivacy = (Math.random() > 0.5)
 var isIntel = Boolean(1 - isPrivacy)
-
 var condIndex = Math.floor(Math.random() * 10)
 if (condIndex == 3 || condIndex == 7) condIndex--;
 
@@ -12,7 +11,14 @@ var withBlur = (imgCond != 2)
 var withHeatmap = (camCond != 0)
 
 var privacyIntro = "Since the photos are taken automatically, they inevitably capture individuals in the surrounding environment. These individuals could be family members, friends, or complete strangers, and they are typically not aware they are being photographed."
+var completeCode = Math.floor(Math.random() * 1000000)
+var imageOrder = [1,2,5,6,10,11,19,20,32,33,35,36,40,41,46,47,51,52];
 
+function shuffle(arr) {
+  return Math.random() > 0.5 ? -1 : 1;
+}
+imageOrder.sort(shuffle);
+var index=0;
 
 /* for debug */
 console.log("isPilot: "+isPilot)
@@ -23,11 +29,14 @@ console.log("camCond: "+camCond)
 console.log("imgCond: "+imgCond)
 console.log("withBlur: "+withBlur)
 console.log("withHeatmap: "+withHeatmap)
+console.log("completeCode: "+completeCode)
+console.log("imageOrder: "+imageOrder)
 /* for debug */
 
 var surveyJSON = 
 {
  pages: [
+  /* Beginning */
   {
    name: "Beginning",
    elements: [
@@ -72,10 +81,10 @@ var surveyJSON =
      ],
      colCount: 0
     }
-  ],
-  // visible: false,
- }, 
- {
+   ]
+  }, 
+  /* Introduction */
+  {
    name: "Introduction",
    elements: [
     {
@@ -158,8 +167,8 @@ var surveyJSON =
      ]
     }
    ],
-   // visible: false,
   },
+  /* Consent */
   {
    name: "Consent",
    elements: [
@@ -212,8 +221,8 @@ var surveyJSON =
      ]
     }
    ],
-   // visible: false,
   },
+  /* Training */
   {
    name: "Training",
    elements: [
@@ -338,12 +347,14 @@ var surveyJSON =
    ],
    // visible: false,
   },
+
+  /* Warm-up */
   {
    name: "WarmUp",
    elements: [
     {
      type: "html",
-     name: "question39",
+     name: "question0_1",
      html: "<h3 style=\"font-weight:500;\">Warm-up: Screening questions </h3>"
     },
     {
@@ -352,7 +363,7 @@ var surveyJSON =
      elements: [
       {
        type: "imagepicker",
-       name: "question15",
+       name: "question0_2",
        titleLocation: "hidden",
        choices: [
         {
@@ -366,7 +377,7 @@ var surveyJSON =
       },
       {
        type: "radiogroup",
-       name: "q0_1",
+       name: "q0-1",
        title: "Where is the photo most likely taken?",
        correctAnswer: "Sunny",
        isRequired: true,
@@ -381,7 +392,7 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question18",
+       name: "question0_2",
        titleLocation: "hidden",
        choices: [
         {
@@ -395,7 +406,7 @@ var surveyJSON =
       },
       {
        type: "radiogroup",
-       name: "q0_2",
+       name: "q0-2",
        title: "Imagine the photo is captured from your point of view, what are you probably doing now? ",
        correctAnswer: "Riding a bike",
        isRequired: true,
@@ -408,16 +419,10 @@ var surveyJSON =
        ],
        colCount: 0
       },
-      // {
-      //  type: "html",
-      //  name: "question27",
-      //  html: "\n<h4 style=\"font-weight:500;\"><p>  Which of the following grid cells contain the computer screen?</p> \n <p><i>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select <strong>more than one box.</strong></i></p> </h4>"
-      // },
       {
        type: "matrixdropdown",
-       name: "q0_3",
-       width: "20em",
-       height: "16em",
+       name: "q0-3",
+       width: "21em",
        title: "Which of the following grid cells contain the computer screen? <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
         "1": {
@@ -483,8 +488,8 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question16",
-       // width: "30%",
+       name: "question0_3",
+       width: "270px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -500,19 +505,14 @@ var surveyJSON =
      ],
      title: "All the following photos are captured by wearable cameras."
     },
-    // {
-    //    type: "html",
-    //    name: "question27",
-    //    html: "\n<h4 style=\"font-weight:500;\"><p> According to the heatmap, which grid cells are most important? </p>\n <p> <i>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select <strong>more than one box.</strong></i></p> </h4>"
-    // },
     {
      type: "panel",
      name: "panel9",
      elements: [
       {
        type: "matrixdropdown",
-       name: "q0_4",
-       width: "20em",
+       name: "q0-4",
+       width: "21em",
        title: "According to the heatmap, which grid cells are most important? <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
         "1": {
@@ -578,7 +578,7 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question31",
+       name: "question0_4",
        width: "270px",
        startWithNewLine: false,
        titleLocation: "hidden",
@@ -594,7 +594,7 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question48",
+       name: "question0_5",
        width: "13%",
        startWithNewLine: false,
        titleLocation: "hidden",
@@ -614,6 +614,7 @@ var surveyJSON =
    ],
    questionsOrder: "initial"
   },
+  /* Screening */
   {
    name: "Screening",
    elements: [
@@ -623,9 +624,10 @@ var surveyJSON =
      html: "<h3 style=\"font-weight:500;\">Sorry! You do not qualify to continue with the study.</h3> <h3 style=\"font-weight:500;\">Thank you for your interest! </h3>\n\n"
     }
    ],
-   visibleIf: "not({q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true)",
+   visibleIf: withHeatmap?"not({q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true)":"not({q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true)",
    questionsOrder: "initial"
   },
+  /* Survey Instruction */
   {
    name: "Survey Instruction",
    elements: [
@@ -635,42 +637,44 @@ var surveyJSON =
      html: "<h3 style=\"font-weight:500;\">Next, you will see a series 15 of images and answer several questions for each image. There are 15 pages and 1 page for each image. </h3> \n<p>&nbsp;</p>\n<h4 style=\"font-weight: 500;color:red;\"> Please put your best effort to answer the questions <strong>accurately</strong> and <strong>quickly</strong>. For correct and quick answers, you can receive a bonus up to US$1.50. </h4>\n\n\n"
     }
    ],
-   visibleIf: "{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
    questionsOrder: "initial"
   },
+
+  /* Task1 */
   {
    name: "Task 1",
    elements: [
     {
      type: "html",
-     name: "question42",
+     name: "question1_1",
      html: "<h3 style=\"font-weight:500;\">Task 1 </h3>"
     },
     {
      type: "panel",
-     name: "panel6",
+     name: "panel1_1",
      elements: [
       {
        type: "html",
-       name: "question22",
+       name: "question1_2",
        visible: isIntel,
        html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
       },
       {
        type: "html",
-       name: "question23",
+       name: "question1_3",
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_4",
        width: "260px",
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/00_img.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_img.png"
         }
        ],
        imageFit: "fill",
@@ -679,14 +683,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_5",
        width: "260px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/cam"+condIndex+"/00_cam.png"
+         imageLink: "figures/cam"+condIndex+"/"+imageOrder[index]+"_cam.png"
         }
        ],
        visible: withHeatmap,
@@ -696,7 +700,7 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question48",
+       name: "question1_6",
        width: "110px",
        startWithNewLine: false,
        titleLocation: "hidden",
@@ -715,12 +719,12 @@ var surveyJSON =
     },
     {
      type: "html",
-     name: "question4",
-     html: "<h4 style=\"font-weight:500;\"> Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"? </h4> <h4 style=\"font-weight:500;\"> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least <strong>ONE</strong> activity as <strong>NOT very unlikely</strong>. You may select more than one as more likely. </span></h4> "
+     name: "question1_7",
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
     },
     {
      type: "matrix",
-     name: "q1-1",
+     name: "q"+imageOrder[index]+"-1",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -757,17 +761,18 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel7",
+     name: "panel1_2",
      elements: [
       {
        type: "text",
-       name: "q1-2",
-       title: "In a few words, explain how you identified the activity."
+       name: "q"+imageOrder[index]+"-2",
+       title: "Explain how you identified the activity.",
+       isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q1-3",
-       width: "20em",
+       name: "q"+imageOrder[index]+"-3",
+       width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
         "1": {
@@ -829,14 +834,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question28",
+       name: "question1_8",
        width: "35%",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/00_grid.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_grid.png"
         }
        ],
        imageFit: "fill",
@@ -847,11 +852,11 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel8",
+     name: "panel1_3",
      elements: [
       {
        type: "rating",
-       name: "q1-4",
+       name: "q"+imageOrder[index]+"-4",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -861,8 +866,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q1-5",
-       title: "I do not mind storing my images blurred to the level shown, in order to protect the privacy of bystanders.",
+       name: "q"+imageOrder[index]+"-5",
+       visible: withHeatmap,
+       title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -870,104 +876,88 @@ var surveyJSON =
        maxRateDescription: "Strongly agree"
       },
       {
-       type: "text",
-       name: "q1-6",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
+       type: "rating",
+       name: "q"+imageOrder[index]+"-6",
+       visible: isIntel,
+       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-7",
+       visible: isPrivacy,
+       title: "I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
      ],
+     title: "Do you agree or disagree with the following statements?"
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-8",
+     title: "Explain why you found it easy or difficult to identify the activity.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-9",
      visible: isIntel,
-     title: "Do you agree or disagree with the following statements?"
+     title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
+     isRequired: true,
     },
     {
-     type: "panel",
-     name: "panel34",
-     elements: [
-      {
-       type: "rating",
-       name: "q1-7",
-       title: "It is easy to identify the wearer’s activity in the photo.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "rating",
-       name: "q1-8",
-       title: "I do not mind being captured in a wearable camera photo like the one shown.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "text",
-       name: "q1-9",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
-     ],
+     type: "text",
+     name: "q"+imageOrder[index]+"-10",
      visible: isPrivacy,
-     title: "Do you agree or disagree with the following statements?"
-    },
-    {
-     type: "panel",
-     name: "panel69",
-     elements: [
-      {
-       type: "rating",
-       name: "q1-10",
-       title: "The heatmap is helpful for me to identify the activity.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      }
-     ],
-     visible: withHeatmap,
-     title: "Do you agree or disagree with the following statements?"
-    }
+     title: "Explain why you are comfortable or not comfortable to be captured in a similar photo like the one shown.",
+     isRequired: true,
+    }  
    ],
-   visibleIf: "{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
    questionsOrder: "initial"
   },
+  /* Task2 */
   {
    name: "Task 2",
    elements: [
     {
      type: "html",
-     name: "question42",
+     name: "question1_1",
      html: "<h3 style=\"font-weight:500;\">Task 2 </h3>"
     },
     {
      type: "panel",
-     name: "panel6",
+     name: "panel1_1",
      elements: [
       {
        type: "html",
-       name: "question22",
+       name: "question1_2",
        visible: isIntel,
        html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
       },
       {
        type: "html",
-       name: "question23",
+       name: "question1_3",
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_4",
        width: "260px",
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/01_img.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[++index]+"_img.png"
         }
        ],
        imageFit: "fill",
@@ -976,14 +966,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_5",
        width: "260px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/cam"+condIndex+"/01_cam.png"
+         imageLink: "figures/cam"+condIndex+"/"+imageOrder[index]+"_cam.png"
         }
        ],
        visible: withHeatmap,
@@ -993,7 +983,7 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question48",
+       name: "question1_6",
        width: "110px",
        startWithNewLine: false,
        titleLocation: "hidden",
@@ -1012,12 +1002,12 @@ var surveyJSON =
     },
     {
      type: "html",
-     name: "question4",
-     html: "<h4 style=\"font-weight:500;\"> Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"? </h4> <h4 style=\"font-weight:500;\"> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least <strong>ONE</strong> activity as <strong>NOT very unlikely</strong>. You may select more than one as more likely. </span></h4> "
+     name: "question1_7",
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
     },
     {
      type: "matrix",
-     name: "q2-1",
+     name: "q"+imageOrder[index]+"-1",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -1054,22 +1044,18 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel7",
+     name: "panel1_2",
      elements: [
       {
        type: "text",
-       name: "q2-2",
-       title: "In a few words, explain how you identified the activity."
+       name: "q"+imageOrder[index]+"-2",
+       title: "Explain how you identified the activity.",
+       isRequired: true,
       },
-      // {
-      //  type: "html",
-      //  name: "question27",
-      //  html: "\n<p style=\"font-size:14px;\"><strong>Please indicate which parts of the image that <i>you think</i> are most important to identifying the activity. \n Check the box(es) corresponding to the grid cell on the photo that you want to select. You may select more than one box. </strong></p>"
-      // },
       {
        type: "matrixdropdown",
-       name: "q2-3",
-       width: "20em",
+       name: "q"+imageOrder[index]+"-3",
+       width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
         "1": {
@@ -1131,14 +1117,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question28",
+       name: "question1_8",
        width: "35%",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/01_grid.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_grid.png"
         }
        ],
        imageFit: "fill",
@@ -1149,11 +1135,11 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel8",
+     name: "panel1_3",
      elements: [
       {
        type: "rating",
-       name: "q2-4",
+       name: "q"+imageOrder[index]+"-4",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -1163,8 +1149,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q2-5",
-       title: "I do not mind storing my images blurred to the level shown, in order to protect the privacy of bystanders.",
+       name: "q"+imageOrder[index]+"-5",
+       visible: withHeatmap,
+       title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -1172,104 +1159,88 @@ var surveyJSON =
        maxRateDescription: "Strongly agree"
       },
       {
-       type: "text",
-       name: "q2-6",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
+       type: "rating",
+       name: "q"+imageOrder[index]+"-6",
+       visible: isIntel,
+       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-7",
+       visible: isPrivacy,
+       title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
      ],
+     title: "Do you agree or disagree with the following statements?"
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-8",
+     title: "Explain why you found it easy or difficult to identify the activity.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-9",
      visible: isIntel,
-     title: "Do you agree or disagree with the following statements?"
+     title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
+     isRequired: true,
     },
     {
-     type: "panel",
-     name: "panel34",
-     elements: [
-      {
-       type: "rating",
-       name: "q2-7",
-       title: "It is easy to identify the wearer’s activity in the photo.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "rating",
-       name: "q2-8",
-       title: "I do not mind being captured in a wearable camera photo like the one shown.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "text",
-       name: "q2-9",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
-     ],
+     type: "text",
+     name: "q"+imageOrder[index]+"-10",
      visible: isPrivacy,
-     title: "Do you agree or disagree with the following statements?"
-    },
-    {
-     type: "panel",
-     name: "panel69",
-     elements: [
-      {
-       type: "rating",
-       name: "q2-10",
-       title: "The heatmap is helpful for me to identify the activity.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      }
-     ],
-     visible: withHeatmap,
-     title: "Do you agree or disagree with the following statements?"
-    }
+     title: "Explain why you are comfortable or not comfortable to be captured in a similar photo like the one shown.",
+     isRequired: true,
+    }  
    ],
-   visibleIf: "{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
    questionsOrder: "initial"
   },
+  /* Task3 */
   {
    name: "Task 3",
    elements: [
     {
      type: "html",
-     name: "question42",
+     name: "question1_1",
      html: "<h3 style=\"font-weight:500;\">Task 3 </h3>"
     },
     {
      type: "panel",
-     name: "panel6",
+     name: "panel1_1",
      elements: [
       {
        type: "html",
-       name: "question22",
+       name: "question1_2",
        visible: isIntel,
        html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
       },
       {
        type: "html",
-       name: "question23",
+       name: "question1_3",
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_4",
        width: "260px",
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/05_img.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[++index]+"_img.png"
         }
        ],
        imageFit: "fill",
@@ -1278,14 +1249,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_5",
        width: "260px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/cam"+condIndex+"/05_cam.png"
+         imageLink: "figures/cam"+condIndex+"/"+imageOrder[index]+"_cam.png"
         }
        ],
        visible: withHeatmap,
@@ -1295,7 +1266,7 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question48",
+       name: "question1_6",
        width: "110px",
        startWithNewLine: false,
        titleLocation: "hidden",
@@ -1314,12 +1285,12 @@ var surveyJSON =
     },
     {
      type: "html",
-     name: "question4",
-     html: "<h4 style=\"font-weight:500;\"> Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"? </h4> <h4 style=\"font-weight:500;\"> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least <strong>ONE</strong> activity as <strong>NOT very unlikely</strong>. You may select more than one as more likely. </span></h4> "
+     name: "question1_7",
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
     },
     {
      type: "matrix",
-     name: "q3-1",
+     name: "q"+imageOrder[index]+"-1",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -1356,22 +1327,18 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel7",
+     name: "panel1_2",
      elements: [
       {
        type: "text",
-       name: "q3-2",
-       title: "In a few words, explain how you identified the activity."
+       name: "q"+imageOrder[index]+"-2",
+       title: "Explain how you identified the activity.",
+       isRequired: true,
       },
-      // {
-      //  type: "html",
-      //  name: "question27",
-      //  html: "\n<p style=\"font-size:14px;\"><strong>Please indicate which parts of the image that <i>you think</i> are most important to identifying the activity. \n Check the box(es) corresponding to the grid cell on the photo that you want to select. You may select more than one box. </strong></p>"
-      // },
       {
        type: "matrixdropdown",
-       name: "q3-3",
-       width: "20em",
+       name: "q"+imageOrder[index]+"-3",
+       width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
         "1": {
@@ -1433,14 +1400,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question28",
+       name: "question1_8",
        width: "35%",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/05_grid.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_grid.png"
         }
        ],
        imageFit: "fill",
@@ -1451,11 +1418,11 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel8",
+     name: "panel1_3",
      elements: [
       {
        type: "rating",
-       name: "q3-4",
+       name: "q"+imageOrder[index]+"-4",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -1465,8 +1432,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q3-5",
-       title: "I do not mind storing my images blurred to the level shown, in order to protect the privacy of bystanders.",
+       name: "q"+imageOrder[index]+"-5",
+       visible: withHeatmap,
+       title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -1474,104 +1442,88 @@ var surveyJSON =
        maxRateDescription: "Strongly agree"
       },
       {
-       type: "text",
-       name: "q3-6",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
+       type: "rating",
+       name: "q"+imageOrder[index]+"-6",
+       visible: isIntel,
+       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-7",
+       visible: isPrivacy,
+       title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
      ],
+     title: "Do you agree or disagree with the following statements?"
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-8",
+     title: "Explain why you found it easy or difficult to identify the activity.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-9",
      visible: isIntel,
-     title: "Do you agree or disagree with the following statements?"
+     title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
+     isRequired: true,
     },
     {
-     type: "panel",
-     name: "panel34",
-     elements: [
-      {
-       type: "rating",
-       name: "q3-7",
-       title: "It is easy to identify the wearer’s activity in the photo.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "rating",
-       name: "q3-8",
-       title: "I do not mind being captured in a wearable camera photo like the one shown.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "text",
-       name: "q3-9",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
-     ],
+     type: "text",
+     name: "q"+imageOrder[index]+"-10",
      visible: isPrivacy,
-     title: "Do you agree or disagree with the following statements?"
-    },
-    {
-     type: "panel",
-     name: "panel69",
-     elements: [
-      {
-       type: "rating",
-       name: "q3-10",
-       title: "The heatmap is helpful for me to identify the activity.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      }
-     ],
-     visible: withHeatmap,
-     title: "Do you agree or disagree with the following statements?"
-    }
+     title: "Explain why you are comfortable or not comfortable to be captured in a similar photo like the one shown.",
+     isRequired: true,
+    }  
    ],
-   visibleIf: "{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
    questionsOrder: "initial"
   },
+  /* Task4 */
   {
    name: "Task 4",
    elements: [
     {
      type: "html",
-     name: "question42",
+     name: "question1_1",
      html: "<h3 style=\"font-weight:500;\">Task 4 </h3>"
     },
     {
      type: "panel",
-     name: "panel6",
+     name: "panel1_1",
      elements: [
       {
        type: "html",
-       name: "question22",
+       name: "question1_2",
        visible: isIntel,
        html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
       },
       {
        type: "html",
-       name: "question23",
+       name: "question1_3",
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_4",
        width: "260px",
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/10_img.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[++index]+"_img.png"
         }
        ],
        imageFit: "fill",
@@ -1580,14 +1532,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_5",
        width: "260px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/cam"+condIndex+"/10_cam.png"
+         imageLink: "figures/cam"+condIndex+"/"+imageOrder[index]+"_cam.png"
         }
        ],
        visible: withHeatmap,
@@ -1597,7 +1549,7 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question48",
+       name: "question1_6",
        width: "110px",
        startWithNewLine: false,
        titleLocation: "hidden",
@@ -1616,12 +1568,12 @@ var surveyJSON =
     },
     {
      type: "html",
-     name: "question4",
-     html: "<h4 style=\"font-weight:500;\"> Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"? </h4> <h4 style=\"font-weight:500;\"> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least <strong>ONE</strong> activity as <strong>NOT very unlikely</strong>. You may select more than one as more likely. </span></h4> "
+     name: "question1_7",
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
     },
     {
      type: "matrix",
-     name: "q4-1",
+     name: "q"+imageOrder[index]+"-1",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -1658,22 +1610,18 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel7",
+     name: "panel1_2",
      elements: [
       {
        type: "text",
-       name: "q4-2",
-       title: "In a few words, explain how you identified the activity."
+       name: "q"+imageOrder[index]+"-2",
+       title: "Explain how you identified the activity.",
+       isRequired: true,
       },
-      // {
-      //  type: "html",
-      //  name: "question27",
-      //  html: "\n<p style=\"font-size:14px;\"><strong>Please indicate which parts of the image that <i>you think</i> are most important to identifying the activity. \n Check the box(es) corresponding to the grid cell on the photo that you want to select. You may select more than one box. </strong></p>"
-      // },
       {
        type: "matrixdropdown",
-       name: "q4-3",
-       width: "20em",
+       name: "q"+imageOrder[index]+"-3",
+       width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
         "1": {
@@ -1735,14 +1683,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question28",
+       name: "question1_8",
        width: "35%",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/10_grid.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_grid.png"
         }
        ],
        imageFit: "fill",
@@ -1753,11 +1701,11 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel8",
+     name: "panel1_3",
      elements: [
       {
        type: "rating",
-       name: "q4-4",
+       name: "q"+imageOrder[index]+"-4",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -1767,8 +1715,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q4-5",
-       title: "I do not mind storing my images blurred to the level shown, in order to protect the privacy of bystanders.",
+       name: "q"+imageOrder[index]+"-5",
+       visible: withHeatmap,
+       title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -1776,105 +1725,89 @@ var surveyJSON =
        maxRateDescription: "Strongly agree"
       },
       {
-       type: "text",
-       name: "q4-6",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
+       type: "rating",
+       name: "q"+imageOrder[index]+"-6",
+       visible: isIntel,
+       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-7",
+       visible: isPrivacy,
+       title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
      ],
+     title: "Do you agree or disagree with the following statements?"
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-8",
+     title: "Explain why you found it easy or difficult to identify the activity.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-9",
      visible: isIntel,
-     title: "Do you agree or disagree with the following statements?"
+     title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
+     isRequired: true,
     },
     {
-     type: "panel",
-     name: "panel34",
-     elements: [
-      {
-       type: "rating",
-       name: "q4-7",
-       title: "It is easy to identify the wearer’s activity in the photo.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "rating",
-       name: "q4-8",
-       title: "I do not mind being captured in a wearable camera photo like the one shown.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "text",
-       name: "q4-9",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
-     ],
+     type: "text",
+     name: "q"+imageOrder[index]+"-10",
      visible: isPrivacy,
-     title: "Do you agree or disagree with the following statements?"
-    },
-    {
-     type: "panel",
-     name: "panel69",
-     elements: [
-      {
-       type: "rating",
-       name: "q4-10",
-       title: "The heatmap is helpful for me to identify the activity.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      }
-     ],
-     visible: withHeatmap,
-     title: "Do you agree or disagree with the following statements?"
-    }
+     title: "Explain why you are comfortable or not comfortable to be captured in a similar photo like the one shown.",
+     isRequired: true,
+    }  
    ],
-   visibleIf: "{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
    questionsOrder: "initial"
   },
 
+  /* Task5 */
   {
    name: "Task 5",
    elements: [
     {
      type: "html",
-     name: "question42",
+     name: "question1_1",
      html: "<h3 style=\"font-weight:500;\">Task 5 </h3>"
     },
     {
      type: "panel",
-     name: "panel6",
+     name: "panel1_1",
      elements: [
       {
        type: "html",
-       name: "question22",
+       name: "question1_2",
        visible: isIntel,
        html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
       },
       {
        type: "html",
-       name: "question23",
+       name: "question1_3",
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_4",
        width: "260px",
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/19_img.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[++index]+"_img.png"
         }
        ],
        imageFit: "fill",
@@ -1883,14 +1816,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_5",
        width: "260px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/cam"+condIndex+"/19_cam.png"
+         imageLink: "figures/cam"+condIndex+"/"+imageOrder[index]+"_cam.png"
         }
        ],
        visible: withHeatmap,
@@ -1900,7 +1833,7 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question48",
+       name: "question1_6",
        width: "110px",
        startWithNewLine: false,
        titleLocation: "hidden",
@@ -1919,12 +1852,12 @@ var surveyJSON =
     },
     {
      type: "html",
-     name: "question4",
-     html: "<h4 style=\"font-weight:500;\"> Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"? </h4> <h4 style=\"font-weight:500;\"> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least <strong>ONE</strong> activity as <strong>NOT very unlikely</strong>. You may select more than one as more likely. </span></h4> "
+     name: "question1_7",
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
     },
     {
      type: "matrix",
-     name: "q5-1",
+     name: "q"+imageOrder[index]+"-1",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -1961,22 +1894,18 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel7",
+     name: "panel1_2",
      elements: [
       {
        type: "text",
-       name: "q5-2",
-       title: "In a few words, explain how you identified the activity."
+       name: "q"+imageOrder[index]+"-2",
+       title: "Explain how you identified the activity.",
+       isRequired: true,
       },
-      // {
-      //  type: "html",
-      //  name: "question27",
-      //  html: "\n<p style=\"font-size:14px;\"><strong>Please indicate which parts of the image that <i>you think</i> are most important to identifying the activity. \n Check the box(es) corresponding to the grid cell on the photo that you want to select. You may select more than one box. </strong></p>"
-      // },
       {
        type: "matrixdropdown",
-       name: "q5-3",
-       width: "20em",
+       name: "q"+imageOrder[index]+"-3",
+       width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
         "1": {
@@ -2038,14 +1967,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question28",
+       name: "question1_8",
        width: "35%",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/19_grid.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_grid.png"
         }
        ],
        imageFit: "fill",
@@ -2056,11 +1985,11 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel8",
+     name: "panel1_3",
      elements: [
       {
        type: "rating",
-       name: "q5-4",
+       name: "q"+imageOrder[index]+"-4",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -2070,8 +1999,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q5-5",
-       title: "I do not mind storing my images blurred to the level shown, in order to protect the privacy of bystanders.",
+       name: "q"+imageOrder[index]+"-5",
+       visible: withHeatmap,
+       title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -2079,104 +2009,88 @@ var surveyJSON =
        maxRateDescription: "Strongly agree"
       },
       {
-       type: "text",
-       name: "q5-6",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
+       type: "rating",
+       name: "q"+imageOrder[index]+"-6",
+       visible: isIntel,
+       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-7",
+       visible: isPrivacy,
+       title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
      ],
+     title: "Do you agree or disagree with the following statements?"
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-8",
+     title: "Explain why you found it easy or difficult to identify the activity.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-9",
      visible: isIntel,
-     title: "Do you agree or disagree with the following statements?"
+     title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
+     isRequired: true,
     },
     {
-     type: "panel",
-     name: "panel34",
-     elements: [
-      {
-       type: "rating",
-       name: "q5-7",
-       title: "It is easy to identify the wearer’s activity in the photo.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "rating",
-       name: "q5-8",
-       title: "I do not mind being captured in a wearable camera photo like the one shown.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "text",
-       name: "q5-9",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
-     ],
+     type: "text",
+     name: "q"+imageOrder[index]+"-10",
      visible: isPrivacy,
-     title: "Do you agree or disagree with the following statements?"
-    },
-    {
-     type: "panel",
-     name: "panel69",
-     elements: [
-      {
-       type: "rating",
-       name: "q5-10",
-       title: "The heatmap is helpful for me to identify the activity.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      }
-     ],
-     visible: withHeatmap,
-     title: "Do you agree or disagree with the following statements?"
-    }
+     title: "Explain why you are comfortable or not comfortable to be captured in a similar photo like the one shown.",
+     isRequired: true,
+    }  
    ],
-   visibleIf: "{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
    questionsOrder: "initial"
   },
+  /* Task6 */
   {
    name: "Task 6",
    elements: [
     {
      type: "html",
-     name: "question42",
+     name: "question1_1",
      html: "<h3 style=\"font-weight:500;\">Task 6 </h3>"
     },
     {
      type: "panel",
-     name: "panel6",
+     name: "panel1_1",
      elements: [
       {
        type: "html",
-       name: "question22",
+       name: "question1_2",
        visible: isIntel,
        html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
       },
       {
        type: "html",
-       name: "question23",
+       name: "question1_3",
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_4",
        width: "260px",
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/20_img.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[++index]+"_img.png"
         }
        ],
        imageFit: "fill",
@@ -2185,14 +2099,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_5",
        width: "260px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/cam"+condIndex+"/20_cam.png"
+         imageLink: "figures/cam"+condIndex+"/"+imageOrder[index]+"_cam.png"
         }
        ],
        visible: withHeatmap,
@@ -2202,7 +2116,7 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question48",
+       name: "question1_6",
        width: "110px",
        startWithNewLine: false,
        titleLocation: "hidden",
@@ -2221,12 +2135,12 @@ var surveyJSON =
     },
     {
      type: "html",
-     name: "question4",
-     html: "<h4 style=\"font-weight:500;\"> Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"? </h4> <h4 style=\"font-weight:500;\"> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least <strong>ONE</strong> activity as <strong>NOT very unlikely</strong>. You may select more than one as more likely. </span></h4> "
+     name: "question1_7",
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
     },
     {
      type: "matrix",
-     name: "q6-1",
+     name: "q"+imageOrder[index]+"-1",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -2263,22 +2177,18 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel7",
+     name: "panel1_2",
      elements: [
       {
        type: "text",
-       name: "q6-2",
-       title: "In a few words, explain how you identified the activity."
+       name: "q"+imageOrder[index]+"-2",
+       title: "Explain how you identified the activity.",
+       isRequired: true,
       },
-      // {
-      //  type: "html",
-      //  name: "question27",
-      //  html: "\n<p style=\"font-size:14px;\"><strong>Please indicate which parts of the image that <i>you think</i> are most important to identifying the activity. \n Check the box(es) corresponding to the grid cell on the photo that you want to select. You may select more than one box. </strong></p>"
-      // },
       {
        type: "matrixdropdown",
-       name: "q6-3",
-       width: "20em",
+       name: "q"+imageOrder[index]+"-3",
+       width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
         "1": {
@@ -2340,14 +2250,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question28",
+       name: "question1_8",
        width: "35%",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/20_grid.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_grid.png"
         }
        ],
        imageFit: "fill",
@@ -2358,11 +2268,11 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel8",
+     name: "panel1_3",
      elements: [
       {
        type: "rating",
-       name: "q6-4",
+       name: "q"+imageOrder[index]+"-4",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -2372,8 +2282,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q6-5",
-       title: "I do not mind storing my images blurred to the level shown, in order to protect the privacy of bystanders.",
+       name: "q"+imageOrder[index]+"-5",
+       visible: withHeatmap,
+       title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -2381,104 +2292,88 @@ var surveyJSON =
        maxRateDescription: "Strongly agree"
       },
       {
-       type: "text",
-       name: "q6-6",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
+       type: "rating",
+       name: "q"+imageOrder[index]+"-6",
+       visible: isIntel,
+       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-7",
+       visible: isPrivacy,
+       title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
      ],
+     title: "Do you agree or disagree with the following statements?"
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-8",
+     title: "Explain why you found it easy or difficult to identify the activity.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-9",
      visible: isIntel,
-     title: "Do you agree or disagree with the following statements?"
+     title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
+     isRequired: true,
     },
     {
-     type: "panel",
-     name: "panel34",
-     elements: [
-      {
-       type: "rating",
-       name: "q6-7",
-       title: "It is easy to identify the wearer’s activity in the photo.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "rating",
-       name: "q6-8",
-       title: "I do not mind being captured in a wearable camera photo like the one shown.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "text",
-       name: "q6-9",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
-     ],
+     type: "text",
+     name: "q"+imageOrder[index]+"-10",
      visible: isPrivacy,
-     title: "Do you agree or disagree with the following statements?"
-    },
-    {
-     type: "panel",
-     name: "panel69",
-     elements: [
-      {
-       type: "rating",
-       name: "q6-10",
-       title: "The heatmap is helpful for me to identify the activity.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      }
-     ],
-     visible: withHeatmap,
-     title: "Do you agree or disagree with the following statements?"
-    }
+     title: "Explain why you are comfortable or not comfortable to be captured in a similar photo like the one shown.",
+     isRequired: true,
+    }  
    ],
-   visibleIf: "{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
    questionsOrder: "initial"
   },
+  /* Task7 */
   {
    name: "Task 7",
    elements: [
     {
      type: "html",
-     name: "question42",
+     name: "question1_1",
      html: "<h3 style=\"font-weight:500;\">Task 7 </h3>"
     },
     {
      type: "panel",
-     name: "panel6",
+     name: "panel1_1",
      elements: [
       {
        type: "html",
-       name: "question22",
+       name: "question1_2",
        visible: isIntel,
        html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
       },
       {
        type: "html",
-       name: "question23",
+       name: "question1_3",
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_4",
        width: "260px",
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/32_img.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[++index]+"_img.png"
         }
        ],
        imageFit: "fill",
@@ -2487,14 +2382,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_5",
        width: "260px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/cam"+condIndex+"/32_cam.png"
+         imageLink: "figures/cam"+condIndex+"/"+imageOrder[index]+"_cam.png"
         }
        ],
        visible: withHeatmap,
@@ -2504,7 +2399,7 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question48",
+       name: "question1_6",
        width: "110px",
        startWithNewLine: false,
        titleLocation: "hidden",
@@ -2523,12 +2418,12 @@ var surveyJSON =
     },
     {
      type: "html",
-     name: "question4",
-     html: "<h4 style=\"font-weight:500;\"> Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"? </h4> <h4 style=\"font-weight:500;\"> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least <strong>ONE</strong> activity as <strong>NOT very unlikely</strong>. You may select more than one as more likely. </span></h4> "
+     name: "question1_7",
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
     },
     {
      type: "matrix",
-     name: "q7-1",
+     name: "q"+imageOrder[index]+"-1",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -2565,22 +2460,18 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel7",
+     name: "panel1_2",
      elements: [
       {
        type: "text",
-       name: "q7-2",
-       title: "In a few words, explain how you identified the activity."
+       name: "q"+imageOrder[index]+"-2",
+       title: "Explain how you identified the activity.",
+       isRequired: true,
       },
-      // {
-      //  type: "html",
-      //  name: "question27",
-      //  html: "\n<p style=\"font-size:14px;\"><strong>Please indicate which parts of the image that <i>you think</i> are most important to identifying the activity. \n Check the box(es) corresponding to the grid cell on the photo that you want to select. You may select more than one box. </strong></p>"
-      // },
       {
        type: "matrixdropdown",
-       name: "q7-3",
-       width: "20em",
+       name: "q"+imageOrder[index]+"-3",
+       width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
         "1": {
@@ -2642,14 +2533,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question28",
+       name: "question1_8",
        width: "35%",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/32_grid.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_grid.png"
         }
        ],
        imageFit: "fill",
@@ -2660,11 +2551,11 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel8",
+     name: "panel1_3",
      elements: [
       {
        type: "rating",
-       name: "q7-4",
+       name: "q"+imageOrder[index]+"-4",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -2674,8 +2565,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q7-5",
-       title: "I do not mind storing my images blurred to the level shown, in order to protect the privacy of bystanders.",
+       name: "q"+imageOrder[index]+"-5",
+       visible: withHeatmap,
+       title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -2683,104 +2575,88 @@ var surveyJSON =
        maxRateDescription: "Strongly agree"
       },
       {
-       type: "text",
-       name: "q7-6",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
+       type: "rating",
+       name: "q"+imageOrder[index]+"-6",
+       visible: isIntel,
+       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-7",
+       visible: isPrivacy,
+       title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
      ],
+     title: "Do you agree or disagree with the following statements?"
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-8",
+     title: "Explain why you found it easy or difficult to identify the activity.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-9",
      visible: isIntel,
-     title: "Do you agree or disagree with the following statements?"
+     title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
+     isRequired: true,
     },
     {
-     type: "panel",
-     name: "panel34",
-     elements: [
-      {
-       type: "rating",
-       name: "q7-7",
-       title: "It is easy to identify the wearer’s activity in the photo.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "rating",
-       name: "q7-8",
-       title: "I do not mind being captured in a wearable camera photo like the one shown.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "text",
-       name: "q7-9",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
-     ],
+     type: "text",
+     name: "q"+imageOrder[index]+"-10",
      visible: isPrivacy,
-     title: "Do you agree or disagree with the following statements?"
-    },
-    {
-     type: "panel",
-     name: "panel69",
-     elements: [
-      {
-       type: "rating",
-       name: "q7-10",
-       title: "The heatmap is helpful for me to identify the activity.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      }
-     ],
-     visible: withHeatmap,
-     title: "Do you agree or disagree with the following statements?"
-    }
+     title: "Explain why you are comfortable or not comfortable to be captured in a similar photo like the one shown.",
+     isRequired: true,
+    }  
    ],
-   visibleIf: "{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
    questionsOrder: "initial"
   },
+  /* Task8 */
   {
    name: "Task 8",
    elements: [
     {
      type: "html",
-     name: "question42",
+     name: "question1_1",
      html: "<h3 style=\"font-weight:500;\">Task 8 </h3>"
     },
     {
      type: "panel",
-     name: "panel6",
+     name: "panel1_1",
      elements: [
       {
        type: "html",
-       name: "question22",
+       name: "question1_2",
        visible: isIntel,
        html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
       },
       {
        type: "html",
-       name: "question23",
+       name: "question1_3",
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_4",
        width: "260px",
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/33_img.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[++index]+"_img.png"
         }
        ],
        imageFit: "fill",
@@ -2789,14 +2665,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_5",
        width: "260px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/cam"+condIndex+"/33_cam.png"
+         imageLink: "figures/cam"+condIndex+"/"+imageOrder[index]+"_cam.png"
         }
        ],
        visible: withHeatmap,
@@ -2806,7 +2682,7 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question48",
+       name: "question1_6",
        width: "110px",
        startWithNewLine: false,
        titleLocation: "hidden",
@@ -2825,12 +2701,12 @@ var surveyJSON =
     },
     {
      type: "html",
-     name: "question4",
-     html: "<h4 style=\"font-weight:500;\"> Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"? </h4> <h4 style=\"font-weight:500;\"> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least <strong>ONE</strong> activity as <strong>NOT very unlikely</strong>. You may select more than one as more likely. </span></h4> "
+     name: "question1_7",
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
     },
     {
      type: "matrix",
-     name: "q8-1",
+     name: "q"+imageOrder[index]+"-1",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -2867,22 +2743,18 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel7",
+     name: "panel1_2",
      elements: [
       {
        type: "text",
-       name: "q8-2",
-       title: "In a few words, explain how you identified the activity."
+       name: "q"+imageOrder[index]+"-2",
+       title: "Explain how you identified the activity.",
+       isRequired: true,
       },
-      // {
-      //  type: "html",
-      //  name: "question27",
-      //  html: "\n<p style=\"font-size:14px;\"><strong>Please indicate which parts of the image that <i>you think</i> are most important to identifying the activity. \n Check the box(es) corresponding to the grid cell on the photo that you want to select. You may select more than one box. </strong></p>"
-      // },
       {
        type: "matrixdropdown",
-       name: "q8-3",
-       width: "20em",
+       name: "q"+imageOrder[index]+"-3",
+       width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
         "1": {
@@ -2944,14 +2816,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question28",
+       name: "question1_8",
        width: "35%",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/33_grid.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_grid.png"
         }
        ],
        imageFit: "fill",
@@ -2962,11 +2834,11 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel8",
+     name: "panel1_3",
      elements: [
       {
        type: "rating",
-       name: "q8-4",
+       name: "q"+imageOrder[index]+"-4",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -2976,8 +2848,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q8-5",
-       title: "I do not mind storing my images blurred to the level shown, in order to protect the privacy of bystanders.",
+       name: "q"+imageOrder[index]+"-5",
+       visible: withHeatmap,
+       title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -2985,105 +2858,89 @@ var surveyJSON =
        maxRateDescription: "Strongly agree"
       },
       {
-       type: "text",
-       name: "q8-6",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
+       type: "rating",
+       name: "q"+imageOrder[index]+"-6",
+       visible: isIntel,
+       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-7",
+       visible: isPrivacy,
+       title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
      ],
+     title: "Do you agree or disagree with the following statements?"
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-8",
+     title: "Explain why you found it easy or difficult to identify the activity.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-9",
      visible: isIntel,
-     title: "Do you agree or disagree with the following statements?"
+     title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
+     isRequired: true,
     },
     {
-     type: "panel",
-     name: "panel34",
-     elements: [
-      {
-       type: "rating",
-       name: "q8-7",
-       title: "It is easy to identify the wearer’s activity in the photo.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "rating",
-       name: "q8-8",
-       title: "I do not mind being captured in a wearable camera photo like the one shown.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "text",
-       name: "q8-9",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
-     ],
+     type: "text",
+     name: "q"+imageOrder[index]+"-10",
      visible: isPrivacy,
-     title: "Do you agree or disagree with the following statements?"
-    },
-    {
-     type: "panel",
-     name: "panel69",
-     elements: [
-      {
-       type: "rating",
-       name: "q8-10",
-       title: "The heatmap is helpful for me to identify the activity.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      }
-     ],
-     visible: withHeatmap,
-     title: "Do you agree or disagree with the following statements?"
-    }
+     title: "Explain why you are comfortable or not comfortable to be captured in a similar photo like the one shown.",
+     isRequired: true,
+    }  
    ],
-   visibleIf: "{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
    questionsOrder: "initial"
   },
 
+  /* Task9 */
   {
    name: "Task 9",
    elements: [
     {
      type: "html",
-     name: "question42",
+     name: "question1_1",
      html: "<h3 style=\"font-weight:500;\">Task 9 </h3>"
     },
     {
      type: "panel",
-     name: "panel6",
+     name: "panel1_1",
      elements: [
       {
        type: "html",
-       name: "question22",
+       name: "question1_2",
        visible: isIntel,
        html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
       },
       {
        type: "html",
-       name: "question23",
+       name: "question1_3",
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_4",
        width: "260px",
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/35_img.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[++index]+"_img.png"
         }
        ],
        imageFit: "fill",
@@ -3092,14 +2949,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_5",
        width: "260px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/cam"+condIndex+"/35_cam.png"
+         imageLink: "figures/cam"+condIndex+"/"+imageOrder[index]+"_cam.png"
         }
        ],
        visible: withHeatmap,
@@ -3109,7 +2966,7 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question48",
+       name: "question1_6",
        width: "110px",
        startWithNewLine: false,
        titleLocation: "hidden",
@@ -3128,12 +2985,12 @@ var surveyJSON =
     },
     {
      type: "html",
-     name: "question4",
-     html: "<h4 style=\"font-weight:500;\"> Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"? </h4> <h4 style=\"font-weight:500;\"> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least <strong>ONE</strong> activity as <strong>NOT very unlikely</strong>. You may select more than one as more likely. </span></h4> "
+     name: "question1_7",
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
     },
     {
      type: "matrix",
-     name: "q9-1",
+     name: "q"+imageOrder[index]+"-1",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -3170,22 +3027,18 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel7",
+     name: "panel1_2",
      elements: [
       {
        type: "text",
-       name: "q9-2",
-       title: "In a few words, explain how you identified the activity."
+       name: "q"+imageOrder[index]+"-2",
+       title: "Explain how you identified the activity.",
+       isRequired: true,
       },
-      // {
-      //  type: "html",
-      //  name: "question27",
-      //  html: "\n<p style=\"font-size:14px;\"><strong>Please indicate which parts of the image that <i>you think</i> are most important to identifying the activity. \n Check the box(es) corresponding to the grid cell on the photo that you want to select. You may select more than one box. </strong></p>"
-      // },
       {
        type: "matrixdropdown",
-       name: "q9-3",
-       width: "20em",
+       name: "q"+imageOrder[index]+"-3",
+       width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
         "1": {
@@ -3247,14 +3100,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question28",
+       name: "question1_8",
        width: "35%",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/35_grid.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_grid.png"
         }
        ],
        imageFit: "fill",
@@ -3265,11 +3118,11 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel8",
+     name: "panel1_3",
      elements: [
       {
        type: "rating",
-       name: "q9-4",
+       name: "q"+imageOrder[index]+"-4",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -3279,8 +3132,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q9-5",
-       title: "I do not mind storing my images blurred to the level shown, in order to protect the privacy of bystanders.",
+       name: "q"+imageOrder[index]+"-5",
+       visible: withHeatmap,
+       title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -3288,104 +3142,88 @@ var surveyJSON =
        maxRateDescription: "Strongly agree"
       },
       {
-       type: "text",
-       name: "q9-6",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
+       type: "rating",
+       name: "q"+imageOrder[index]+"-6",
+       visible: isIntel,
+       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-7",
+       visible: isPrivacy,
+       title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
      ],
+     title: "Do you agree or disagree with the following statements?"
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-8",
+     title: "Explain why you found it easy or difficult to identify the activity.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-9",
      visible: isIntel,
-     title: "Do you agree or disagree with the following statements?"
+     title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
+     isRequired: true,
     },
     {
-     type: "panel",
-     name: "panel34",
-     elements: [
-      {
-       type: "rating",
-       name: "q9-7",
-       title: "It is easy to identify the wearer’s activity in the photo.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "rating",
-       name: "q9-8",
-       title: "I do not mind being captured in a wearable camera photo like the one shown.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "text",
-       name: "q9-9",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
-     ],
+     type: "text",
+     name: "q"+imageOrder[index]+"-10",
      visible: isPrivacy,
-     title: "Do you agree or disagree with the following statements?"
-    },
-    {
-     type: "panel",
-     name: "panel69",
-     elements: [
-      {
-       type: "rating",
-       name: "q9-10",
-       title: "The heatmap is helpful for me to identify the activity.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      }
-     ],
-     visible: withHeatmap,
-     title: "Do you agree or disagree with the following statements?"
-    }
+     title: "Explain why you are comfortable or not comfortable to be captured in a similar photo like the one shown.",
+     isRequired: true,
+    }  
    ],
-   visibleIf: "{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
    questionsOrder: "initial"
   },
+  /* Task10 */
   {
-   name: "Task 1",
+   name: "Task 10",
    elements: [
     {
      type: "html",
-     name: "question42",
-     html: "<h3 style=\"font-weight:500;\">Task 1 </h3>"
+     name: "question1_1",
+     html: "<h3 style=\"font-weight:500;\">Task 10 </h3>"
     },
     {
      type: "panel",
-     name: "panel6",
+     name: "panel1_1",
      elements: [
       {
        type: "html",
-       name: "question22",
+       name: "question1_2",
        visible: isIntel,
        html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
       },
       {
        type: "html",
-       name: "question23",
+       name: "question1_3",
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_4",
        width: "260px",
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/36_img.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[++index]+"_img.png"
         }
        ],
        imageFit: "fill",
@@ -3394,14 +3232,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_5",
        width: "260px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/cam"+condIndex+"/36_cam.png"
+         imageLink: "figures/cam"+condIndex+"/"+imageOrder[index]+"_cam.png"
         }
        ],
        visible: withHeatmap,
@@ -3411,7 +3249,7 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question48",
+       name: "question1_6",
        width: "110px",
        startWithNewLine: false,
        titleLocation: "hidden",
@@ -3430,12 +3268,12 @@ var surveyJSON =
     },
     {
      type: "html",
-     name: "question4",
-     html: "<h4 style=\"font-weight:500;\"> Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"? </h4> <h4 style=\"font-weight:500;\"> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least <strong>ONE</strong> activity as <strong>NOT very unlikely</strong>. You may select more than one as more likely. </span></h4> "
+     name: "question1_7",
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
     },
     {
      type: "matrix",
-     name: "q10-1",
+     name: "q"+imageOrder[index]+"-1",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -3472,22 +3310,18 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel7",
+     name: "panel1_2",
      elements: [
       {
        type: "text",
-       name: "q10-2",
-       title: "In a few words, explain how you identified the activity."
+       name: "q"+imageOrder[index]+"-2",
+       title: "Explain how you identified the activity.",
+       isRequired: true,
       },
-      // {
-      //  type: "html",
-      //  name: "question27",
-      //  html: "\n<p style=\"font-size:14px;\"><strong>Please indicate which parts of the image that <i>you think</i> are most important to identifying the activity. \n Check the box(es) corresponding to the grid cell on the photo that you want to select. You may select more than one box. </strong></p>"
-      // },
       {
        type: "matrixdropdown",
-       name: "q10-3",
-       width: "20em",
+       name: "q"+imageOrder[index]+"-3",
+       width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
         "1": {
@@ -3549,14 +3383,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question28",
+       name: "question1_8",
        width: "35%",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/36_grid.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_grid.png"
         }
        ],
        imageFit: "fill",
@@ -3567,11 +3401,11 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel8",
+     name: "panel1_3",
      elements: [
       {
        type: "rating",
-       name: "q10-4",
+       name: "q"+imageOrder[index]+"-4",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -3581,8 +3415,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q10-5",
-       title: "I do not mind storing my images blurred to the level shown, in order to protect the privacy of bystanders.",
+       name: "q"+imageOrder[index]+"-5",
+       visible: withHeatmap,
+       title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -3590,104 +3425,88 @@ var surveyJSON =
        maxRateDescription: "Strongly agree"
       },
       {
-       type: "text",
-       name: "q10-6",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
+       type: "rating",
+       name: "q"+imageOrder[index]+"-6",
+       visible: isIntel,
+       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-7",
+       visible: isPrivacy,
+       title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
      ],
+     title: "Do you agree or disagree with the following statements?"
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-8",
+     title: "Explain why you found it easy or difficult to identify the activity.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-9",
      visible: isIntel,
-     title: "Do you agree or disagree with the following statements?"
+     title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
+     isRequired: true,
     },
     {
-     type: "panel",
-     name: "panel34",
-     elements: [
-      {
-       type: "rating",
-       name: "q10-7",
-       title: "It is easy to identify the wearer’s activity in the photo.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "rating",
-       name: "q10-8",
-       title: "I do not mind being captured in a wearable camera photo like the one shown.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "text",
-       name: "q10-9",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
-     ],
+     type: "text",
+     name: "q"+imageOrder[index]+"-10",
      visible: isPrivacy,
-     title: "Do you agree or disagree with the following statements?"
-    },
-    {
-     type: "panel",
-     name: "panel69",
-     elements: [
-      {
-       type: "rating",
-       name: "q10-10",
-       title: "The heatmap is helpful for me to identify the activity.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      }
-     ],
-     visible: withHeatmap,
-     title: "Do you agree or disagree with the following statements?"
-    }
+     title: "Explain why you are comfortable or not comfortable to be captured in a similar photo like the one shown.",
+     isRequired: true,
+    }  
    ],
-   visibleIf: "{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
    questionsOrder: "initial"
   },
+  /* Task11 */
   {
    name: "Task 11",
    elements: [
     {
      type: "html",
-     name: "question42",
+     name: "question1_1",
      html: "<h3 style=\"font-weight:500;\">Task 11 </h3>"
     },
     {
      type: "panel",
-     name: "panel6",
+     name: "panel1_1",
      elements: [
       {
        type: "html",
-       name: "question22",
+       name: "question1_2",
        visible: isIntel,
        html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
       },
       {
        type: "html",
-       name: "question23",
+       name: "question1_3",
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_4",
        width: "260px",
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/40_img.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[++index]+"_img.png"
         }
        ],
        imageFit: "fill",
@@ -3696,14 +3515,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_5",
        width: "260px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/cam"+condIndex+"/40_cam.png"
+         imageLink: "figures/cam"+condIndex+"/"+imageOrder[index]+"_cam.png"
         }
        ],
        visible: withHeatmap,
@@ -3713,7 +3532,7 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question48",
+       name: "question1_6",
        width: "110px",
        startWithNewLine: false,
        titleLocation: "hidden",
@@ -3732,12 +3551,12 @@ var surveyJSON =
     },
     {
      type: "html",
-     name: "question4",
-     html: "<h4 style=\"font-weight:500;\"> Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"? </h4> <h4 style=\"font-weight:500;\"> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least <strong>ONE</strong> activity as <strong>NOT very unlikely</strong>. You may select more than one as more likely. </span></h4> "
+     name: "question1_7",
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
     },
     {
      type: "matrix",
-     name: "q11-1",
+     name: "q"+imageOrder[index]+"-1",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -3774,22 +3593,18 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel7",
+     name: "panel1_2",
      elements: [
       {
        type: "text",
-       name: "q11-2",
-       title: "In a few words, explain how you identified the activity."
+       name: "q"+imageOrder[index]+"-2",
+       title: "Explain how you identified the activity.",
+       isRequired: true,
       },
-      // {
-      //  type: "html",
-      //  name: "question27",
-      //  html: "\n<p style=\"font-size:14px;\"><strong>Please indicate which parts of the image that <i>you think</i> are most important to identifying the activity. \n Check the box(es) corresponding to the grid cell on the photo that you want to select. You may select more than one box. </strong></p>"
-      // },
       {
        type: "matrixdropdown",
-       name: "q11-3",
-       width: "20em",
+       name: "q"+imageOrder[index]+"-3",
+       width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
         "1": {
@@ -3851,14 +3666,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question28",
+       name: "question1_8",
        width: "35%",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/40_grid.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_grid.png"
         }
        ],
        imageFit: "fill",
@@ -3869,11 +3684,11 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel8",
+     name: "panel1_3",
      elements: [
       {
        type: "rating",
-       name: "q11-4",
+       name: "q"+imageOrder[index]+"-4",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -3883,8 +3698,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q11-5",
-       title: "I do not mind storing my images blurred to the level shown, in order to protect the privacy of bystanders.",
+       name: "q"+imageOrder[index]+"-5",
+       visible: withHeatmap,
+       title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -3892,104 +3708,88 @@ var surveyJSON =
        maxRateDescription: "Strongly agree"
       },
       {
-       type: "text",
-       name: "q11-6",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
+       type: "rating",
+       name: "q"+imageOrder[index]+"-6",
+       visible: isIntel,
+       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-7",
+       visible: isPrivacy,
+       title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
      ],
+     title: "Do you agree or disagree with the following statements?"
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-8",
+     title: "Explain why you found it easy or difficult to identify the activity.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-9",
      visible: isIntel,
-     title: "Do you agree or disagree with the following statements?"
+     title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
+     isRequired: true,
     },
     {
-     type: "panel",
-     name: "panel34",
-     elements: [
-      {
-       type: "rating",
-       name: "q11-7",
-       title: "It is easy to identify the wearer’s activity in the photo.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "rating",
-       name: "q11-8",
-       title: "I do not mind being captured in a wearable camera photo like the one shown.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "text",
-       name: "q11-9",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
-     ],
+     type: "text",
+     name: "q"+imageOrder[index]+"-10",
      visible: isPrivacy,
-     title: "Do you agree or disagree with the following statements?"
-    },
-    {
-     type: "panel",
-     name: "panel69",
-     elements: [
-      {
-       type: "rating",
-       name: "q11-10",
-       title: "The heatmap is helpful for me to identify the activity.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      }
-     ],
-     visible: withHeatmap,
-     title: "Do you agree or disagree with the following statements?"
-    }
+     title: "Explain why you are comfortable or not comfortable to be captured in a similar photo like the one shown.",
+     isRequired: true,
+    }  
    ],
-   visibleIf: "{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
    questionsOrder: "initial"
   },
+  /* Task12 */
   {
    name: "Task 12",
    elements: [
     {
      type: "html",
-     name: "question42",
+     name: "question1_1",
      html: "<h3 style=\"font-weight:500;\">Task 12 </h3>"
     },
     {
      type: "panel",
-     name: "panel6",
+     name: "panel1_1",
      elements: [
       {
        type: "html",
-       name: "question22",
+       name: "question1_2",
        visible: isIntel,
        html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
       },
       {
        type: "html",
-       name: "question23",
+       name: "question1_3",
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_4",
        width: "260px",
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/41_img.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[++index]+"_img.png"
         }
        ],
        imageFit: "fill",
@@ -3998,14 +3798,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_5",
        width: "260px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/cam"+condIndex+"/41_cam.png"
+         imageLink: "figures/cam"+condIndex+"/"+imageOrder[index]+"_cam.png"
         }
        ],
        visible: withHeatmap,
@@ -4015,7 +3815,7 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question48",
+       name: "question1_6",
        width: "110px",
        startWithNewLine: false,
        titleLocation: "hidden",
@@ -4034,12 +3834,12 @@ var surveyJSON =
     },
     {
      type: "html",
-     name: "question4",
-     html: "<h4 style=\"font-weight:500;\"> Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"? </h4> <h4 style=\"font-weight:500;\"> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least <strong>ONE</strong> activity as <strong>NOT very unlikely</strong>. You may select more than one as more likely. </span></h4> "
+     name: "question1_7",
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
     },
     {
      type: "matrix",
-     name: "q12-1",
+     name: "q"+imageOrder[index]+"-1",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -4076,22 +3876,18 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel7",
+     name: "panel1_2",
      elements: [
       {
        type: "text",
-       name: "q12-2",
-       title: "In a few words, explain how you identified the activity."
+       name: "q"+imageOrder[index]+"-2",
+       title: "Explain how you identified the activity.",
+       isRequired: true,
       },
-      // {
-      //  type: "html",
-      //  name: "question27",
-      //  html: "\n<p style=\"font-size:14px;\"><strong>Please indicate which parts of the image that <i>you think</i> are most important to identifying the activity. \n Check the box(es) corresponding to the grid cell on the photo that you want to select. You may select more than one box. </strong></p>"
-      // },
       {
        type: "matrixdropdown",
-       name: "q12-3",
-      width: "20em",
+       name: "q"+imageOrder[index]+"-3",
+       width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
         "1": {
@@ -4153,14 +3949,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question28",
+       name: "question1_8",
        width: "35%",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/41_grid.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_grid.png"
         }
        ],
        imageFit: "fill",
@@ -4171,11 +3967,11 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel8",
+     name: "panel1_3",
      elements: [
       {
        type: "rating",
-       name: "q12-4",
+       name: "q"+imageOrder[index]+"-4",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -4185,8 +3981,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q12-5",
-       title: "I do not mind storing my images blurred to the level shown, in order to protect the privacy of bystanders.",
+       name: "q"+imageOrder[index]+"-5",
+       visible: withHeatmap,
+       title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -4194,105 +3991,89 @@ var surveyJSON =
        maxRateDescription: "Strongly agree"
       },
       {
-       type: "text",
-       name: "q12-6",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
+       type: "rating",
+       name: "q"+imageOrder[index]+"-6",
+       visible: isIntel,
+       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-7",
+       visible: isPrivacy,
+       title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
      ],
+     title: "Do you agree or disagree with the following statements?"
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-8",
+     title: "Explain why you found it easy or difficult to identify the activity.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-9",
      visible: isIntel,
-     title: "Do you agree or disagree with the following statements?"
+     title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
+     isRequired: true,
     },
     {
-     type: "panel",
-     name: "panel34",
-     elements: [
-      {
-       type: "rating",
-       name: "q12-7",
-       title: "It is easy to identify the wearer’s activity in the photo.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "rating",
-       name: "q12-8",
-       title: "I do not mind being captured in a wearable camera photo like the one shown.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "text",
-       name: "q12-9",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
-     ],
+     type: "text",
+     name: "q"+imageOrder[index]+"-10",
      visible: isPrivacy,
-     title: "Do you agree or disagree with the following statements?"
-    },
-    {
-     type: "panel",
-     name: "panel69",
-     elements: [
-      {
-       type: "rating",
-       name: "q12-10",
-       title: "The heatmap is helpful for me to identify the activity.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      }
-     ],
-     visible: withHeatmap,
-     title: "Do you agree or disagree with the following statements?"
-    }
+     title: "Explain why you are comfortable or not comfortable to be captured in a similar photo like the one shown.",
+     isRequired: true,
+    }  
    ],
-   visibleIf: "{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
    questionsOrder: "initial"
   },
 
+  /* Task13 */
   {
    name: "Task 13",
    elements: [
     {
      type: "html",
-     name: "question42",
+     name: "question1_1",
      html: "<h3 style=\"font-weight:500;\">Task 13 </h3>"
     },
     {
      type: "panel",
-     name: "panel6",
+     name: "panel1_1",
      elements: [
       {
        type: "html",
-       name: "question22",
+       name: "question1_2",
        visible: isIntel,
        html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
       },
       {
        type: "html",
-       name: "question23",
+       name: "question1_3",
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_4",
        width: "260px",
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/46_img.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[++index]+"_img.png"
         }
        ],
        imageFit: "fill",
@@ -4301,14 +4082,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_5",
        width: "260px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/cam"+condIndex+"/46_cam.png"
+         imageLink: "figures/cam"+condIndex+"/"+imageOrder[index]+"_cam.png"
         }
        ],
        visible: withHeatmap,
@@ -4318,7 +4099,7 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question48",
+       name: "question1_6",
        width: "110px",
        startWithNewLine: false,
        titleLocation: "hidden",
@@ -4337,12 +4118,12 @@ var surveyJSON =
     },
     {
      type: "html",
-     name: "question4",
-     html: "<h4 style=\"font-weight:500;\"> Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"? </h4> <h4 style=\"font-weight:500;\"> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least <strong>ONE</strong> activity as <strong>NOT very unlikely</strong>. You may select more than one as more likely. </span></h4> "
+     name: "question1_7",
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
     },
     {
      type: "matrix",
-     name: "q13-1",
+     name: "q"+imageOrder[index]+"-1",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -4379,22 +4160,18 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel7",
+     name: "panel1_2",
      elements: [
       {
        type: "text",
-       name: "q13-2",
-       title: "In a few words, explain how you identified the activity."
+       name: "q"+imageOrder[index]+"-2",
+       title: "Explain how you identified the activity.",
+       isRequired: true,
       },
-      // {
-      //  type: "html",
-      //  name: "question27",
-      //  html: "\n<p style=\"font-size:14px;\"><strong>Please indicate which parts of the image that <i>you think</i> are most important to identifying the activity. \n Check the box(es) corresponding to the grid cell on the photo that you want to select. You may select more than one box. </strong></p>"
-      // },
       {
        type: "matrixdropdown",
-       name: "q13-3",
-       width: "20em",
+       name: "q"+imageOrder[index]+"-3",
+       width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
         "1": {
@@ -4456,14 +4233,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question28",
+       name: "question1_8",
        width: "35%",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/46_grid.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_grid.png"
         }
        ],
        imageFit: "fill",
@@ -4474,11 +4251,11 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel8",
+     name: "panel1_3",
      elements: [
       {
        type: "rating",
-       name: "q13-4",
+       name: "q"+imageOrder[index]+"-4",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -4488,8 +4265,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q13-5",
-       title: "I do not mind storing my images blurred to the level shown, in order to protect the privacy of bystanders.",
+       name: "q"+imageOrder[index]+"-5",
+       visible: withHeatmap,
+       title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -4497,104 +4275,88 @@ var surveyJSON =
        maxRateDescription: "Strongly agree"
       },
       {
-       type: "text",
-       name: "q13-6",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
+       type: "rating",
+       name: "q"+imageOrder[index]+"-6",
+       visible: isIntel,
+       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-7",
+       visible: isPrivacy,
+       title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
      ],
+     title: "Do you agree or disagree with the following statements?"
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-8",
+     title: "Explain why you found it easy or difficult to identify the activity.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-9",
      visible: isIntel,
-     title: "Do you agree or disagree with the following statements?"
+     title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
+     isRequired: true,
     },
     {
-     type: "panel",
-     name: "panel34",
-     elements: [
-      {
-       type: "rating",
-       name: "q13-7",
-       title: "It is easy to identify the wearer’s activity in the photo.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "rating",
-       name: "q13-8",
-       title: "I do not mind being captured in a wearable camera photo like the one shown.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "text",
-       name: "q13-9",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
-     ],
+     type: "text",
+     name: "q"+imageOrder[index]+"-10",
      visible: isPrivacy,
-     title: "Do you agree or disagree with the following statements?"
-    },
-    {
-     type: "panel",
-     name: "panel69",
-     elements: [
-      {
-       type: "rating",
-       name: "q13-10",
-       title: "The heatmap is helpful for me to identify the activity.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      }
-     ],
-     visible: withHeatmap,
-     title: "Do you agree or disagree with the following statements?"
-    }
+     title: "Explain why you are comfortable or not comfortable to be captured in a similar photo like the one shown.",
+     isRequired: true,
+    }  
    ],
-   visibleIf: "{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
    questionsOrder: "initial"
   },
+  /* Task14 */
   {
    name: "Task 14",
    elements: [
     {
      type: "html",
-     name: "question42",
+     name: "question1_1",
      html: "<h3 style=\"font-weight:500;\">Task 14 </h3>"
     },
     {
      type: "panel",
-     name: "panel6",
+     name: "panel1_1",
      elements: [
       {
        type: "html",
-       name: "question22",
+       name: "question1_2",
        visible: isIntel,
        html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
       },
       {
        type: "html",
-       name: "question23",
+       name: "question1_3",
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_4",
        width: "260px",
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/47_img.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[++index]+"_img.png"
         }
        ],
        imageFit: "fill",
@@ -4603,14 +4365,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_5",
        width: "260px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/cam"+condIndex+"/47_cam.png"
+         imageLink: "figures/cam"+condIndex+"/"+imageOrder[index]+"_cam.png"
         }
        ],
        visible: withHeatmap,
@@ -4620,7 +4382,7 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question48",
+       name: "question1_6",
        width: "110px",
        startWithNewLine: false,
        titleLocation: "hidden",
@@ -4639,12 +4401,12 @@ var surveyJSON =
     },
     {
      type: "html",
-     name: "question4",
-     html: "<h4 style=\"font-weight:500;\"> Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"? </h4> <h4 style=\"font-weight:500;\"> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least <strong>ONE</strong> activity as <strong>NOT very unlikely</strong>. You may select more than one as more likely. </span></h4> "
+     name: "question1_7",
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
     },
     {
      type: "matrix",
-     name: "q14-1",
+     name: "q"+imageOrder[index]+"-1",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -4681,22 +4443,18 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel7",
+     name: "panel1_2",
      elements: [
       {
        type: "text",
-       name: "q14-2",
-       title: "In a few words, explain how you identified the activity."
+       name: "q"+imageOrder[index]+"-2",
+       title: "Explain how you identified the activity.",
+       isRequired: true,
       },
-      // {
-      //  type: "html",
-      //  name: "question27",
-      //  html: "\n<p style=\"font-size:14px;\"><strong>Please indicate which parts of the image that <i>you think</i> are most important to identifying the activity. \n Check the box(es) corresponding to the grid cell on the photo that you want to select. You may select more than one box. </strong></p>"
-      // },
       {
        type: "matrixdropdown",
-       name: "q14-3",
-       width: "20em",
+       name: "q"+imageOrder[index]+"-3",
+       width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
         "1": {
@@ -4758,14 +4516,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question28",
+       name: "question1_8",
        width: "35%",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/47_grid.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_grid.png"
         }
        ],
        imageFit: "fill",
@@ -4776,11 +4534,11 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel8",
+     name: "panel1_3",
      elements: [
       {
        type: "rating",
-       name: "q14-4",
+       name: "q"+imageOrder[index]+"-4",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -4790,8 +4548,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q14-5",
-       title: "I do not mind storing my images blurred to the level shown, in order to protect the privacy of bystanders.",
+       name: "q"+imageOrder[index]+"-5",
+       visible: withHeatmap,
+       title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -4799,104 +4558,88 @@ var surveyJSON =
        maxRateDescription: "Strongly agree"
       },
       {
-       type: "text",
-       name: "q14-6",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
+       type: "rating",
+       name: "q"+imageOrder[index]+"-6",
+       visible: isIntel,
+       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-7",
+       visible: isPrivacy,
+       title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
      ],
+     title: "Do you agree or disagree with the following statements?"
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-8",
+     title: "Explain why you found it easy or difficult to identify the activity.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-9",
      visible: isIntel,
-     title: "Do you agree or disagree with the following statements?"
+     title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
+     isRequired: true,
     },
     {
-     type: "panel",
-     name: "panel34",
-     elements: [
-      {
-       type: "rating",
-       name: "q14-7",
-       title: "It is easy to identify the wearer’s activity in the photo.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "rating",
-       name: "q14-8",
-       title: "I do not mind being captured in a wearable camera photo like the one shown.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      },
-      {
-       type: "text",
-       name: "q14-9",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
-     ],
+     type: "text",
+     name: "q"+imageOrder[index]+"-10",
      visible: isPrivacy,
-     title: "Do you agree or disagree with the following statements?"
-    },
-    {
-     type: "panel",
-     name: "panel69",
-     elements: [
-      {
-       type: "rating",
-       name: "q14-10",
-       title: "The heatmap is helpful for me to identify the activity.",
-       isRequired: true,
-       rateMin: -3,
-       rateMax: 3,
-       minRateDescription: "Strongly disagree",
-       maxRateDescription: "Strongly agree"
-      }
-     ],
-     visible: withHeatmap,
-     title: "Do you agree or disagree with the following statements?"
-    }
+     title: "Explain why you are comfortable or not comfortable to be captured in a similar photo like the one shown.",
+     isRequired: true,
+    }  
    ],
-   visibleIf: "{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
    questionsOrder: "initial"
   },
+  /* Task15 */
   {
    name: "Task 15",
    elements: [
     {
      type: "html",
-     name: "question42",
+     name: "question1_1",
      html: "<h3 style=\"font-weight:500;\">Task 15 </h3>"
     },
     {
      type: "panel",
-     name: "panel6",
+     name: "panel1_1",
      elements: [
       {
        type: "html",
-       name: "question22",
+       name: "question1_2",
        visible: isIntel,
        html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
       },
       {
        type: "html",
-       name: "question23",
+       name: "question1_3",
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_4",
        width: "260px",
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/52_img.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[++index]+"_img.png"
         }
        ],
        imageFit: "fill",
@@ -4905,14 +4648,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question5",
+       name: "question1_5",
        width: "260px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/cam"+condIndex+"/52_cam.png"
+         imageLink: "figures/cam"+condIndex+"/"+imageOrder[index]+"_cam.png"
         }
        ],
        visible: withHeatmap,
@@ -4922,7 +4665,7 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question48",
+       name: "question1_6",
        width: "110px",
        startWithNewLine: false,
        titleLocation: "hidden",
@@ -4941,12 +4684,12 @@ var surveyJSON =
     },
     {
      type: "html",
-     name: "question4",
-     html: "<h4 style=\"font-weight:500;\"> Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"? </h4> <h4 style=\"font-weight:500;\"> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least <strong>ONE</strong> activity as <strong>NOT very unlikely</strong>. You may select more than one as more likely. </span></h4> "
+     name: "question1_7",
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
     },
     {
      type: "matrix",
-     name: "q15-1",
+     name: "q"+imageOrder[index]+"-1",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -4983,22 +4726,18 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel7",
+     name: "panel1_2",
      elements: [
       {
        type: "text",
-       name: "q15-2",
-       title: "In a few words, explain how you identified the activity."
+       name: "q"+imageOrder[index]+"-2",
+       title: "Explain how you identified the activity.",
+       isRequired: true,
       },
-      // {
-      //  type: "html",
-      //  name: "question27",
-      //  html: "\n<p style=\"font-size:14px;\"><strong>Please indicate which parts of the image that <i>you think</i> are most important to identifying the activity. \n Check the box(es) corresponding to the grid cell on the photo that you want to select. You may select more than one box. </strong></p>"
-      // },
       {
        type: "matrixdropdown",
-       name: "q15-3",
-       width: "20em",
+       name: "q"+imageOrder[index]+"-3",
+       width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
         "1": {
@@ -5060,14 +4799,14 @@ var surveyJSON =
       },
       {
        type: "imagepicker",
-       name: "question28",
+       name: "question1_8",
        width: "35%",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
         {
          value: "item1",
-         imageLink: "figures/img"+imgCond+"/52_grid.png"
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_grid.png"
         }
        ],
        imageFit: "fill",
@@ -5078,11 +4817,11 @@ var surveyJSON =
     },
     {
      type: "panel",
-     name: "panel8",
+     name: "panel1_3",
      elements: [
       {
        type: "rating",
-       name: "q15-4",
+       name: "q"+imageOrder[index]+"-4",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -5092,8 +4831,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q15-5",
-       title: "I do not mind storing my images blurred to the level shown, in order to protect the privacy of bystanders.",
+       name: "q"+imageOrder[index]+"-5",
+       visible: withHeatmap,
+       title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -5101,22 +4841,270 @@ var surveyJSON =
        maxRateDescription: "Strongly agree"
       },
       {
-       type: "text",
-       name: "q15-6",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
+       type: "rating",
+       name: "q"+imageOrder[index]+"-6",
+       visible: isIntel,
+       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-7",
+       visible: isPrivacy,
+       title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
      ],
+     title: "Do you agree or disagree with the following statements?"
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-8",
+     title: "Explain why you found it easy or difficult to identify the activity.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-9",
      visible: isIntel,
-     title: "Do you agree or disagree with the following statements?"
+     title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-10",
+     visible: isPrivacy,
+     title: "Explain why you are comfortable or not comfortable to be captured in a similar photo like the one shown.",
+     isRequired: true,
+    }  
+   ],
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   questionsOrder: "initial"
+  },
+  /* Task16 */
+  {
+   name: "Task 16",
+   elements: [
+    {
+     type: "html",
+     name: "question1_1",
+     html: "<h3 style=\"font-weight:500;\">Task 16 </h3>"
     },
     {
      type: "panel",
-     name: "panel34",
+     name: "panel1_1",
+     elements: [
+      {
+       type: "html",
+       name: "question1_2",
+       visible: isIntel,
+       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
+      },
+      {
+       type: "html",
+       name: "question1_3",
+       visible: isPrivacy,
+       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
+      },
+      {
+       type: "imagepicker",
+       name: "question1_4",
+       width: "260px",
+       titleLocation: "hidden",
+       choices: [
+        {
+         value: "item1",
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[++index]+"_img.png"
+        }
+       ],
+       imageFit: "fill",
+       imageHeight: 160,
+       imageWidth: 220
+      },
+      {
+       type: "imagepicker",
+       name: "question1_5",
+       width: "260px",
+       startWithNewLine: false,
+       titleLocation: "hidden",
+       choices: [
+        {
+         value: "item1",
+         imageLink: "figures/cam"+condIndex+"/"+imageOrder[index]+"_cam.png"
+        }
+       ],
+       visible: withHeatmap,
+       imageFit: "fill",
+       imageHeight: 160,
+       imageWidth: 220
+      },
+      {
+       type: "imagepicker",
+       name: "question1_6",
+       width: "110px",
+       startWithNewLine: false,
+       titleLocation: "hidden",
+       choices: [
+        {
+         value: "legend",
+         imageLink: "figures/common/jetLegend.png"
+        }
+       ],
+       visible: withHeatmap,
+       imageFit: "fill",
+       imageHeight: 160,
+       imageWidth: 70
+      },
+     ]
+    },
+    {
+     type: "html",
+     name: "question1_7",
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+    },
+    {
+     type: "matrix",
+     name: "q"+imageOrder[index]+"-1",
+     defaultValue: {
+      "Walking Outdoors": "Very Unlikely<br/>1",
+      Biking: "Very Unlikely<br/>1",
+      Eating: "Very Unlikely<br/>1",
+      "Public Transport": "Very Unlikely<br/>1",
+      Shopping: "Very Unlikely<br/>1",
+      "Talking and Socializing": "Very Unlikely<br/>1",
+      "Watching TV": "Very Unlikely<br/>1",
+      "Cleaning and chores": "Very Unlikely<br/>1",
+      Cooking: "Very Unlikely<br/>1"
+     },
+     isRequired: true,
+     titleLocation: "hidden",
+     columns: [
+      "Very Unlikely<br/>1",
+      "2",
+      "3",
+      "Neither Unlikely <br/>nor Likely<br/>4",
+      "5",
+      "6",
+      "Very Likely<br/>7"
+     ],
+     rows: [
+      "Walking Outdoors",
+      "Biking",
+      "Public Transport",
+      "Eating",
+      "Shopping",
+      "Talking and Socializing",
+      "Watching TV",
+      "Cleaning and chores",
+      "Cooking"
+     ],
+    },
+    {
+     type: "panel",
+     name: "panel1_2",
+     elements: [
+      {
+       type: "text",
+       name: "q"+imageOrder[index]+"-2",
+       title: "Explain how you identified the activity.",
+       isRequired: true,
+      },
+      {
+       type: "matrixdropdown",
+       name: "q"+imageOrder[index]+"-3",
+       width: "21em",
+       title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
+       defaultValue: {
+        "1": {
+         A: false,
+         B: false,
+         C: false,
+         D: false,
+         E: false
+        },
+        "2": {
+         A: false,
+         B: false,
+         C: false,
+         D: false,
+         E: false
+        },
+        "3": {
+         A: false,
+         B: false,
+         C: false,
+         D: false,
+         E: false
+        },
+        "4": {
+         A: false,
+         B: false,
+         C: false,
+         D: false,
+         E: false
+        }
+       },
+       isRequired: true,
+       columns: [
+        {
+         name: "A"
+        },
+        {
+         name: "B"
+        },
+        {
+         name: "C"
+        },
+        {
+         name: "D"
+        },
+        {
+         name: "E"
+        }
+       ],
+       horizontalScroll: true,
+       cellType: "boolean",
+       columnColCount: 4,
+       rows: [
+        "1",
+        "2",
+        "3",
+        "4"
+       ]
+      },
+      {
+       type: "imagepicker",
+       name: "question1_8",
+       width: "35%",
+       startWithNewLine: false,
+       titleLocation: "hidden",
+       choices: [
+        {
+         value: "item1",
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_grid.png"
+        }
+       ],
+       imageFit: "fill",
+       imageHeight: 180,
+       imageWidth: 245
+      },
+     ]
+    },
+    {
+     type: "panel",
+     name: "panel1_3",
      elements: [
       {
        type: "rating",
-       name: "q15-7",
+       name: "q"+imageOrder[index]+"-4",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -5126,8 +5114,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q15-8",
-       title: "I do not mind being captured in a wearable camera photo like the one shown.",
+       name: "q"+imageOrder[index]+"-5",
+       visible: withHeatmap,
+       title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -5135,38 +5124,623 @@ var surveyJSON =
        maxRateDescription: "Strongly agree"
       },
       {
-       type: "text",
-       name: "q15-9",
-       visible: true,
-       title: "In a few words, explain your selection (i.e., why you agree or disagree with the statement)."
-      }
-     ],
-     visible: isPrivacy,
-     title: "Do you agree or disagree with the following statements?"
-    },
-    {
-     type: "panel",
-     name: "panel69",
-     elements: [
-      {
        type: "rating",
-       name: "q15-10",
-       title: "The heatmap is helpful for me to identify the activity.",
+       name: "q"+imageOrder[index]+"-6",
+       visible: isIntel,
+       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
        minRateDescription: "Strongly disagree",
        maxRateDescription: "Strongly agree"
-      }
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-7",
+       visible: isPrivacy,
+       title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
      ],
-     visible: withHeatmap,
      title: "Do you agree or disagree with the following statements?"
-    }
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-8",
+     title: "Explain why you found it easy or difficult to identify the activity.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-9",
+     visible: isIntel,
+     title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-10",
+     visible: isPrivacy,
+     title: "Explain why you are comfortable or not comfortable to be captured in a similar photo like the one shown.",
+     isRequired: true,
+    }  
    ],
-   visibleIf: "{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
    questionsOrder: "initial"
   },
 
+  /* Task17 */
+  {
+   name: "Task 17",
+   elements: [
+    {
+     type: "html",
+     name: "question1_1",
+     html: "<h3 style=\"font-weight:500;\">Task 17 </h3>"
+    },
+    {
+     type: "panel",
+     name: "panel1_1",
+     elements: [
+      {
+       type: "html",
+       name: "question1_2",
+       visible: isIntel,
+       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
+      },
+      {
+       type: "html",
+       name: "question1_3",
+       visible: isPrivacy,
+       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
+      },
+      {
+       type: "imagepicker",
+       name: "question1_4",
+       width: "260px",
+       titleLocation: "hidden",
+       choices: [
+        {
+         value: "item1",
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[++index]+"_img.png"
+        }
+       ],
+       imageFit: "fill",
+       imageHeight: 160,
+       imageWidth: 220
+      },
+      {
+       type: "imagepicker",
+       name: "question1_5",
+       width: "260px",
+       startWithNewLine: false,
+       titleLocation: "hidden",
+       choices: [
+        {
+         value: "item1",
+         imageLink: "figures/cam"+condIndex+"/"+imageOrder[index]+"_cam.png"
+        }
+       ],
+       visible: withHeatmap,
+       imageFit: "fill",
+       imageHeight: 160,
+       imageWidth: 220
+      },
+      {
+       type: "imagepicker",
+       name: "question1_6",
+       width: "110px",
+       startWithNewLine: false,
+       titleLocation: "hidden",
+       choices: [
+        {
+         value: "legend",
+         imageLink: "figures/common/jetLegend.png"
+        }
+       ],
+       visible: withHeatmap,
+       imageFit: "fill",
+       imageHeight: 160,
+       imageWidth: 70
+      },
+     ]
+    },
+    {
+     type: "html",
+     name: "question1_7",
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+    },
+    {
+     type: "matrix",
+     name: "q"+imageOrder[index]+"-1",
+     defaultValue: {
+      "Walking Outdoors": "Very Unlikely<br/>1",
+      Biking: "Very Unlikely<br/>1",
+      Eating: "Very Unlikely<br/>1",
+      "Public Transport": "Very Unlikely<br/>1",
+      Shopping: "Very Unlikely<br/>1",
+      "Talking and Socializing": "Very Unlikely<br/>1",
+      "Watching TV": "Very Unlikely<br/>1",
+      "Cleaning and chores": "Very Unlikely<br/>1",
+      Cooking: "Very Unlikely<br/>1"
+     },
+     isRequired: true,
+     titleLocation: "hidden",
+     columns: [
+      "Very Unlikely<br/>1",
+      "2",
+      "3",
+      "Neither Unlikely <br/>nor Likely<br/>4",
+      "5",
+      "6",
+      "Very Likely<br/>7"
+     ],
+     rows: [
+      "Walking Outdoors",
+      "Biking",
+      "Public Transport",
+      "Eating",
+      "Shopping",
+      "Talking and Socializing",
+      "Watching TV",
+      "Cleaning and chores",
+      "Cooking"
+     ],
+    },
+    {
+     type: "panel",
+     name: "panel1_2",
+     elements: [
+      {
+       type: "text",
+       name: "q"+imageOrder[index]+"-2",
+       title: "Explain how you identified the activity.",
+       isRequired: true,
+      },
+      {
+       type: "matrixdropdown",
+       name: "q"+imageOrder[index]+"-3",
+       width: "21em",
+       title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
+       defaultValue: {
+        "1": {
+         A: false,
+         B: false,
+         C: false,
+         D: false,
+         E: false
+        },
+        "2": {
+         A: false,
+         B: false,
+         C: false,
+         D: false,
+         E: false
+        },
+        "3": {
+         A: false,
+         B: false,
+         C: false,
+         D: false,
+         E: false
+        },
+        "4": {
+         A: false,
+         B: false,
+         C: false,
+         D: false,
+         E: false
+        }
+       },
+       isRequired: true,
+       columns: [
+        {
+         name: "A"
+        },
+        {
+         name: "B"
+        },
+        {
+         name: "C"
+        },
+        {
+         name: "D"
+        },
+        {
+         name: "E"
+        }
+       ],
+       horizontalScroll: true,
+       cellType: "boolean",
+       columnColCount: 4,
+       rows: [
+        "1",
+        "2",
+        "3",
+        "4"
+       ]
+      },
+      {
+       type: "imagepicker",
+       name: "question1_8",
+       width: "35%",
+       startWithNewLine: false,
+       titleLocation: "hidden",
+       choices: [
+        {
+         value: "item1",
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_grid.png"
+        }
+       ],
+       imageFit: "fill",
+       imageHeight: 180,
+       imageWidth: 245
+      },
+     ]
+    },
+    {
+     type: "panel",
+     name: "panel1_3",
+     elements: [
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-4",
+       title: "It is easy to identify the wearer’s activity in the photo.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-5",
+       visible: withHeatmap,
+       title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-6",
+       visible: isIntel,
+       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-7",
+       visible: isPrivacy,
+       title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+     ],
+     title: "Do you agree or disagree with the following statements?"
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-8",
+     title: "Explain why you found it easy or difficult to identify the activity.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-9",
+     visible: isIntel,
+     title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-10",
+     visible: isPrivacy,
+     title: "Explain why you are comfortable or not comfortable to be captured in a similar photo like the one shown.",
+     isRequired: true,
+    }  
+   ],
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   questionsOrder: "initial"
+  },
+  /* Task18 */
+  {
+   name: "Task 18",
+   elements: [
+    {
+     type: "html",
+     name: "question1_1",
+     html: "<h3 style=\"font-weight:500;\">Task 18 </h3>"
+    },
+    {
+     type: "panel",
+     name: "panel1_1",
+     elements: [
+      {
+       type: "html",
+       name: "question1_2",
+       visible: isIntel,
+       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
+      },
+      {
+       type: "html",
+       name: "question1_3",
+       visible: isPrivacy,
+       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
+      },
+      {
+       type: "imagepicker",
+       name: "question1_4",
+       width: "260px",
+       titleLocation: "hidden",
+       choices: [
+        {
+         value: "item1",
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[++index]+"_img.png"
+        }
+       ],
+       imageFit: "fill",
+       imageHeight: 160,
+       imageWidth: 220
+      },
+      {
+       type: "imagepicker",
+       name: "question1_5",
+       width: "260px",
+       startWithNewLine: false,
+       titleLocation: "hidden",
+       choices: [
+        {
+         value: "item1",
+         imageLink: "figures/cam"+condIndex+"/"+imageOrder[index]+"_cam.png"
+        }
+       ],
+       visible: withHeatmap,
+       imageFit: "fill",
+       imageHeight: 160,
+       imageWidth: 220
+      },
+      {
+       type: "imagepicker",
+       name: "question1_6",
+       width: "110px",
+       startWithNewLine: false,
+       titleLocation: "hidden",
+       choices: [
+        {
+         value: "legend",
+         imageLink: "figures/common/jetLegend.png"
+        }
+       ],
+       visible: withHeatmap,
+       imageFit: "fill",
+       imageHeight: 160,
+       imageWidth: 70
+      },
+     ]
+    },
+    {
+     type: "html",
+     name: "question1_7",
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+    },
+    {
+     type: "matrix",
+     name: "q"+imageOrder[index]+"-1",
+     defaultValue: {
+      "Walking Outdoors": "Very Unlikely<br/>1",
+      Biking: "Very Unlikely<br/>1",
+      Eating: "Very Unlikely<br/>1",
+      "Public Transport": "Very Unlikely<br/>1",
+      Shopping: "Very Unlikely<br/>1",
+      "Talking and Socializing": "Very Unlikely<br/>1",
+      "Watching TV": "Very Unlikely<br/>1",
+      "Cleaning and chores": "Very Unlikely<br/>1",
+      Cooking: "Very Unlikely<br/>1"
+     },
+     isRequired: true,
+     titleLocation: "hidden",
+     columns: [
+      "Very Unlikely<br/>1",
+      "2",
+      "3",
+      "Neither Unlikely <br/>nor Likely<br/>4",
+      "5",
+      "6",
+      "Very Likely<br/>7"
+     ],
+     rows: [
+      "Walking Outdoors",
+      "Biking",
+      "Public Transport",
+      "Eating",
+      "Shopping",
+      "Talking and Socializing",
+      "Watching TV",
+      "Cleaning and chores",
+      "Cooking"
+     ],
+    },
+    {
+     type: "panel",
+     name: "panel1_2",
+     elements: [
+      {
+       type: "text",
+       name: "q"+imageOrder[index]+"-2",
+       title: "Explain how you identified the activity.",
+       isRequired: true,
+      },
+      {
+       type: "matrixdropdown",
+       name: "q"+imageOrder[index]+"-3",
+       width: "21em",
+       title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
+       defaultValue: {
+        "1": {
+         A: false,
+         B: false,
+         C: false,
+         D: false,
+         E: false
+        },
+        "2": {
+         A: false,
+         B: false,
+         C: false,
+         D: false,
+         E: false
+        },
+        "3": {
+         A: false,
+         B: false,
+         C: false,
+         D: false,
+         E: false
+        },
+        "4": {
+         A: false,
+         B: false,
+         C: false,
+         D: false,
+         E: false
+        }
+       },
+       isRequired: true,
+       columns: [
+        {
+         name: "A"
+        },
+        {
+         name: "B"
+        },
+        {
+         name: "C"
+        },
+        {
+         name: "D"
+        },
+        {
+         name: "E"
+        }
+       ],
+       horizontalScroll: true,
+       cellType: "boolean",
+       columnColCount: 4,
+       rows: [
+        "1",
+        "2",
+        "3",
+        "4"
+       ]
+      },
+      {
+       type: "imagepicker",
+       name: "question1_8",
+       width: "35%",
+       startWithNewLine: false,
+       titleLocation: "hidden",
+       choices: [
+        {
+         value: "item1",
+         imageLink: "figures/img"+imgCond+"/"+imageOrder[index]+"_grid.png"
+        }
+       ],
+       imageFit: "fill",
+       imageHeight: 180,
+       imageWidth: 245
+      },
+     ]
+    },
+    {
+     type: "panel",
+     name: "panel1_3",
+     elements: [
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-4",
+       title: "It is easy to identify the wearer’s activity in the photo.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-5",
+       visible: withHeatmap,
+       title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-6",
+       visible: isIntel,
+       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+      {
+       type: "rating",
+       name: "q"+imageOrder[index]+"-7",
+       visible: isPrivacy,
+       title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
+       isRequired: true,
+       rateMin: -3,
+       rateMax: 3,
+       minRateDescription: "Strongly disagree",
+       maxRateDescription: "Strongly agree"
+      },
+     ],
+     title: "Do you agree or disagree with the following statements?"
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-8",
+     title: "Explain why you found it easy or difficult to identify the activity.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-9",
+     visible: isIntel,
+     title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
+     isRequired: true,
+    },
+    {
+     type: "text",
+     name: "q"+imageOrder[index]+"-10",
+     visible: isPrivacy,
+     title: "Explain why you are comfortable or not comfortable to be captured in a similar photo like the one shown.",
+     isRequired: true,
+    }  
+   ],
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   questionsOrder: "initial"
+  },
+
+  /* Post */
   {
    name: "Post Survey",
    elements: [
@@ -5282,14 +5856,15 @@ var surveyJSON =
      title: "Do you agree or disagree with the following statements?"
     },
    ],
-   visibleIf: "{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
    title: "Post Survey"
   }
  ],
  showPrevButton: false,
  showQuestionNumbers: "off",
  showProgressBar: "top",
- firstPageIsStarted: true
+ firstPageIsStarted: true,
+ completedHtml: "<h3>Thank you for completing our survey.</h3><br><h3>Your response has been recorded.</h3><br><br><br><h4>Your MTurk completion code is: "+completeCode+"</h4>",
 }
 
 function sendDataToServer(survey) {
@@ -5320,20 +5895,6 @@ survey
     .onUpdateQuestionCssClasses
     .add(function (survey, options) {
         var classes = options.cssClasses
-
-        /*classes.root = "sq-root";
-        classes.title = "sq-title";
-        classes.item = "sq-item";
-        classes.label = "sq-label";
-
-        if (options.question.isRequired) {
-            classes.title = "sq-title sq-title-required";
-            classes.root = "sq-root sq-root-required";
-        }
-
-        if (options.question.getType() === "checkbox") {
-            classes.root = "sq-root sq-root-cb";
-        }*/
     });
 
 var myCss = {
