@@ -12,7 +12,7 @@ var withBlur = (imgCond != 2)
 var withHeatmap = (camCond != 0)
 
 var privacyIntro = "Since the photos are taken automatically, they inevitably capture individuals in the surrounding environment. These individuals could be family members, friends, or complete strangers, and they are typically not aware they are being photographed."
-
+var completeCode = Math.floor(Math.random() * 1000000)
 
 /* for debug */
 console.log("isPilot: "+isPilot)
@@ -5289,7 +5289,8 @@ var surveyJSON =
  showPrevButton: false,
  showQuestionNumbers: "off",
  showProgressBar: "top",
- firstPageIsStarted: true
+ firstPageIsStarted: true,
+ completedHtml: "<h3>Thank you for completing our survey.</h3><br><h3>Your response has been recorded.</h3><br><br><br><h4>Your MTurk completion code is: "+completeCode+"</h4>",
 }
 
 function sendDataToServer(survey) {
