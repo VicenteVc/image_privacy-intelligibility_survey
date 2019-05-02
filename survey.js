@@ -377,7 +377,7 @@ var surveyJSON =
       },
       {
        type: "radiogroup",
-       name: "q0-1",
+       name: "q0_1",
        title: "Where is the photo most likely taken?",
        correctAnswer: "Sunny",
        isRequired: true,
@@ -406,7 +406,7 @@ var surveyJSON =
       },
       {
        type: "radiogroup",
-       name: "q0-2",
+       name: "q0_2",
        title: "Imagine the photo is captured from your point of view, what are you probably doing now? ",
        correctAnswer: "Riding a bike",
        isRequired: true,
@@ -421,7 +421,7 @@ var surveyJSON =
       },
       {
        type: "matrixdropdown",
-       name: "q0-3",
+       name: "q0_3",
        width: "21em",
        title: "Which of the following grid cells contain the computer screen? <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -511,7 +511,7 @@ var surveyJSON =
      elements: [
       {
        type: "matrixdropdown",
-       name: "q0-4",
+       name: "q0_4",
        width: "21em",
        title: "According to the heatmap, which grid cells are most important? <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
