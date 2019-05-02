@@ -12,6 +12,7 @@ var withHeatmap = (camCond != 0)
 
 var privacyIntro = "Since the photos are taken automatically, they inevitably capture individuals in the surrounding environment. These individuals could be family members, friends, or complete strangers, and they are typically not aware they are being photographed."
 var completeCode = Math.floor(Math.random() * 1000000)
+
 var imageOrder = [1,2,5,6,10,11,19,20,32,33,35,36,40,41,46,47,51,52];
 
 function shuffle(arr) {
@@ -208,7 +209,7 @@ var surveyJSON =
       },
       {
        type: "checkbox",
-       name: "question20",
+       name: "accept",
        correctAnswer: [
         "Accept"
        ],
@@ -377,7 +378,7 @@ var surveyJSON =
       },
       {
        type: "radiogroup",
-       name: "q0-1",
+       name: "q0_1",
        title: "Where is the photo most likely taken?",
        correctAnswer: "Sunny",
        isRequired: true,
@@ -406,7 +407,7 @@ var surveyJSON =
       },
       {
        type: "radiogroup",
-       name: "q0-2",
+       name: "q0_2",
        title: "Imagine the photo is captured from your point of view, what are you probably doing now? ",
        correctAnswer: "Riding a bike",
        isRequired: true,
@@ -421,7 +422,7 @@ var surveyJSON =
       },
       {
        type: "matrixdropdown",
-       name: "q0-3",
+       name: "q0_3",
        width: "21em",
        title: "Which of the following grid cells contain the computer screen? <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -455,6 +456,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q0_3.1.A} = true or {q0_3.1.B} = true or {q0_3.1.C} = true or {q0_3.1.D} = true or {q0_3.1.E} = true or {q0_3.2.A} = true or {q0_3.2.B} = true or {q0_3.2.C} = true or {q0_3.2.D} = true or {q0_3.2.E} = true or {q0_3.3.A} = true or {q0_3.3.B} = true or {q0_3.3.C} = true or {q0_3.3.D} = true or {q0_3.3.E} = true or {q0_3.4.A} = true or {q0_3.4.B} = true or {q0_3.4.C} = true or {q0_3.4.D} = true or {q0_3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -511,7 +518,7 @@ var surveyJSON =
      elements: [
       {
        type: "matrixdropdown",
-       name: "q0-4",
+       name: "q0_4",
        width: "21em",
        title: "According to the heatmap, which grid cells are most important? <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -545,6 +552,12 @@ var surveyJSON =
         },
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q0_4.1.A} = true or {q0_4.1.B} = true or {q0_4.1.C} = true or {q0_4.1.D} = true or {q0_4.1.E} = true or {q0_4.2.A} = true or {q0_4.2.B} = true or {q0_4.2.C} = true or {q0_4.2.D} = true or {q0_4.2.E} = true or {q0_4.3.A} = true or {q0_4.3.B} = true or {q0_4.3.C} = true or {q0_4.3.D} = true or {q0_4.3.E} = true or {q0_4.4.A} = true or {q0_4.4.B} = true or {q0_4.4.C} = true or {q0_4.4.D} = true or {q0_4.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -737,6 +750,12 @@ var surveyJSON =
       Cooking: "Very Unlikely<br/>1"
      },
      isRequired: true,
+     validators: [
+      {
+       type: "expression",
+       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+      }
+     ],
      titleLocation: "hidden",
      columns: [
       "Very Unlikely<br/>1",
@@ -805,6 +824,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -1020,6 +1045,12 @@ var surveyJSON =
       Cooking: "Very Unlikely<br/>1"
      },
      isRequired: true,
+     validators: [
+      {
+       type: "expression",
+       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+      }
+     ],
      titleLocation: "hidden",
      columns: [
       "Very Unlikely<br/>1",
@@ -1088,6 +1119,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -1303,6 +1340,12 @@ var surveyJSON =
       Cooking: "Very Unlikely<br/>1"
      },
      isRequired: true,
+     validators: [
+      {
+       type: "expression",
+       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+      }
+     ],
      titleLocation: "hidden",
      columns: [
       "Very Unlikely<br/>1",
@@ -1371,6 +1414,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -1586,6 +1635,12 @@ var surveyJSON =
       Cooking: "Very Unlikely<br/>1"
      },
      isRequired: true,
+     validators: [
+      {
+       type: "expression",
+       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+      }
+     ],
      titleLocation: "hidden",
      columns: [
       "Very Unlikely<br/>1",
@@ -1654,6 +1709,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -1870,6 +1931,12 @@ var surveyJSON =
       Cooking: "Very Unlikely<br/>1"
      },
      isRequired: true,
+     validators: [
+      {
+       type: "expression",
+       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+      }
+     ],
      titleLocation: "hidden",
      columns: [
       "Very Unlikely<br/>1",
@@ -1938,6 +2005,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -2153,6 +2226,12 @@ var surveyJSON =
       Cooking: "Very Unlikely<br/>1"
      },
      isRequired: true,
+     validators: [
+      {
+       type: "expression",
+       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+      }
+     ],
      titleLocation: "hidden",
      columns: [
       "Very Unlikely<br/>1",
@@ -2221,6 +2300,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -2436,6 +2521,12 @@ var surveyJSON =
       Cooking: "Very Unlikely<br/>1"
      },
      isRequired: true,
+     validators: [
+      {
+       type: "expression",
+       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+      }
+     ],
      titleLocation: "hidden",
      columns: [
       "Very Unlikely<br/>1",
@@ -2504,6 +2595,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -2719,6 +2816,12 @@ var surveyJSON =
       Cooking: "Very Unlikely<br/>1"
      },
      isRequired: true,
+     validators: [
+      {
+       type: "expression",
+       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+      }
+     ],
      titleLocation: "hidden",
      columns: [
       "Very Unlikely<br/>1",
@@ -2787,6 +2890,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -3003,6 +3112,12 @@ var surveyJSON =
       Cooking: "Very Unlikely<br/>1"
      },
      isRequired: true,
+     validators: [
+      {
+       type: "expression",
+       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+      }
+     ],
      titleLocation: "hidden",
      columns: [
       "Very Unlikely<br/>1",
@@ -3071,6 +3186,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -3286,6 +3407,12 @@ var surveyJSON =
       Cooking: "Very Unlikely<br/>1"
      },
      isRequired: true,
+     validators: [
+      {
+       type: "expression",
+       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+      }
+     ],
      titleLocation: "hidden",
      columns: [
       "Very Unlikely<br/>1",
@@ -3354,6 +3481,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -3569,6 +3702,12 @@ var surveyJSON =
       Cooking: "Very Unlikely<br/>1"
      },
      isRequired: true,
+     validators: [
+      {
+       type: "expression",
+       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+      }
+     ],
      titleLocation: "hidden",
      columns: [
       "Very Unlikely<br/>1",
@@ -3637,6 +3776,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -3852,6 +3997,12 @@ var surveyJSON =
       Cooking: "Very Unlikely<br/>1"
      },
      isRequired: true,
+     validators: [
+      {
+       type: "expression",
+       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+      }
+     ],
      titleLocation: "hidden",
      columns: [
       "Very Unlikely<br/>1",
@@ -3920,6 +4071,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -4136,6 +4293,12 @@ var surveyJSON =
       Cooking: "Very Unlikely<br/>1"
      },
      isRequired: true,
+     validators: [
+      {
+       type: "expression",
+       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+      }
+     ],
      titleLocation: "hidden",
      columns: [
       "Very Unlikely<br/>1",
@@ -4204,6 +4367,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -4419,6 +4588,12 @@ var surveyJSON =
       Cooking: "Very Unlikely<br/>1"
      },
      isRequired: true,
+     validators: [
+      {
+       type: "expression",
+       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+      }
+     ],
      titleLocation: "hidden",
      columns: [
       "Very Unlikely<br/>1",
@@ -4487,6 +4662,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -4702,6 +4883,12 @@ var surveyJSON =
       Cooking: "Very Unlikely<br/>1"
      },
      isRequired: true,
+     validators: [
+      {
+       type: "expression",
+       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+      }
+     ],
      titleLocation: "hidden",
      columns: [
       "Very Unlikely<br/>1",
@@ -4770,6 +4957,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -4985,6 +5178,12 @@ var surveyJSON =
       Cooking: "Very Unlikely<br/>1"
      },
      isRequired: true,
+     validators: [
+      {
+       type: "expression",
+       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+      }
+     ],
      titleLocation: "hidden",
      columns: [
       "Very Unlikely<br/>1",
@@ -5053,6 +5252,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -5269,6 +5474,12 @@ var surveyJSON =
       Cooking: "Very Unlikely<br/>1"
      },
      isRequired: true,
+     validators: [
+      {
+       type: "expression",
+       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+      }
+     ],
      titleLocation: "hidden",
      columns: [
       "Very Unlikely<br/>1",
@@ -5337,6 +5548,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -5552,6 +5769,12 @@ var surveyJSON =
       Cooking: "Very Unlikely<br/>1"
      },
      isRequired: true,
+     validators: [
+      {
+       type: "expression",
+       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+      }
+     ],
      titleLocation: "hidden",
      columns: [
       "Very Unlikely<br/>1",
@@ -5620,6 +5843,12 @@ var surveyJSON =
         }
        },
        isRequired: true,
+       validators: [
+        {
+         type: "expression",
+         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+        }
+       ],
        columns: [
         {
          name: "A"
@@ -5739,7 +5968,6 @@ var surveyJSON =
    visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
    questionsOrder: "initial"
   },
-
   /* Post */
   {
    name: "Post Survey",
@@ -5867,41 +6095,72 @@ var surveyJSON =
  completedHtml: "<h3>Thank you for completing our survey.</h3><br><h3>Your response has been recorded.</h3><br><br><br><h4>Your MTurk completion code is: "+completeCode+"</h4>",
 }
 
-function sendDataToServer(survey) {
-    survey.sendResult('4b4b863d-4716-4b18-ad18-562ddffd999c');
-}
-
+var timerId = null
+var timeText = null
 var survey = new Survey.Model(surveyJSON);
-$("#surveyContainer").Survey({
-    model: survey,
-    onComplete: sendDataToServer
-});
-
-
-//Create showdown markdown converter
-// ref: https://plnkr.co/edit/Jvou2vokWwvHG7p8TdVa?p=preview
 var converter = new showdown.Converter();
-survey.onTextMarkdown.add(function(survey, options){
-    //convert the mardown text to html
-    var str = converter.makeHtml(options.text);
-    //remove root paragraphs <p></p>
-    str = str.substring(3);
-    str = str.substring(0, str.length - 4);
-    //set html
-    options.html = str;
-});
-
-survey
-    .onUpdateQuestionCssClasses
-    .add(function (survey, options) {
-        var classes = options.cssClasses
-    });
-
 var myCss = {
     matrix: {root: "table table-striped matrixtable"},
 };
 
-$("#surveyElement").Survey({ 
+/* For Timer */
+function renderTime(val) {
+    var hours = Math.floor(val / 3600)
+    var minutes = Math.floor((val - (hours*3600)) / 60)
+    var seconds = Math.floor(val % 60)
+    timeText = hours + ":" + minutes + ":" + seconds
+}
+
+/* For Timer */
+function timerCallback() {
+    /* Page4 <-> Warmup, Page7-24 correspond to Task1-18, Page25 <-> Post */
+    var page = survey.currentPage
+    if(!page) return
+    var valueName = "PageNo" + survey.pages.indexOf(page)
+    var seconds = survey.getValue(valueName)
+    if(seconds == null) seconds = 0
+    else seconds ++
+    survey.setValue(valueName, seconds)
+    renderTime(seconds)
+}
+
+/* Sending Result */
+function sendDataToServer(survey) {
+    survey.sendResult('4b4b863d-4716-4b18-ad18-562ddffd999c');
+    // survey.sendResult('e0d67775-bf80-4ee4-b307-15fe60ab670f');        /* For debug*/
+}
+
+/* For Timer */
+survey.onCurrentPageChanged.add(function(){
+    timerCallback()
+});
+
+/* Sending Result */
+survey.onComplete.add(function(survey, options) {
+    sendDataToServer(survey)
+});
+
+/* Create showdown markdown converter
+ ref: https://plnkr.co/edit/Jvou2vokWwvHG7p8TdVa?p=preview */
+survey.onTextMarkdown.add(function(survey, options){
+    var str = converter.makeHtml(options.text);
+    str = str.substring(3);
+    str = str.substring(0, str.length - 4);
+    options.html = str;
+});
+
+survey.onUpdateQuestionCssClasses.add(function (survey, options) {
+    var classes = options.cssClasses
+});
+
+/* For Layout */
+$("#surveyContainer").Survey({ 
     model: survey,
     css: myCss
 });
+
+/* Timer */
+timerCallback();
+timerId = window.setInterval(function(){
+  timerCallback();
+}, 1000);
