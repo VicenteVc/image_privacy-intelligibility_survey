@@ -257,8 +257,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220,
+       imageHeight: 200,
+       imageWidth: 270,
        showLabel: true
       }
      ]
@@ -275,7 +275,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question44",
-       width: "520px",
+       width: "650px",
        readOnly: true,
        titleLocation: "hidden",
        choices: [
@@ -289,14 +289,14 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220,
+       imageHeight: 200,
+       imageWidth: 270,
        showLabel: true
       },
       {
        type: "imagepicker",
        name: "question48",
-       width: "120px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -306,8 +306,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 80
+       imageHeight: 200,
+       imageWidth: 100
       }
      ],
      visible: withHeatmap,
@@ -338,8 +338,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220,
+       imageHeight: 200,
+       imageWidth: 270,
        showLabel: true
       }
      ],
@@ -373,8 +373,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "radiogroup",
@@ -402,8 +402,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "radiogroup",
@@ -496,7 +496,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question0_3",
-       width: "270px",
+       width: "300px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -506,8 +506,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 200,
+       imageWidth: 270,
       }
      ],
      title: "All the following photos are captured by wearable cameras."
@@ -593,7 +593,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question0_4",
-       width: "270px",
+       width: "300px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -603,13 +603,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question0_5",
-       width: "13%",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -619,8 +619,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       }
      ],
      visible: withHeatmap
@@ -683,7 +683,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -692,13 +692,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -709,13 +709,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -726,8 +726,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -797,7 +797,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -806,13 +806,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -823,13 +823,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -840,8 +840,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -977,7 +977,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_8",
-       width: "35%",
+       width: "400px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -987,8 +987,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 240,
+       imageWidth: 330
       },
      ]
     },
@@ -1094,7 +1094,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -1103,13 +1103,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -1120,13 +1120,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -1137,8 +1137,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -1208,7 +1208,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -1217,13 +1217,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -1234,13 +1234,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -1251,8 +1251,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -1388,7 +1388,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_8",
-       width: "35%",
+       width: "400px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -1398,8 +1398,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 240,
+       imageWidth: 330
       },
      ]
     },
@@ -1505,7 +1505,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -1514,13 +1514,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -1531,13 +1531,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -1548,8 +1548,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -1619,7 +1619,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -1628,13 +1628,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -1645,13 +1645,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -1662,8 +1662,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -1799,7 +1799,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_8",
-       width: "35%",
+       width: "400px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -1809,8 +1809,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 240,
+       imageWidth: 330
       },
      ]
     },
@@ -1913,10 +1913,10 @@ var surveyJSON =
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
-      {
+{
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -1925,13 +1925,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -1942,13 +1942,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -1959,8 +1959,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -2030,7 +2030,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -2039,13 +2039,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -2056,13 +2056,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -2073,8 +2073,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -2210,7 +2210,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_8",
-       width: "35%",
+       width: "400px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -2220,8 +2220,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 240,
+       imageWidth: 330
       },
      ]
     },
@@ -2325,10 +2325,10 @@ var surveyJSON =
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
-      {
+{
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -2337,13 +2337,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -2354,13 +2354,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -2371,8 +2371,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -2442,7 +2442,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -2451,13 +2451,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -2468,13 +2468,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -2485,8 +2485,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -2622,7 +2622,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_8",
-       width: "35%",
+       width: "400px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -2632,8 +2632,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 240,
+       imageWidth: 330
       },
      ]
     },
@@ -2739,7 +2739,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -2748,13 +2748,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -2765,13 +2765,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -2782,8 +2782,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -2853,7 +2853,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -2862,13 +2862,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -2879,13 +2879,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -2896,8 +2896,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -3033,7 +3033,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_8",
-       width: "35%",
+       width: "400px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -3043,8 +3043,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 240,
+       imageWidth: 330
       },
      ]
     },
@@ -3150,7 +3150,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -3159,13 +3159,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -3176,13 +3176,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -3193,8 +3193,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -3264,7 +3264,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -3273,13 +3273,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -3290,13 +3290,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -3307,8 +3307,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -3444,7 +3444,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_8",
-       width: "35%",
+       width: "400px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -3454,8 +3454,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 240,
+       imageWidth: 330
       },
      ]
     },
@@ -3561,7 +3561,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -3570,13 +3570,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -3587,13 +3587,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -3604,8 +3604,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -3675,7 +3675,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -3684,13 +3684,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -3701,13 +3701,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -3718,8 +3718,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -3855,7 +3855,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_8",
-       width: "35%",
+       width: "400px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -3865,8 +3865,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 240,
+       imageWidth: 330
       },
      ]
     },
@@ -3973,7 +3973,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -3982,13 +3982,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -3999,13 +3999,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -4016,8 +4016,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -4087,7 +4087,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -4096,13 +4096,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -4113,13 +4113,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -4130,8 +4130,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -4267,7 +4267,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_8",
-       width: "35%",
+       width: "400px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -4277,8 +4277,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 240,
+       imageWidth: 330
       },
      ]
     },
@@ -4384,7 +4384,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -4393,13 +4393,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -4410,13 +4410,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -4427,8 +4427,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -4498,7 +4498,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -4507,13 +4507,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -4524,13 +4524,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -4541,8 +4541,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -4678,7 +4678,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_8",
-       width: "35%",
+       width: "400px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -4688,8 +4688,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 240,
+       imageWidth: 330
       },
      ]
     },
@@ -4795,7 +4795,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -4804,13 +4804,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -4821,13 +4821,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -4838,8 +4838,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -4909,7 +4909,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -4918,13 +4918,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -4935,13 +4935,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -4952,8 +4952,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -5089,7 +5089,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_8",
-       width: "35%",
+       width: "400px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -5099,8 +5099,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 240,
+       imageWidth: 330
       },
      ]
     },
@@ -5206,7 +5206,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -5215,13 +5215,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -5232,13 +5232,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -5249,8 +5249,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -5320,7 +5320,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -5329,13 +5329,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -5346,13 +5346,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -5363,8 +5363,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -5500,7 +5500,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_8",
-       width: "35%",
+       width: "400px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -5510,8 +5510,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 240,
+       imageWidth: 330
       },
      ]
     },
@@ -5618,7 +5618,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -5627,13 +5627,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -5644,13 +5644,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -5661,8 +5661,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -5732,7 +5732,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -5741,13 +5741,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -5758,13 +5758,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -5775,8 +5775,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -5912,7 +5912,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_8",
-       width: "35%",
+       width: "400px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -5922,8 +5922,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 240,
+       imageWidth: 330
       },
      ]
     },
@@ -6029,7 +6029,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -6038,13 +6038,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -6055,13 +6055,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -6072,8 +6072,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -6143,7 +6143,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -6152,13 +6152,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -6169,13 +6169,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -6186,8 +6186,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -6323,7 +6323,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_8",
-       width: "35%",
+       width: "400px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -6333,8 +6333,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 240,
+       imageWidth: 330
       },
      ]
     },
@@ -6440,7 +6440,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -6449,13 +6449,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -6466,13 +6466,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -6483,8 +6483,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -6554,7 +6554,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -6563,13 +6563,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -6580,13 +6580,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -6597,8 +6597,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -6734,7 +6734,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_8",
-       width: "35%",
+       width: "400px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -6744,8 +6744,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 240,
+       imageWidth: 330
       },
      ]
     },
@@ -6851,7 +6851,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -6860,13 +6860,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -6877,13 +6877,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -6894,8 +6894,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -6965,7 +6965,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -6974,13 +6974,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -6991,13 +6991,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -7008,8 +7008,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -7145,7 +7145,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_8",
-       width: "35%",
+       width: "400px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -7155,8 +7155,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 240,
+       imageWidth: 330
       },
      ]
     },
@@ -7263,7 +7263,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -7272,13 +7272,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -7289,13 +7289,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -7306,8 +7306,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -7377,7 +7377,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -7386,13 +7386,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -7403,13 +7403,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -7420,8 +7420,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -7557,7 +7557,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_8",
-       width: "35%",
+       width: "400px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -7567,8 +7567,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 240,
+       imageWidth: 330
       },
      ]
     },
@@ -7674,7 +7674,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -7683,13 +7683,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -7700,13 +7700,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -7717,8 +7717,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -7788,7 +7788,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_4",
-       width: "260px",
+       width: "330px",
        titleLocation: "hidden",
        choices: [
         {
@@ -7797,13 +7797,13 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_5",
-       width: "260px",
+       width: "330px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -7814,13 +7814,13 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 220
+       imageHeight: 200,
+       imageWidth: 270,
       },
       {
        type: "imagepicker",
        name: "question1_6",
-       width: "110px",
+       width: "130px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -7831,8 +7831,8 @@ var surveyJSON =
        ],
        visible: withHeatmap,
        imageFit: "fill",
-       imageHeight: 160,
-       imageWidth: 70
+       imageHeight: 200,
+       imageWidth: 100
       },
      ]
     },
@@ -7968,7 +7968,7 @@ var surveyJSON =
       {
        type: "imagepicker",
        name: "question1_8",
-       width: "35%",
+       width: "400px",
        startWithNewLine: false,
        titleLocation: "hidden",
        choices: [
@@ -7978,8 +7978,8 @@ var surveyJSON =
         }
        ],
        imageFit: "fill",
-       imageHeight: 180,
-       imageWidth: 245
+       imageHeight: 240,
+       imageWidth: 330
       },
      ]
     },
