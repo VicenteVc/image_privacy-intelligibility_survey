@@ -8202,7 +8202,7 @@ function renderTime(val) {
 
 /* For Timer */
 function timerCallback() {
-    /* Page4 <-> Warmup, Page7-24 correspond to Task1-18, Page25 <-> Post */
+    /* Page4 <-> Warmup, Page7-42 correspond to Task1-18, Page43 <-> Post */
     var page = survey.currentPage
     if(!page) return
     var valueName = "PageNo" + survey.pages.indexOf(page)
@@ -8215,8 +8215,8 @@ function timerCallback() {
 
 /* Sending Result */
 function sendDataToServer(survey) {
-    // survey.sendResult('4b4b863d-4716-4b18-ad18-562ddffd999c');
-    survey.sendResult('e0d67775-bf80-4ee4-b307-15fe60ab670f');        /* For debug*/
+    survey.sendResult('4b4b863d-4716-4b18-ad18-562ddffd999c');
+    // survey.sendResult('e0d67775-bf80-4ee4-b307-15fe60ab670f');        /* For debug*/
 }
 
 /* For Timer */
