@@ -84,270 +84,270 @@ var surveyJSON =
     }
    ]
   }, 
-  // /* Introduction */
-  // {
-  //  name: "Introduction",
-  //  elements: [
-  //   {
-  //    type: "html",
-  //    name: "question35",
-  //    html: "<h3 style=\"font-weight:500;\">Introduction </h3>"
-  //   },
-  //   {
-  //    type: "panel",
-  //    name: "tmp",
-  //    elements: [
-  //     {
-  //      type: "html",
-  //      name: "question14",
-  //      titleLocation: "hidden",
-  //      html: "<p><span style=\"font-weight: 400;font-size:1.17em;\">Thank you for showing interest to this research study! </span>&nbsp;</p>\n\n<p><span style=\"font-weight: 400;font-size:1.17em;\"> Over the last few years a new category of photographic cameras has emerged: wearable cameras. These devices are usually worn on the body (e.g., head or torso) and take photographs automatically at regular intervals (e.g., every 30 seconds). These cameras have been traditionally used to capture experiences from a first-person perspective (e.g., take photos while surfing). Popular wearable cameras include the GoPro, Google Glass, Google Clips, and the Narrative: </span></p>\n\n\n"
-  //     },
-  //     {
-  //      type: "imagepicker",
-  //      name: "back",
-  //      readOnly: true,
-  //      titleLocation: "hidden",
-  //      choices: [
-  //       {
-  //        value: "example1",
-  //        imageLink: "figures/common/example1.jpg"
-  //       },
-  //       {
-  //        value: "example2",
-  //        imageLink: "figures/common/example2.jpg"
-  //       },
-  //       {
-  //        value: "example3",
-  //        imageLink: "figures/common/example3.jpg"
-  //       }
-  //      ],
-  //      hideIfChoicesEmpty: true,
-  //      imageFit: "fill"
-  //     }
-  //    ],
-  //    readOnly: true,
-  //    questionTitleLocation: "left"
-  //   },
-  //   {
-  //    type: "panel",
-  //    name: "panel67",
-  //    elements: [
-  //     {
-  //      type: "html",
-  //      name: "question2",
-  //      html: "<p><span style=\"font-weight: 400;font-size:1.17em;\"> Recently, individuals have begun to wear these body-mounted cameras while performing everyday activities such as cooking, socializing, and going to work." +(isPrivacy?privacyIntro:" ")+ "Here are some examples of wearable camera photographs recording everyday activities:\n</span></p>\n"
-  //     },
-  //     {
-  //      type: "imagepicker",
-  //      name: "question6",
-  //      readOnly: true,
-  //      titleLocation: "hidden",
-  //      choices: [
-  //       {
-  //        value: "example4",
-  //        imageLink: "figures/common/example4.jpg"
-  //       },
-  //       {
-  //        value: "example5",
-  //        imageLink: "figures/common/example5.jpg"
-  //       },
-  //       {
-  //        value: "example6",
-  //        imageLink: "figures/common/example6.jpg"
-  //       }
-  //      ],
-  //      hideIfChoicesEmpty: true,
-  //      imageFit: "fill"
-  //     },
-  //     {
-  //      type: "html",
-  //      name: "question17",
-  //      html: "<p><span style=\"font-weight: 400;font-size:1.17em;\">In this study, we are interested in people's understanding and perceptions on photos captured by wearable cameras. After </span><strong style=\"font-size:1.17em;\">giving consent</strong><span style=\"font-weight: 400;font-size:1.17em;\"> and completing a short </span><strong style=\"font-size:1.17em;\">quiz</strong><span style=\"font-weight: 400;font-size:1.17em;\">, we will ask you several <strong>questions related to photos</strong> from wearable cameras. Finally, we would like you to answer some <strong>demographic questions</strong>. </span></p>\n<p><span style=\"font-weight: 400;font-size:1.17em;\">It would take about <strong>30 minutes</strong> to complete the whole survey.</span></p>\n"
-  //     }
-  //    ]
-  //   }
-  //  ],
-  // },
-  // /* Consent */
-  // {
-  //  name: "Consent",
-  //  elements: [
-  //   {
-  //    type: "html",
-  //    name: "question37",
-  //    html: "<h3 style=\"font-weight:500;\">Consent Form </h3>"
-  //   },
-  //   {
-  //    type: "panel",
-  //    name: "panel5",
-  //    elements: [
-  //     {
-  //      type: "html",
-  //      name: "question19",
-  //      titleLocation: "top",
-  //      html: "<p style=\"font-size:14px;\"><strong>Title: Understanding Smart Wearable Camera Images </strong></p>\n<p style=\"font-size:14px;\"><strong>Principle Investigator:</strong></p>\n\n<p><span style=\"font-weight: 400;font-size:14px;\">Assistant Professor Brian Lim</span></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">Organisation: School of Computing, National University of Singapore</span></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">Email: <a href=\"mailto:brianlim@comp.nus.edu.sg\">brianlim@comp.nus.edu.sg</a></span></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">Wencan Zhang</span></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">Organisation: School of Computing, National University of Singapore</span></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">Email: <a href=\"mailto:wzhang@comp.nus.edu.sg\">wzhang@comp.nus.edu.sg</a></span></p>\n<p>&nbsp;</p>\n<p style=\"font-size:14px;\"><strong>Before participating in this research, please read the following.</strong></p>\n<p style=\"font-size:14px;\"><strong>Participation is voluntary</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">You must be at least 18 years of age to participate. It is your choice whether or not to participate in this research. &nbsp;If you choose to participate, you may change your mind and leave the study at any time. Refusal to participate or stopping your participation will involve no penalty.</span></p>\n<p style=\"font-size:14px;\"><strong>What is the purpose of this research?</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">This study aims to investigate people’s understanding and perception of wearable camera photos. </span></p>\n<p style=\"font-size:14px;\"><strong>How long will I take part in this research?</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">It takes around 30 minutes to complete.</span></p>\n<p style=\"font-size:14px;\"><strong>What is the approximate number of research participants involved?</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">There will be approximately 600 participants in this study.</span></p>\n<p style=\"font-size:14px;\"><strong>What will be done if I take part in this research?</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">Before the study, you have to complete a short warm-up quiz. Then you will review several images and answer several questions for each image. Finally, you will answer demographic questions.</span></p>\n<p style=\"font-size:14px;\"><strong>What are the risks and possible discomforts?</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">None. </span></p>\n<p style=\"font-size:14px;\"><strong>Are there any benefits from being in this research study?</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">There is no direct benefit to you by participating in this research study. The public, researchers with interest in wearable cameras should benefit from the results of this study. </span></p>\n<p style=\"font-size:14px;\"><strong>Will I be compensated for participating in this research?</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">You will be compensated up to USD$1.50 if you complete this survey. </span></p>\n<p style=\"font-size:14px;\"><strong>If I take part in this research, how will my privacy be protected? What happens to the information you collect?</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">Information from this study will be collected on secure servers, and strict confidentiality will be maintained. No identifying information is collected. All output of the research will be reported in the aggregate based on information from multiple respondents, anonymously.</span></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">All data collected will be kept in accordance to the University&rsquo;s Research Data Management Policy. Research data used in any publication will be kept for a minimum of 10 years before being discarded, and email addresses stored will be deleted upon completion of the research.</span></p>\n<p style=\"font-size:14px;\"><strong>Can I refuse to participate in this research? </strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">Yes, you can. Your decision to participate in this research is voluntary. You can also withdraw from the research at any time without giving any reasons. </span></p>\n<p style=\"font-size:14px;\"><strong>If I have any questions, concerns or complaints about this research study, who can I talk to?</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">The researcher for this study is Wencan Zhang. If you have questions, concerns, or complaints, or think the research has hurt you, please feel free to contact Wencan at wzhang@comp.nus.edu.sg.</span></p>"
-  //     }
-  //    ],
-  //    readOnly: true,
-  //    questionTitleLocation: "left"
-  //   },
-  //   {
-  //    type: "html",
-  //    name: "question21",
-  //    visible: 1-isPilot,
-  //    html: "<p><span style=\"font-weight: 400;font-size:14px;\">For an independent opinion regarding the research and the rights of research participants, you may contact a staff member of the National University of Singapore Institutional Review Board (Attn: Dr. Chan Tuck Wai, at telephone (+65) 6516 1234 or email at irb@nus.edu.sg).</span></p>"
-  //   },
-  //   {
-  //    type: "panel",
-  //    name: "panel68",
-  //    elements: [
-  //     {
-  //      type: "html",
-  //      name: "question7",
-  //      html: "<p><span style=\"font-weight: 400;font-size:14px;\">By clicking the \"Accept\" button, you acknowledge <strong>ALL of the following</strong> that: </span></p>\n<p style=\"font-size:14px;\">1. I am at least 18 years of age,</p>\n<p style=\"font-size:14px;\">2. I agree to take part in the aforementioned research,</p>\n<p style=\"font-size:14px;\">3. I will not have any financial benefits that result from the commercial development of this research, and</p>\n<p style=\"font-size:14px;\">4. I consent to have the coded data made available for future research.</p>"
-  //     },
-  //     {
-  //      type: "boolean",
-  //      name: "accept",
-  //      title: "Accept",
-  //      validators: [
-  //       {
-  //        type: "expression",
-  //        text: "Please accept to consent, if you would like to participate in this study.",
-  //        expression: "{accept} = true"
-  //       }
-  //      ]
-  //     }
-  //    ]
-  //   }
-  //  ],
-  // },
-  // /* Training */
-  // {
-  //  name: "Training",
-  //  elements: [
-  //   {
-  //    type: "html",
-  //    name: "question38",
-  //    html: "<h3 style=\"font-weight:500;\">Training </h3>"
-  //   },
-  //   {
-  //    type: "panel",
-  //    name: "panel3",
-  //    elements: [
-  //     {
-  //      type: "html",
-  //      name: "question43",
-  //      width: "60%",
-  //      titleLocation: "top",
-  //      html: "<p><span style=\"font-weight: 400;font-size:1.17em;\">\nNow, we will describe the Smart Wearable Cameras that automatically captures images (e.g., every 30 seconds)"+(withHeatmap || isPrivacy?"and applies smart filters":"")+". Please study the images and descriptions carefully. For the following questions, you are required to understand what activity the camera is photographing.\n</span></p>\n<p><span style=\"font-weight: 400;font-size:1.17em;\">\nThe following are some examples of photos taken from the Smart Wearable Camera. Note how photos are taken from the chest level and represent various <strong>activities that the wearer is doing</strong>, such as socializing and talking, or walking outdoors.\n</span></p>"
-  //     },
-  //     {
-  //      type: "imagepicker",
-  //      name: "question29",
-  //      width: "40%",
-  //      startWithNewLine: false,
-  //      titleLocation: "hidden",
-  //      choices: [
-  //       {
-  //        value: "Wearer's activity: riding a bike",
-  //        imageLink: "figures/common/training1.png"
-  //       }
-  //      ],
-  //      imageFit: "fill",
-  //      imageHeight: 160,
-  //      imageWidth: 220,
-  //      showLabel: true
-  //     }
-  //    ]
-  //   },
-  //   {
-  //    type: "panel",
-  //    name: "panel4",
-  //    elements: [
-  //     {
-  //      type: "html",
-  //      name: "question45",
-  //      html: "<p><span style=\"font-weight: 400;font-size:1.17em;\"> The Smart Wearable Camera applies a Heatmap Filter to help viewers understand what activity the wearer is doing. The heatmap helps by suggesting which part of the image is important to understand the activity. Red areas are more important, while blur areas are less important. As we can see from this example, the heatmap suggests the handle bar region, which is a strong indication of riding a bike.\n</span></p>\n<p><span style=\"font-weight: 400;font-size:1.17em;color:red;\">\nNote that sometimes the heatmap may be <strong>inaccurate or wrong</strong>.\n</span></p>"
-  //     },
-  //     {
-  //      type: "imagepicker",
-  //      name: "question44",
-  //      width: "520px",
-  //      readOnly: true,
-  //      titleLocation: "hidden",
-  //      choices: [
-  //       {
-  //        value: "Original image",
-  //        imageLink: "figures/common/training1.png"
-  //       },
-  //       {
-  //        value: "Heatmap",
-  //        imageLink: "figures/common/training2.png"
-  //       }
-  //      ],
-  //      imageFit: "fill",
-  //      imageHeight: 160,
-  //      imageWidth: 220,
-  //      showLabel: true
-  //     },
-  //     {
-  //      type: "imagepicker",
-  //      name: "question48",
-  //      width: "120px",
-  //      startWithNewLine: false,
-  //      titleLocation: "hidden",
-  //      choices: [
-  //       {
-  //        value: "legend",
-  //        imageLink: "figures/common/jetLegend.png"
-  //       }
-  //      ],
-  //      imageFit: "fill",
-  //      imageHeight: 160,
-  //      imageWidth: 80
-  //     }
-  //    ],
-  //    visible: withHeatmap,
-  //    readOnly: true,
-  //   },
-  //   {
-  //    type: "panel",
-  //    name: "panel1",
-  //    elements: [
-  //     {
-  //      type: "html",
-  //      name: "question3",
-  //      html: "<p><span style=\"font-weight: 400;font-size:1.17em;\">The Smart Wearable Camera also applies a Blur Filter on the captured image to protect the privacy of bystanders around "+(isPrivacy?"the Smart Camera wearer":"you")+". The image on the left is the original image, but blurred (right image) by the time you or anyone else can see it. On the other hand, the blurring effect may makes it harder to understand what activity the camera is photographing.\n</span></p>"
-  //     },
-  //     {
-  //      type: "imagepicker",
-  //      name: "question12",
-  //      readOnly: true,
-  //      titleLocation: "hidden",
-  //      choices: [
-  //       {
-  //        value: "Original image",
-  //        imageLink: "figures/common/training1.png"
-  //       },
-  //       {
-  //        value: "Blurred image",
-  //        imageLink: "figures/common/training"+(4-imgCond)+".png"
-  //       }
-  //      ],
-  //      imageFit: "fill",
-  //      imageHeight: 160,
-  //      imageWidth: 220,
-  //      showLabel: true
-  //     }
-  //    ],
-  //    visible: withBlur,
-  //    readOnly: true
-  //   }
-  //  ],
-  //  // visible: false,
-  // },
+  /* Introduction */
+  {
+   name: "Introduction",
+   elements: [
+    {
+     type: "html",
+     name: "question35",
+     html: "<h3 style=\"font-weight:500;\">Introduction </h3>"
+    },
+    {
+     type: "panel",
+     name: "tmp",
+     elements: [
+      {
+       type: "html",
+       name: "question14",
+       titleLocation: "hidden",
+       html: "<p><span style=\"font-weight: 400;font-size:1.17em;\">Thank you for showing interest to this research study! </span>&nbsp;</p>\n\n<p><span style=\"font-weight: 400;font-size:1.17em;\"> Over the last few years a new category of photographic cameras has emerged: wearable cameras. These devices are usually worn on the body (e.g., head or torso) and take photographs automatically at regular intervals (e.g., every 30 seconds). These cameras have been traditionally used to capture experiences from a first-person perspective (e.g., take photos while surfing). Popular wearable cameras include the GoPro, Google Glass, Google Clips, and the Narrative: </span></p>\n\n\n"
+      },
+      {
+       type: "imagepicker",
+       name: "back",
+       readOnly: true,
+       titleLocation: "hidden",
+       choices: [
+        {
+         value: "example1",
+         imageLink: "figures/common/example1.jpg"
+        },
+        {
+         value: "example2",
+         imageLink: "figures/common/example2.jpg"
+        },
+        {
+         value: "example3",
+         imageLink: "figures/common/example3.jpg"
+        }
+       ],
+       hideIfChoicesEmpty: true,
+       imageFit: "fill"
+      }
+     ],
+     readOnly: true,
+     questionTitleLocation: "left"
+    },
+    {
+     type: "panel",
+     name: "panel67",
+     elements: [
+      {
+       type: "html",
+       name: "question2",
+       html: "<p><span style=\"font-weight: 400;font-size:1.17em;\"> Recently, individuals have begun to wear these body-mounted cameras while performing everyday activities such as cooking, socializing, and going to work." +(isPrivacy?privacyIntro:" ")+ "Here are some examples of wearable camera photographs recording everyday activities:\n</span></p>\n"
+      },
+      {
+       type: "imagepicker",
+       name: "question6",
+       readOnly: true,
+       titleLocation: "hidden",
+       choices: [
+        {
+         value: "example4",
+         imageLink: "figures/common/example4.jpg"
+        },
+        {
+         value: "example5",
+         imageLink: "figures/common/example5.jpg"
+        },
+        {
+         value: "example6",
+         imageLink: "figures/common/example6.jpg"
+        }
+       ],
+       hideIfChoicesEmpty: true,
+       imageFit: "fill"
+      },
+      {
+       type: "html",
+       name: "question17",
+       html: "<p><span style=\"font-weight: 400;font-size:1.17em;\">In this study, we are interested in people's understanding and perceptions on photos captured by wearable cameras. After </span><strong style=\"font-size:1.17em;\">giving consent</strong><span style=\"font-weight: 400;font-size:1.17em;\"> and completing a short </span><strong style=\"font-size:1.17em;\">quiz</strong><span style=\"font-weight: 400;font-size:1.17em;\">, we will ask you several <strong>questions related to photos</strong> from wearable cameras. Finally, we would like you to answer some <strong>demographic questions</strong>. </span></p>\n<p><span style=\"font-weight: 400;font-size:1.17em;\">It would take about <strong>30 minutes</strong> to complete the whole survey.</span></p>\n"
+      }
+     ]
+    }
+   ],
+  },
+  /* Consent */
+  {
+   name: "Consent",
+   elements: [
+    {
+     type: "html",
+     name: "question37",
+     html: "<h3 style=\"font-weight:500;\">Consent Form </h3>"
+    },
+    {
+     type: "panel",
+     name: "panel5",
+     elements: [
+      {
+       type: "html",
+       name: "question19",
+       titleLocation: "top",
+       html: "<p style=\"font-size:14px;\"><strong>Title: Understanding Smart Wearable Camera Images </strong></p>\n<p style=\"font-size:14px;\"><strong>Principle Investigator:</strong></p>\n\n<p><span style=\"font-weight: 400;font-size:14px;\">Assistant Professor Brian Lim</span></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">Organisation: School of Computing, National University of Singapore</span></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">Email: <a href=\"mailto:brianlim@comp.nus.edu.sg\">brianlim@comp.nus.edu.sg</a></span></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">Wencan Zhang</span></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">Organisation: School of Computing, National University of Singapore</span></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">Email: <a href=\"mailto:wzhang@comp.nus.edu.sg\">wzhang@comp.nus.edu.sg</a></span></p>\n<p>&nbsp;</p>\n<p style=\"font-size:14px;\"><strong>Before participating in this research, please read the following.</strong></p>\n<p style=\"font-size:14px;\"><strong>Participation is voluntary</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">You must be at least 18 years of age to participate. It is your choice whether or not to participate in this research. &nbsp;If you choose to participate, you may change your mind and leave the study at any time. Refusal to participate or stopping your participation will involve no penalty.</span></p>\n<p style=\"font-size:14px;\"><strong>What is the purpose of this research?</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">This study aims to investigate people’s understanding and perception of wearable camera photos. </span></p>\n<p style=\"font-size:14px;\"><strong>How long will I take part in this research?</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">It takes around 30 minutes to complete.</span></p>\n<p style=\"font-size:14px;\"><strong>What is the approximate number of research participants involved?</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">There will be approximately 600 participants in this study.</span></p>\n<p style=\"font-size:14px;\"><strong>What will be done if I take part in this research?</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">Before the study, you have to complete a short warm-up quiz. Then you will review several images and answer several questions for each image. Finally, you will answer demographic questions.</span></p>\n<p style=\"font-size:14px;\"><strong>What are the risks and possible discomforts?</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">None. </span></p>\n<p style=\"font-size:14px;\"><strong>Are there any benefits from being in this research study?</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">There is no direct benefit to you by participating in this research study. The public, researchers with interest in wearable cameras should benefit from the results of this study. </span></p>\n<p style=\"font-size:14px;\"><strong>Will I be compensated for participating in this research?</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">You will be compensated up to USD$1.50 if you complete this survey. </span></p>\n<p style=\"font-size:14px;\"><strong>If I take part in this research, how will my privacy be protected? What happens to the information you collect?</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">Information from this study will be collected on secure servers, and strict confidentiality will be maintained. No identifying information is collected. All output of the research will be reported in the aggregate based on information from multiple respondents, anonymously.</span></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">All data collected will be kept in accordance to the University&rsquo;s Research Data Management Policy. Research data used in any publication will be kept for a minimum of 10 years before being discarded, and email addresses stored will be deleted upon completion of the research.</span></p>\n<p style=\"font-size:14px;\"><strong>Can I refuse to participate in this research? </strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">Yes, you can. Your decision to participate in this research is voluntary. You can also withdraw from the research at any time without giving any reasons. </span></p>\n<p style=\"font-size:14px;\"><strong>If I have any questions, concerns or complaints about this research study, who can I talk to?</strong></p>\n<p><span style=\"font-weight: 400;font-size:14px;\">The researcher for this study is Wencan Zhang. If you have questions, concerns, or complaints, or think the research has hurt you, please feel free to contact Wencan at wzhang@comp.nus.edu.sg.</span></p>"
+      }
+     ],
+     readOnly: true,
+     questionTitleLocation: "left"
+    },
+    {
+     type: "html",
+     name: "question21",
+     visible: 1-isPilot,
+     html: "<p><span style=\"font-weight: 400;font-size:14px;\">For an independent opinion regarding the research and the rights of research participants, you may contact a staff member of the National University of Singapore Institutional Review Board (Attn: Dr. Chan Tuck Wai, at telephone (+65) 6516 1234 or email at irb@nus.edu.sg).</span></p>"
+    },
+    {
+     type: "panel",
+     name: "panel68",
+     elements: [
+      {
+       type: "html",
+       name: "question7",
+       html: "<p><span style=\"font-weight: 400;font-size:14px;\">By clicking the \"Accept\" button, you acknowledge <strong>ALL of the following</strong> that: </span></p>\n<p style=\"font-size:14px;\">1. I am at least 18 years of age,</p>\n<p style=\"font-size:14px;\">2. I agree to take part in the aforementioned research,</p>\n<p style=\"font-size:14px;\">3. I will not have any financial benefits that result from the commercial development of this research, and</p>\n<p style=\"font-size:14px;\">4. I consent to have the coded data made available for future research.</p>"
+      },
+      {
+       type: "boolean",
+       name: "accept",
+       title: "Accept",
+       validators: [
+        {
+         type: "expression",
+         text: "Please accept to consent, if you would like to participate in this study.",
+         expression: "{accept} = true"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+  },
+  /* Training */
+  {
+   name: "Training",
+   elements: [
+    {
+     type: "html",
+     name: "question38",
+     html: "<h3 style=\"font-weight:500;\">Training </h3>"
+    },
+    {
+     type: "panel",
+     name: "panel3",
+     elements: [
+      {
+       type: "html",
+       name: "question43",
+       width: "60%",
+       titleLocation: "top",
+       html: "<p><span style=\"font-weight: 400;font-size:1.17em;\">\nNow, we will describe the Smart Wearable Cameras that automatically captures images (e.g., every 30 seconds)"+(withHeatmap || isPrivacy?"and applies smart filters":"")+". Please study the images and descriptions carefully. For the following questions, you are required to understand what activity the camera is photographing.\n</span></p>\n<p><span style=\"font-weight: 400;font-size:1.17em;\">\nThe following are some examples of photos taken from the Smart Wearable Camera. Note how photos are taken from the chest level and represent various <strong>activities that the wearer is doing</strong>, such as socializing and talking, or walking outdoors.\n</span></p>"
+      },
+      {
+       type: "imagepicker",
+       name: "question29",
+       width: "40%",
+       startWithNewLine: false,
+       titleLocation: "hidden",
+       choices: [
+        {
+         value: "Wearer's activity: riding a bike",
+         imageLink: "figures/common/training1.png"
+        }
+       ],
+       imageFit: "fill",
+       imageHeight: 160,
+       imageWidth: 220,
+       showLabel: true
+      }
+     ]
+    },
+    {
+     type: "panel",
+     name: "panel4",
+     elements: [
+      {
+       type: "html",
+       name: "question45",
+       html: "<p><span style=\"font-weight: 400;font-size:1.17em;\"> The Smart Wearable Camera applies a Heatmap Filter to help viewers understand what activity the wearer is doing. The heatmap helps by suggesting which part of the image is important to understand the activity. Red areas are more important, while blur areas are less important. As we can see from this example, the heatmap suggests the handle bar region, which is a strong indication of riding a bike.\n</span></p>\n<p><span style=\"font-weight: 400;font-size:1.17em;color:red;\">\nNote that sometimes the heatmap may be <strong>inaccurate or wrong</strong>.\n</span></p>"
+      },
+      {
+       type: "imagepicker",
+       name: "question44",
+       width: "520px",
+       readOnly: true,
+       titleLocation: "hidden",
+       choices: [
+        {
+         value: "Original image",
+         imageLink: "figures/common/training1.png"
+        },
+        {
+         value: "Heatmap",
+         imageLink: "figures/common/training2.png"
+        }
+       ],
+       imageFit: "fill",
+       imageHeight: 160,
+       imageWidth: 220,
+       showLabel: true
+      },
+      {
+       type: "imagepicker",
+       name: "question48",
+       width: "120px",
+       startWithNewLine: false,
+       titleLocation: "hidden",
+       choices: [
+        {
+         value: "legend",
+         imageLink: "figures/common/jetLegend.png"
+        }
+       ],
+       imageFit: "fill",
+       imageHeight: 160,
+       imageWidth: 80
+      }
+     ],
+     visible: withHeatmap,
+     readOnly: true,
+    },
+    {
+     type: "panel",
+     name: "panel1",
+     elements: [
+      {
+       type: "html",
+       name: "question3",
+       html: "<p><span style=\"font-weight: 400;font-size:1.17em;\">The Smart Wearable Camera also applies a Blur Filter on the captured image to protect the privacy of bystanders around "+(isPrivacy?"the Smart Camera wearer":"you")+". The image on the left is the original image, but blurred (right image) by the time you or anyone else can see it. On the other hand, the blurring effect may makes it harder to understand what activity the camera is photographing.\n</span></p>"
+      },
+      {
+       type: "imagepicker",
+       name: "question12",
+       readOnly: true,
+       titleLocation: "hidden",
+       choices: [
+        {
+         value: "Original image",
+         imageLink: "figures/common/training1.png"
+        },
+        {
+         value: "Blurred image",
+         imageLink: "figures/common/training"+(4-imgCond)+".png"
+        }
+       ],
+       imageFit: "fill",
+       imageHeight: 160,
+       imageWidth: 220,
+       showLabel: true
+      }
+     ],
+     visible: withBlur,
+     readOnly: true
+    }
+   ],
+   // visible: false,
+  },
 
   /* Warm-up */
   {
@@ -458,7 +458,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q0_3.1.A} = true or {q0_3.1.B} = true or {q0_3.1.C} = true or {q0_3.1.D} = true or {q0_3.1.E} = true or {q0_3.2.A} = true or {q0_3.2.B} = true or {q0_3.2.C} = true or {q0_3.2.D} = true or {q0_3.2.E} = true or {q0_3.3.A} = true or {q0_3.3.B} = true or {q0_3.3.C} = true or {q0_3.3.D} = true or {q0_3.3.E} = true or {q0_3.4.A} = true or {q0_3.4.B} = true or {q0_3.4.C} = true or {q0_3.4.D} = true or {q0_3.4.E} = true"
         }
        ],
@@ -555,7 +555,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q0_4.1.A} = true or {q0_4.1.B} = true or {q0_4.1.C} = true or {q0_4.1.D} = true or {q0_4.1.E} = true or {q0_4.2.A} = true or {q0_4.2.B} = true or {q0_4.2.C} = true or {q0_4.2.D} = true or {q0_4.2.E} = true or {q0_4.3.A} = true or {q0_4.3.B} = true or {q0_4.3.C} = true or {q0_4.3.D} = true or {q0_4.3.E} = true or {q0_4.4.A} = true or {q0_4.4.B} = true or {q0_4.4.C} = true or {q0_4.4.D} = true or {q0_4.4.E} = true"
         }
        ],
@@ -754,7 +754,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -794,18 +794,6 @@ var surveyJSON =
      type: "panel",
      name: "panel1_1",
      elements: [
-      // {
-      //  type: "html",
-      //  name: "question1_2",
-      //  visible: isIntel,
-      //  html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
-      // },
-      // {
-      //  type: "html",
-      //  name: "question1_3",
-      //  visible: isPrivacy,
-      //  html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
-      // },
       {
        type: "imagepicker",
        name: "question1_4",
@@ -880,7 +868,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -955,7 +943,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
         }
        ],
@@ -1177,7 +1165,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -1217,18 +1205,6 @@ var surveyJSON =
      type: "panel",
      name: "panel1_1",
      elements: [
-      {
-       type: "html",
-       name: "question1_2",
-       visible: isIntel,
-       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
-      },
-      {
-       type: "html",
-       name: "question1_3",
-       visible: isPrivacy,
-       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
-      },
       {
        type: "imagepicker",
        name: "question1_4",
@@ -1283,7 +1259,7 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_7",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Your Previous Selection is:</span> "
     },
     {
      type: "matrix",
@@ -1303,7 +1279,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -1378,7 +1354,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
         }
        ],
@@ -1600,7 +1576,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -1640,18 +1616,6 @@ var surveyJSON =
      type: "panel",
      name: "panel1_1",
      elements: [
-      {
-       type: "html",
-       name: "question1_2",
-       visible: isIntel,
-       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
-      },
-      {
-       type: "html",
-       name: "question1_3",
-       visible: isPrivacy,
-       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
-      },
       {
        type: "imagepicker",
        name: "question1_4",
@@ -1706,7 +1670,7 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_7",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Your Previous Selection is:</span> "
     },
     {
      type: "matrix",
@@ -1726,7 +1690,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -1801,7 +1765,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
         }
        ],
@@ -2023,7 +1987,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -2063,18 +2027,6 @@ var surveyJSON =
      type: "panel",
      name: "panel1_1",
      elements: [
-      {
-       type: "html",
-       name: "question1_2",
-       visible: isIntel,
-       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
-      },
-      {
-       type: "html",
-       name: "question1_3",
-       visible: isPrivacy,
-       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
-      },
       {
        type: "imagepicker",
        name: "question1_4",
@@ -2129,7 +2081,7 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_7",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Your Previous Selection is:</span> "
     },
     {
      type: "matrix",
@@ -2149,7 +2101,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -2224,7 +2176,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
         }
        ],
@@ -2447,7 +2399,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -2487,18 +2439,6 @@ var surveyJSON =
      type: "panel",
      name: "panel1_1",
      elements: [
-      {
-       type: "html",
-       name: "question1_2",
-       visible: isIntel,
-       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
-      },
-      {
-       type: "html",
-       name: "question1_3",
-       visible: isPrivacy,
-       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
-      },
       {
        type: "imagepicker",
        name: "question1_4",
@@ -2553,7 +2493,7 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_7",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Your Previous Selection is:</span> "
     },
     {
      type: "matrix",
@@ -2573,7 +2513,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -2648,7 +2588,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
         }
        ],
@@ -2870,7 +2810,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -2910,18 +2850,6 @@ var surveyJSON =
      type: "panel",
      name: "panel1_1",
      elements: [
-      {
-       type: "html",
-       name: "question1_2",
-       visible: isIntel,
-       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
-      },
-      {
-       type: "html",
-       name: "question1_3",
-       visible: isPrivacy,
-       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
-      },
       {
        type: "imagepicker",
        name: "question1_4",
@@ -2976,7 +2904,7 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_7",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Your Previous Selection is:</span> "
     },
     {
      type: "matrix",
@@ -2996,7 +2924,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -3071,7 +2999,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
         }
        ],
@@ -3293,7 +3221,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -3333,18 +3261,6 @@ var surveyJSON =
      type: "panel",
      name: "panel1_1",
      elements: [
-      {
-       type: "html",
-       name: "question1_2",
-       visible: isIntel,
-       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
-      },
-      {
-       type: "html",
-       name: "question1_3",
-       visible: isPrivacy,
-       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
-      },
       {
        type: "imagepicker",
        name: "question1_4",
@@ -3399,7 +3315,7 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_7",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Your Previous Selection is:</span> "
     },
     {
      type: "matrix",
@@ -3419,7 +3335,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -3494,7 +3410,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
         }
        ],
@@ -3716,7 +3632,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -3756,18 +3672,6 @@ var surveyJSON =
      type: "panel",
      name: "panel1_1",
      elements: [
-      {
-       type: "html",
-       name: "question1_2",
-       visible: isIntel,
-       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
-      },
-      {
-       type: "html",
-       name: "question1_3",
-       visible: isPrivacy,
-       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
-      },
       {
        type: "imagepicker",
        name: "question1_4",
@@ -3822,7 +3726,7 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_7",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Your Previous Selection is:</span> "
     },
     {
      type: "matrix",
@@ -3842,7 +3746,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -3917,7 +3821,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
         }
        ],
@@ -4140,7 +4044,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -4180,18 +4084,6 @@ var surveyJSON =
      type: "panel",
      name: "panel1_1",
      elements: [
-      {
-       type: "html",
-       name: "question1_2",
-       visible: isIntel,
-       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
-      },
-      {
-       type: "html",
-       name: "question1_3",
-       visible: isPrivacy,
-       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
-      },
       {
        type: "imagepicker",
        name: "question1_4",
@@ -4246,7 +4138,7 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_7",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Your Previous Selection is:</span> "
     },
     {
      type: "matrix",
@@ -4266,7 +4158,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -4341,7 +4233,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
         }
        ],
@@ -4563,7 +4455,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -4603,18 +4495,6 @@ var surveyJSON =
      type: "panel",
      name: "panel1_1",
      elements: [
-      {
-       type: "html",
-       name: "question1_2",
-       visible: isIntel,
-       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
-      },
-      {
-       type: "html",
-       name: "question1_3",
-       visible: isPrivacy,
-       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
-      },
       {
        type: "imagepicker",
        name: "question1_4",
@@ -4669,7 +4549,7 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_7",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Your Previous Selection is:</span> "
     },
     {
      type: "matrix",
@@ -4689,7 +4569,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -4764,7 +4644,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
         }
        ],
@@ -4986,7 +4866,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -5026,18 +4906,6 @@ var surveyJSON =
      type: "panel",
      name: "panel1_1",
      elements: [
-      {
-       type: "html",
-       name: "question1_2",
-       visible: isIntel,
-       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
-      },
-      {
-       type: "html",
-       name: "question1_3",
-       visible: isPrivacy,
-       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
-      },
       {
        type: "imagepicker",
        name: "question1_4",
@@ -5092,7 +4960,7 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_7",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Your Previous Selection is:</span> "
     },
     {
      type: "matrix",
@@ -5112,7 +4980,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -5187,7 +5055,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
         }
        ],
@@ -5409,7 +5277,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -5449,18 +5317,6 @@ var surveyJSON =
      type: "panel",
      name: "panel1_1",
      elements: [
-      {
-       type: "html",
-       name: "question1_2",
-       visible: isIntel,
-       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
-      },
-      {
-       type: "html",
-       name: "question1_3",
-       visible: isPrivacy,
-       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
-      },
       {
        type: "imagepicker",
        name: "question1_4",
@@ -5515,7 +5371,7 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_7",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Your Previous Selection is:</span> "
     },
     {
      type: "matrix",
@@ -5535,7 +5391,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -5610,7 +5466,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
         }
        ],
@@ -5833,7 +5689,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -5873,18 +5729,6 @@ var surveyJSON =
      type: "panel",
      name: "panel1_1",
      elements: [
-      {
-       type: "html",
-       name: "question1_2",
-       visible: isIntel,
-       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
-      },
-      {
-       type: "html",
-       name: "question1_3",
-       visible: isPrivacy,
-       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
-      },
       {
        type: "imagepicker",
        name: "question1_4",
@@ -5939,7 +5783,7 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_7",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Your Previous Selection is:</span> "
     },
     {
      type: "matrix",
@@ -5959,7 +5803,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -6034,7 +5878,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
         }
        ],
@@ -6256,7 +6100,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -6296,18 +6140,6 @@ var surveyJSON =
      type: "panel",
      name: "panel1_1",
      elements: [
-      {
-       type: "html",
-       name: "question1_2",
-       visible: isIntel,
-       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
-      },
-      {
-       type: "html",
-       name: "question1_3",
-       visible: isPrivacy,
-       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
-      },
       {
        type: "imagepicker",
        name: "question1_4",
@@ -6362,7 +6194,7 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_7",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Your Previous Selection is:</span> "
     },
     {
      type: "matrix",
@@ -6382,7 +6214,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -6457,7 +6289,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
         }
        ],
@@ -6679,7 +6511,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -6719,18 +6551,6 @@ var surveyJSON =
      type: "panel",
      name: "panel1_1",
      elements: [
-      {
-       type: "html",
-       name: "question1_2",
-       visible: isIntel,
-       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
-      },
-      {
-       type: "html",
-       name: "question1_3",
-       visible: isPrivacy,
-       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
-      },
       {
        type: "imagepicker",
        name: "question1_4",
@@ -6785,7 +6605,7 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_7",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Your Previous Selection is:</span> "
     },
     {
      type: "matrix",
@@ -6805,7 +6625,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -6880,7 +6700,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
         }
        ],
@@ -7102,7 +6922,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -7142,18 +6962,6 @@ var surveyJSON =
      type: "panel",
      name: "panel1_1",
      elements: [
-      {
-       type: "html",
-       name: "question1_2",
-       visible: isIntel,
-       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
-      },
-      {
-       type: "html",
-       name: "question1_3",
-       visible: isPrivacy,
-       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
-      },
       {
        type: "imagepicker",
        name: "question1_4",
@@ -7208,7 +7016,7 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_7",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Your Previous Selection is:</span> "
     },
     {
      type: "matrix",
@@ -7228,7 +7036,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -7303,7 +7111,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
         }
        ],
@@ -7526,7 +7334,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -7566,18 +7374,6 @@ var surveyJSON =
      type: "panel",
      name: "panel1_1",
      elements: [
-      {
-       type: "html",
-       name: "question1_2",
-       visible: isIntel,
-       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
-      },
-      {
-       type: "html",
-       name: "question1_3",
-       visible: isPrivacy,
-       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
-      },
       {
        type: "imagepicker",
        name: "question1_4",
@@ -7632,7 +7428,7 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_7",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Your Previous Selection is:</span> "
     },
     {
      type: "matrix",
@@ -7652,7 +7448,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -7727,7 +7523,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
         }
        ],
@@ -7949,7 +7745,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -7989,18 +7785,6 @@ var surveyJSON =
      type: "panel",
      name: "panel1_1",
      elements: [
-      {
-       type: "html",
-       name: "question1_2",
-       visible: isIntel,
-       html: "<h4 style=\"font-weight:500;\">Imagine you have been wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken some time ago. </h4> "
-      },
-      {
-       type: "html",
-       name: "question1_3",
-       visible: isPrivacy,
-       html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
-      },
       {
        type: "imagepicker",
        name: "question1_4",
@@ -8055,7 +7839,7 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_7",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Your Previous Selection is:</span> "
     },
     {
      type: "matrix",
@@ -8075,7 +7859,7 @@ var surveyJSON =
      validators: [
       {
        type: "expression",
-       text: "Please answer the question.",
+       text: "Please select at least one activity as NOT very unlikely.",
        expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
@@ -8150,7 +7934,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please answer the question.",
+         text: "Please check at least one cell.",
          expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
         }
        ],
