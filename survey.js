@@ -211,6 +211,7 @@ var surveyJSON =
        type: "boolean",
        name: "accept",
        title: "Accept",
+       defaultValue: false,
        validators: [
         {
          type: "expression",
@@ -346,7 +347,6 @@ var surveyJSON =
      readOnly: true
     }
    ],
-   // visible: false,
   },
 
   /* Warm-up */
