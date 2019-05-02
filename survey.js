@@ -555,7 +555,7 @@ var surveyJSON =
        validators: [
         {
          type: "expression",
-         text: "Please check at least one cell.",
+         text: "Please select at least one cell.",
          expression: "{q0_4.1.A} = true or {q0_4.1.B} = true or {q0_4.1.C} = true or {q0_4.1.D} = true or {q0_4.1.E} = true or {q0_4.2.A} = true or {q0_4.2.B} = true or {q0_4.2.C} = true or {q0_4.2.D} = true or {q0_4.2.E} = true or {q0_4.3.A} = true or {q0_4.3.B} = true or {q0_4.3.C} = true or {q0_4.3.D} = true or {q0_4.3.E} = true or {q0_4.4.A} = true or {q0_4.4.B} = true or {q0_4.4.C} = true or {q0_4.4.D} = true or {q0_4.4.E} = true"
         }
        ],
@@ -8180,7 +8180,6 @@ var surveyJSON =
  showPrevButton: false,
  showQuestionNumbers: "off",
  showProgressBar: "top",
- goNextPageAutomatic: true,
  firstPageIsStarted: true,
  completedHtml: "<h3>Thank you for completing our survey.</h3><br><h3>Your response has been recorded.</h3><br><br><br><h4>Your MTurk completion code is: "+completeCode+"</h4>",
 }
