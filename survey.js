@@ -52,36 +52,6 @@ var surveyJSON =
       }
      ]
     },
-    {
-     type: "radiogroup",
-     name: "qcond",
-     visible: false,
-     defaultValue: condIndex,
-     choices: [
-      "0",
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9"
-     ],
-     colCount: 0
-    },
-    {
-     type: "radiogroup",
-     name: "qintel",
-     visible: false,
-     defaultValue: 1 - isPrivacy,
-     choices: [
-      "0",
-      "1"
-     ],
-     colCount: 0
-    }
    ]
   }, 
   /* Introduction */
@@ -1913,7 +1883,7 @@ var surveyJSON =
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
-{
+      {
        type: "imagepicker",
        name: "question1_4",
        width: "330px",
@@ -2325,7 +2295,7 @@ var surveyJSON =
        visible: isPrivacy,
        html: "<h4 style=\"font-weight:500;\">Imagine you are somewhere and someone nearby is wearing a wearable camera that takes photos automatically every 30 seconds. The following is one of the photos taken. </h4> "
       },
-{
+      {
        type: "imagepicker",
        name: "question1_4",
        width: "330px",
@@ -8215,7 +8185,7 @@ function timerCallback() {
 
 /* Sending Result */
 function sendDataToServer(survey) {
-    survey.sendResult('4b4b863d-4716-4b18-ad18-562ddffd999c');
+    survey.sendResult('4b4b863d-4716-4b18-ad18-562ddffd999c');          /* For runtime*/
     // survey.sendResult('e0d67775-bf80-4ee4-b307-15fe60ab670f');        /* For debug*/
 }
 
@@ -8226,6 +8196,8 @@ survey.onCurrentPageChanged.add(function(){
 
 /* Sending Result */
 survey.onComplete.add(function(survey, options) {
+    survey.setValue("qcond", condIndex)       /* conditional index */
+    survey.setValue("qintel", Number(isIntel))        /* privacy or intelligibility*/
     sendDataToServer(survey)
 });
 
