@@ -1,17 +1,17 @@
 
-var isPilot = true
-var isPrivacy = (Math.random() > 0.5)
-var isIntel = Boolean(1 - isPrivacy)
-var condIndex = Math.floor(Math.random() * 10)
+var isPilot = true;
+var isPrivacy = (Math.random() > 0.5);
+var isIntel = Boolean(1 - isPrivacy);
+var condIndex = Math.floor(Math.random() * 10);
 if (condIndex == 3 || condIndex == 7) condIndex--;
 
-var imgCond = parseInt(condIndex / 4)
-var camCond = condIndex % 4
-var withBlur = (imgCond != 2)
-var withHeatmap = (camCond != 0)
+var imgCond = parseInt(condIndex / 4);
+var camCond = condIndex % 4;
+var withBlur = (imgCond != 2);
+var withHeatmap = (camCond != 0);
 
-var privacyIntro = "Since the photos are taken automatically, they inevitably capture individuals in the surrounding environment. These individuals could be family members, friends, or complete strangers, and they are typically not aware they are being photographed."
-var completeCode = Math.floor(Math.random() * 1000000)
+var privacyIntro = "Since the photos are taken automatically, they inevitably capture individuals in the surrounding environment. These individuals could be family members, friends, or complete strangers, and they are typically not aware they are being photographed.";
+var completeCode = Math.floor(Math.random() * 1000000);
 
 var imageOrder = [1,2,5,6,10,11,19,20,32,33,35,36,40,41,46,47,51,52];
 
@@ -20,6 +20,7 @@ function shuffle(arr) {
 }
 imageOrder.sort(shuffle);
 var index=0;
+var success=0;
 
 /* for debug */
 console.log("isPilot: "+isPilot)
@@ -324,6 +325,12 @@ var surveyJSON =
    name: "WarmUp",
    elements: [
     {
+     type: "boolean",
+     name: "question0_0",
+     visible: false,
+     defaultValue: "false"
+    },
+    {
      type: "html",
      name: "question0_1",
      html: "<h3 style=\"font-weight:500;\">Warm-up: Screening questions </h3>"
@@ -608,7 +615,8 @@ var surveyJSON =
      html: "<h3 style=\"font-weight:500;\">Sorry! You do not qualify to continue with the study.</h3> <h3 style=\"font-weight:500;\">Thank you for your interest! </h3>\n\n"
     }
    ],
-   visibleIf: withHeatmap?"not({q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true)":"not({q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true)",
+   // visibleIf: withHeatmap?"not({q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true)":"not({q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true)",
+   visibleIf: "{question0_0} = false",
    questionsOrder: "initial"
   },
   /* Survey Instruction */
@@ -619,9 +627,10 @@ var surveyJSON =
      type: "html",
      name: "question1",
      html: "<h3 style=\"font-weight:500;\">Next, you will see a series 15 of images and answer several questions for each image. There are 15 pages and 1 page for each image. </h3> \n<p>&nbsp;</p>\n<h4 style=\"font-weight: 500;color:red;\"> Please put your best effort to answer the questions <strong>accurately</strong> and <strong>quickly</strong>. For correct and quick answers, you can receive a bonus up to US$1.50. </h4>\n\n\n"
-    }
+    },
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
 
@@ -750,7 +759,8 @@ var surveyJSON =
       "Cooking"
      ],
     },
-   ]
+   ],
+   visibleIf: "{question0_0} = true",
   },
   {
    name: "Task 1",
@@ -1033,7 +1043,8 @@ var surveyJSON =
      isRequired: true,
     }  
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
   /* Task2 */
@@ -1161,7 +1172,8 @@ var surveyJSON =
       "Cooking"
      ],
     },
-   ]
+   ],
+   visibleIf: "{question0_0} = true",
   },
   {
    name: "Task 2",
@@ -1444,7 +1456,8 @@ var surveyJSON =
      isRequired: true,
     }  
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
   /* Task3 */
@@ -1572,7 +1585,8 @@ var surveyJSON =
       "Cooking"
      ],
     },
-   ]
+   ],
+   visibleIf: "{question0_0} = true",
   },
   {
    name: "Task 3",
@@ -1855,7 +1869,8 @@ var surveyJSON =
      isRequired: true,
     }  
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
   /* Task4 */
@@ -1983,7 +1998,8 @@ var surveyJSON =
       "Cooking"
      ],
     },
-   ]
+   ],
+   visibleIf: "{question0_0} = true",
   },
   {
    name: "Task 4",
@@ -2266,7 +2282,8 @@ var surveyJSON =
      isRequired: true,
     }  
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
 
@@ -2395,7 +2412,8 @@ var surveyJSON =
       "Cooking"
      ],
     },
-   ]
+   ],
+   visibleIf: "{question0_0} = true",
   },
   {
    name: "Task 5",
@@ -2678,7 +2696,8 @@ var surveyJSON =
      isRequired: true,
     }  
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
   /* Task6 */
@@ -2806,7 +2825,8 @@ var surveyJSON =
       "Cooking"
      ],
     },
-   ]
+   ],
+   visibleIf: "{question0_0} = true",
   },
   {
    name: "Task 6",
@@ -3089,7 +3109,8 @@ var surveyJSON =
      isRequired: true,
     }  
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
   /* Task7 */
@@ -3166,7 +3187,8 @@ var surveyJSON =
        imageHeight: 200,
        imageWidth: 100
       },
-     ]
+     ],
+     visibleIf: "{question0_0} = true",
     },
     {
      type: "html",
@@ -3500,7 +3522,8 @@ var surveyJSON =
      isRequired: true,
     }  
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
   /* Task8 */
@@ -3628,7 +3651,8 @@ var surveyJSON =
       "Cooking"
      ],
     },
-   ]
+   ],
+   visibleIf: "{question0_0} = true",
   },
   {
    name: "Task 8",
@@ -3911,7 +3935,8 @@ var surveyJSON =
      isRequired: true,
     }  
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
 
@@ -4040,7 +4065,8 @@ var surveyJSON =
       "Cooking"
      ],
     },
-   ]
+   ],
+   visibleIf: "{question0_0} = true",
   },
   {
    name: "Task 9",
@@ -4323,7 +4349,8 @@ var surveyJSON =
      isRequired: true,
     }  
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
   /* Task10 */
@@ -4451,7 +4478,8 @@ var surveyJSON =
       "Cooking"
      ],
     },
-   ]
+   ],
+   visibleIf: "{question0_0} = true",
   },
   {
    name: "Task 10",
@@ -4734,7 +4762,8 @@ var surveyJSON =
      isRequired: true,
     }  
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
   /* Task11 */
@@ -4862,7 +4891,8 @@ var surveyJSON =
       "Cooking"
      ],
     },
-   ]
+   ],
+   visibleIf: "{question0_0} = true",
   },
   {
    name: "Task 11",
@@ -5145,7 +5175,8 @@ var surveyJSON =
      isRequired: true,
     }  
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
   /* Task12 */
@@ -5273,7 +5304,8 @@ var surveyJSON =
       "Cooking"
      ],
     },
-   ]
+   ],
+   visibleIf: "{question0_0} = true",
   },
   {
    name: "Task 12",
@@ -5556,7 +5588,8 @@ var surveyJSON =
      isRequired: true,
     }  
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
 
@@ -5685,7 +5718,8 @@ var surveyJSON =
       "Cooking"
      ],
     },
-   ]
+   ],
+   visibleIf: "{question0_0} = true",
   },
   {
    name: "Task 13",
@@ -5968,7 +6002,8 @@ var surveyJSON =
      isRequired: true,
     }  
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
   /* Task14 */
@@ -6096,7 +6131,8 @@ var surveyJSON =
       "Cooking"
      ],
     },
-   ]
+   ],
+   visibleIf: "{question0_0} = true",
   },
   {
    name: "Task 14",
@@ -6379,7 +6415,8 @@ var surveyJSON =
      isRequired: true,
     }  
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
   /* Task15 */
@@ -6507,7 +6544,8 @@ var surveyJSON =
       "Cooking"
      ],
     },
-   ]
+   ],
+   visibleIf: "{question0_0} = true",
   },
   {
    name: "Task 15",
@@ -6790,7 +6828,8 @@ var surveyJSON =
      isRequired: true,
     }  
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
   /* Task16 */
@@ -6918,7 +6957,8 @@ var surveyJSON =
       "Cooking"
      ],
     },
-   ]
+   ],
+   visibleIf: "{question0_0} = true",
   },
   {
    name: "Task 16",
@@ -7201,7 +7241,8 @@ var surveyJSON =
      isRequired: true,
     }  
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
 
@@ -7330,7 +7371,8 @@ var surveyJSON =
       "Cooking"
      ],
     },
-   ]
+   ],
+   visibleIf: "{question0_0} = true",
   },
   {
    name: "Task 17",
@@ -7613,7 +7655,8 @@ var surveyJSON =
      isRequired: true,
     }  
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
   /* Task18 */
@@ -7741,7 +7784,8 @@ var surveyJSON =
       "Cooking"
      ],
     },
-   ]
+   ],
+   visibleIf: "{question0_0} = true",
   },
   {
    name: "Task 18",
@@ -8024,7 +8068,8 @@ var surveyJSON =
      isRequired: true,
     }  
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    questionsOrder: "initial"
   },
   /* Post */
@@ -8143,15 +8188,24 @@ var surveyJSON =
      title: "Do you agree or disagree with the following statements?"
     },
    ],
-   visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   visibleIf: "{question0_0} = true",
    title: "Post Survey"
+  }
+ ],
+ triggers: [
+  {
+   type: "setvalue",
+   expression: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
+   setToName: "question0_0",
+   setValue: true
   }
  ],
  showPrevButton: false,
  showQuestionNumbers: "off",
  showProgressBar: "top",
  firstPageIsStarted: true,
- completedHtml: "<h3>Thank you for completing our survey.</h3><br><h3>Your response has been recorded.</h3><br><br><br><h4>Your MTurk completion code is: "+completeCode+"</h4>",
+ completedHtml: "{question0_0} = true"?"<h3>Thank you for completing our survey.</h3><br><h3>Your response has been recorded.</h3><br><br><br><h4>Your MTurk completion code is: "+completeCode+"</h4>":"<h3>Sorry, you didn't complete our survey.</h3>",
 }
 
 var timerId = null
@@ -8185,7 +8239,8 @@ function timerCallback() {
 
 /* Sending Result */
 function sendDataToServer(survey) {
-    survey.sendResult('4b4b863d-4716-4b18-ad18-562ddffd999c');          /* For runtime*/
+    survey.sendResult('f8f2dbd5-79d2-49cc-9e5e-3a8e5b17716e');            /* For runtime new*/
+    // survey.sendResult('4b4b863d-4716-4b18-ad18-562ddffd999c');          /* For runtime*/
     // survey.sendResult('e0d67775-bf80-4ee4-b307-15fe60ab670f');        /* For debug*/
 }
 
