@@ -2,7 +2,8 @@
 var isPilot = true;
 var isPrivacy = (Math.random() > 0.5);
 var isIntel = Boolean(1 - isPrivacy);
-var condIndex = Math.floor(Math.random() * 10);
+ // var condIndex = Math.floor(Math.random() * 10);
+var condIndex = Math.floor(Math.random() * 3) + 4; /* Strong blur level condition */
 if (condIndex == 3 || condIndex == 7) condIndex--;
 
 var imgCond = parseInt(condIndex / 4);
@@ -15,10 +16,34 @@ var completeCode = Math.floor(Math.random() * 1000000);
 
 var imageOrder = [1,2,5,6,10,11,19,20,32,33,35,36,40,41,46,47,51,52];
 
-function shuffle(arr) {
-  return Math.random() > 0.5 ? -1 : 1;
+function shuffle(a) {
+  var length = a.length;
+  var shuffled = Array(length);
+
+  for (var index = 0, rand; index < length; index++) {
+    rand = ~~(Math.random() * (index + 1));
+    if (rand !== index) 
+      shuffled[index] = shuffled[rand];
+    shuffled[rand] = a[index];
+  }
+
+  return shuffled;
 }
-imageOrder.sort(shuffle);
+
+imageOrder = shuffle(imageOrder);
+
+function getImageOrder(imgList) {
+  var dict = [];
+  for (var i = 0; i < imgList.length; i++) {
+    dict.push({
+      key: 'PageNo'+(i*2+7), 
+      value: imgList[i]});   
+  }
+  return dict;
+}
+imageMap = getImageOrder(imageOrder);
+// console.log(imageMap);
+
 var index=0;
 var success=0;
 
@@ -32,11 +57,17 @@ console.log("imgCond: "+imgCond)
 console.log("withBlur: "+withBlur)
 console.log("withHeatmap: "+withHeatmap)
 console.log("completeCode: "+completeCode)
-console.log("imageOrder: "+imageOrder)
+console.log("imageOrder: "+imageMap)
 /* for debug */
-
+//"<h3>Sorry, you didn't complete our survey.</h3>",
 var surveyJSON = 
 {
+ completedHtmlOnCondition: [
+  {
+   expression: "{qP-1} notempty",
+   html: "<h3>Thank you for completing our survey.</h3><br><h3>Your response has been recorded.</h3><br><br><br><h4>Your MTurk completion code is: "+completeCode+"</h4>"
+  }
+ ], 
  pages: [
   /* Beginning */
   {
@@ -8205,8 +8236,9 @@ var surveyJSON =
  showQuestionNumbers: "off",
  showProgressBar: "top",
  firstPageIsStarted: true,
- completedHtml: "{question0_0} = true"?"<h3>Thank you for completing our survey.</h3><br><h3>Your response has been recorded.</h3><br><br><br><h4>Your MTurk completion code is: "+completeCode+"</h4>":"<h3>Sorry, you didn't complete our survey.</h3>",
+ // completedHtml: "{qP-1} notempty"?"<h3>Thank you for completing our survey.</h3><br><h3>Your response has been recorded.</h3><br><br><br><h4>Your MTurk completion code is: "+completeCode+"</h4>":"<h3>Sorry, you didn't complete our survey.</h3>",
 }
+
 
 var timerId = null
 var timeText = null
@@ -8251,6 +8283,7 @@ survey.onCurrentPageChanged.add(function(){
 
 /* Sending Result */
 survey.onComplete.add(function(survey, options) {
+    survey.setValue("imageOrder", imageMap)
     survey.setValue("qcond", condIndex)       /* conditional index */
     survey.setValue("qintel", Number(isIntel))        /* privacy or intelligibility*/
     sendDataToServer(survey)
