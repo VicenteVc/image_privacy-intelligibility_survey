@@ -2,8 +2,13 @@
 var isPilot = true;
 var isPrivacy = (Math.random() > 0.5);
 var isIntel = Boolean(1 - isPrivacy);
+<<<<<<< HEAD
  // var condIndex = Math.floor(Math.random() * 10);
 var condIndex = Math.floor(Math.random() * 3) + 4; /* Strong blur level condition */
+=======
+//var condIndex = Math.floor(Math.random() * 10);
+var condIndex = Math.floor(Math.random() * 3) + 4;        /* Strong blur level condition */
+>>>>>>> 0a6c727548097b01751936c3796885acb0f7eb2d
 if (condIndex == 3 || condIndex == 7) condIndex--;
 
 var imgCond = parseInt(condIndex / 4);
