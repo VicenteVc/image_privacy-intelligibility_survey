@@ -5,7 +5,6 @@ var isIntel = Boolean(1 - isPrivacy);
 
 var condIndex = Math.floor(Math.random() * 10);
 // var condIndex = Math.floor(Math.random() * 3);        /* Control the condition: Strong blur level*/
-var condIndex = 6;
 
 var imgCond = parseInt(condIndex / 4);
 var camCond = condIndex % 4;
