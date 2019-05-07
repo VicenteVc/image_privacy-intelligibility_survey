@@ -2,14 +2,10 @@
 var isPilot = true;
 var isPrivacy = (Math.random() > 0.5);
 var isIntel = Boolean(1 - isPrivacy);
-<<<<<<< HEAD
- // var condIndex = Math.floor(Math.random() * 10);
-var condIndex = Math.floor(Math.random() * 3) + 4; /* Strong blur level condition */
-=======
-//var condIndex = Math.floor(Math.random() * 10);
-var condIndex = Math.floor(Math.random() * 3) + 4;        /* Strong blur level condition */
->>>>>>> 0a6c727548097b01751936c3796885acb0f7eb2d
-if (condIndex == 3 || condIndex == 7) condIndex--;
+
+var condIndex = Math.floor(Math.random() * 10);
+// var condIndex = Math.floor(Math.random() * 3);        /* Control the condition: Strong blur level*/
+var condIndex = 6;
 
 var imgCond = parseInt(condIndex / 4);
 var camCond = condIndex % 4;
@@ -18,39 +14,23 @@ var withHeatmap = (camCond != 0);
 
 var privacyIntro = "Since the photos are taken automatically, they inevitably capture individuals in the surrounding environment. These individuals could be family members, friends, or complete strangers, and they are typically not aware they are being photographed.";
 var completeCode = Math.floor(Math.random() * 1000000);
+var imageOrder = [10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27];
 
-var imageOrder = [1,2,5,6,10,11,19,20,32,33,35,36,40,41,46,47,51,52];
 
 function shuffle(a) {
   var length = a.length;
   var shuffled = Array(length);
-
   for (var index = 0, rand; index < length; index++) {
     rand = ~~(Math.random() * (index + 1));
     if (rand !== index) 
       shuffled[index] = shuffled[rand];
     shuffled[rand] = a[index];
   }
-
   return shuffled;
 }
-
 imageOrder = shuffle(imageOrder);
 
-function getImageOrder(imgList) {
-  var dict = [];
-  for (var i = 0; i < imgList.length; i++) {
-    dict.push({
-      key: 'PageNo'+(i*2+7), 
-      value: imgList[i]});   
-  }
-  return dict;
-}
-imageMap = getImageOrder(imageOrder);
-// console.log(imageMap);
-
 var index=0;
-var success=0;
 
 /* for debug */
 console.log("isPilot: "+isPilot)
@@ -62,14 +42,15 @@ console.log("imgCond: "+imgCond)
 console.log("withBlur: "+withBlur)
 console.log("withHeatmap: "+withHeatmap)
 console.log("completeCode: "+completeCode)
-console.log("imageOrder: "+imageMap)
+console.log("imageOrder: "+imageOrder)
 /* for debug */
-//"<h3>Sorry, you didn't complete our survey.</h3>",
+
+
 var surveyJSON = 
 {
  completedHtmlOnCondition: [
   {
-   expression: "{qP-1} notempty",
+   expression: "{qP-01} notempty",
    html: "<h3>Thank you for completing our survey.</h3><br><h3>Your response has been recorded.</h3><br><br><br><h4>Your MTurk completion code is: "+completeCode+"</h4>"
   }
  ], 
@@ -216,14 +197,14 @@ var surveyJSON =
       },
       {
        type: "boolean",
-       name: "accept",
+       name: "q_accept",
        title: "Accept",
        defaultValue: false,
        validators: [
         {
          type: "expression",
          text: "Please accept to consent, if you would like to participate in this study.",
-         expression: "{accept} = true"
+         expression: "{q_accept} = true"
         }
        ]
       }
@@ -749,11 +730,11 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_9",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities. <br/><span style=\"color:red\">Note: you must select <strong>at least one activity but not too many</strong> as NOT very unlikely. You might be disqualified from the HIT if you don’t pay enough attention. Please choose carefully. </span></i> "
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -770,7 +751,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -868,7 +849,7 @@ var surveyJSON =
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -885,7 +866,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -916,13 +897,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q"+imageOrder[index]+"-2",
+       name: "q"+imageOrder[index]+"-02",
        title: "Explain how you identified the activity.",
        isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q"+imageOrder[index]+"-3",
+       name: "q"+imageOrder[index]+"-03",
        width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -960,7 +941,7 @@ var surveyJSON =
         {
          type: "expression",
          text: "Please select at least one cell.",
-         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+         expression: "{q"+imageOrder[index]+"-03.1.A} = true or {q"+imageOrder[index]+"-03.1.B} = true or {q"+imageOrder[index]+"-03.1.C} = true or {q"+imageOrder[index]+"-03.1.D} = true or {q"+imageOrder[index]+"-03.1.E} = true or {q"+imageOrder[index]+"-03.2.A} = true or {q"+imageOrder[index]+"-03.2.B} = true or {q"+imageOrder[index]+"-03.2.C} = true or {q"+imageOrder[index]+"-03.2.D} = true or {q"+imageOrder[index]+"-03.2.E} = true or {q"+imageOrder[index]+"-03.3.A} = true or {q"+imageOrder[index]+"-03.3.B} = true or {q"+imageOrder[index]+"-03.3.C} = true or {q"+imageOrder[index]+"-03.3.D} = true or {q"+imageOrder[index]+"-03.3.E} = true or {q"+imageOrder[index]+"-03.4.A} = true or {q"+imageOrder[index]+"-03.4.B} = true or {q"+imageOrder[index]+"-03.4.C} = true or {q"+imageOrder[index]+"-03.4.D} = true or {q"+imageOrder[index]+"-03.4.E} = true"
         }
        ],
        columns: [
@@ -1014,7 +995,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-4",
+       name: "q"+imageOrder[index]+"-04",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -1024,7 +1005,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-5",
+       name: "q"+imageOrder[index]+"-05",
        visible: withHeatmap,
        title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
@@ -1035,9 +1016,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-6",
+       name: "q"+imageOrder[index]+"-06",
        visible: isIntel,
-       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       title: "I do not mind viewing and storing my wearable camera images blurred as shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -1046,7 +1027,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-7",
+       name: "q"+imageOrder[index]+"-07",
        visible: isPrivacy,
        title: "I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
        isRequired: true,
@@ -1060,13 +1041,13 @@ var surveyJSON =
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-8",
+     name: "q"+imageOrder[index]+"-08",
      title: "Explain why you found it easy or difficult to identify the activity.",
      isRequired: true,
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-9",
+     name: "q"+imageOrder[index]+"-09",
      visible: isIntel,
      title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
      isRequired: true,
@@ -1162,11 +1143,11 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_9",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities. <br/><span style=\"color:red\">Note: you must select <strong>at least one activity but not too many</strong> as NOT very unlikely. You might be disqualified from the HIT if you don’t pay enough attention. Please choose carefully. </span></i> "
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -1183,7 +1164,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -1281,7 +1262,7 @@ var surveyJSON =
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -1298,7 +1279,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -1329,13 +1310,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q"+imageOrder[index]+"-2",
+       name: "q"+imageOrder[index]+"-02",
        title: "Explain how you identified the activity.",
        isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q"+imageOrder[index]+"-3",
+       name: "q"+imageOrder[index]+"-03",
        width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -1373,7 +1354,7 @@ var surveyJSON =
         {
          type: "expression",
          text: "Please select at least one cell.",
-         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+         expression: "{q"+imageOrder[index]+"-03.1.A} = true or {q"+imageOrder[index]+"-03.1.B} = true or {q"+imageOrder[index]+"-03.1.C} = true or {q"+imageOrder[index]+"-03.1.D} = true or {q"+imageOrder[index]+"-03.1.E} = true or {q"+imageOrder[index]+"-03.2.A} = true or {q"+imageOrder[index]+"-03.2.B} = true or {q"+imageOrder[index]+"-03.2.C} = true or {q"+imageOrder[index]+"-03.2.D} = true or {q"+imageOrder[index]+"-03.2.E} = true or {q"+imageOrder[index]+"-03.3.A} = true or {q"+imageOrder[index]+"-03.3.B} = true or {q"+imageOrder[index]+"-03.3.C} = true or {q"+imageOrder[index]+"-03.3.D} = true or {q"+imageOrder[index]+"-03.3.E} = true or {q"+imageOrder[index]+"-03.4.A} = true or {q"+imageOrder[index]+"-03.4.B} = true or {q"+imageOrder[index]+"-03.4.C} = true or {q"+imageOrder[index]+"-03.4.D} = true or {q"+imageOrder[index]+"-03.4.E} = true"
         }
        ],
        columns: [
@@ -1427,7 +1408,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-4",
+       name: "q"+imageOrder[index]+"-04",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -1437,7 +1418,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-5",
+       name: "q"+imageOrder[index]+"-05",
        visible: withHeatmap,
        title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
@@ -1448,9 +1429,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-6",
+       name: "q"+imageOrder[index]+"-06",
        visible: isIntel,
-       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       title: "I do not mind viewing and storing my wearable camera images blurred as shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -1459,7 +1440,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-7",
+       name: "q"+imageOrder[index]+"-07",
        visible: isPrivacy,
        title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
        isRequired: true,
@@ -1473,13 +1454,13 @@ var surveyJSON =
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-8",
+     name: "q"+imageOrder[index]+"-08",
      title: "Explain why you found it easy or difficult to identify the activity.",
      isRequired: true,
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-9",
+     name: "q"+imageOrder[index]+"-09",
      visible: isIntel,
      title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
      isRequired: true,
@@ -1575,11 +1556,11 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_9",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities. <br/><span style=\"color:red\">Note: you must select <strong>at least one activity but not too many</strong> as NOT very unlikely. You might be disqualified from the HIT if you don’t pay enough attention. Please choose carefully. </span></i> "
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -1596,7 +1577,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -1694,7 +1675,7 @@ var surveyJSON =
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -1711,7 +1692,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -1742,13 +1723,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q"+imageOrder[index]+"-2",
+       name: "q"+imageOrder[index]+"-02",
        title: "Explain how you identified the activity.",
        isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q"+imageOrder[index]+"-3",
+       name: "q"+imageOrder[index]+"-03",
        width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -1786,7 +1767,7 @@ var surveyJSON =
         {
          type: "expression",
          text: "Please select at least one cell.",
-         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+         expression: "{q"+imageOrder[index]+"-03.1.A} = true or {q"+imageOrder[index]+"-03.1.B} = true or {q"+imageOrder[index]+"-03.1.C} = true or {q"+imageOrder[index]+"-03.1.D} = true or {q"+imageOrder[index]+"-03.1.E} = true or {q"+imageOrder[index]+"-03.2.A} = true or {q"+imageOrder[index]+"-03.2.B} = true or {q"+imageOrder[index]+"-03.2.C} = true or {q"+imageOrder[index]+"-03.2.D} = true or {q"+imageOrder[index]+"-03.2.E} = true or {q"+imageOrder[index]+"-03.3.A} = true or {q"+imageOrder[index]+"-03.3.B} = true or {q"+imageOrder[index]+"-03.3.C} = true or {q"+imageOrder[index]+"-03.3.D} = true or {q"+imageOrder[index]+"-03.3.E} = true or {q"+imageOrder[index]+"-03.4.A} = true or {q"+imageOrder[index]+"-03.4.B} = true or {q"+imageOrder[index]+"-03.4.C} = true or {q"+imageOrder[index]+"-03.4.D} = true or {q"+imageOrder[index]+"-03.4.E} = true"
         }
        ],
        columns: [
@@ -1840,7 +1821,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-4",
+       name: "q"+imageOrder[index]+"-04",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -1850,7 +1831,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-5",
+       name: "q"+imageOrder[index]+"-05",
        visible: withHeatmap,
        title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
@@ -1861,9 +1842,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-6",
+       name: "q"+imageOrder[index]+"-06",
        visible: isIntel,
-       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       title: "I do not mind viewing and storing my wearable camera images blurred as shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -1872,7 +1853,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-7",
+       name: "q"+imageOrder[index]+"-07",
        visible: isPrivacy,
        title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
        isRequired: true,
@@ -1886,13 +1867,13 @@ var surveyJSON =
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-8",
+     name: "q"+imageOrder[index]+"-08",
      title: "Explain why you found it easy or difficult to identify the activity.",
      isRequired: true,
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-9",
+     name: "q"+imageOrder[index]+"-09",
      visible: isIntel,
      title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
      isRequired: true,
@@ -1988,11 +1969,11 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_9",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities. <br/><span style=\"color:red\">Note: you must select <strong>at least one activity but not too many</strong> as NOT very unlikely. You might be disqualified from the HIT if you don’t pay enough attention. Please choose carefully. </span></i> "
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -2009,7 +1990,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -2107,7 +2088,7 @@ var surveyJSON =
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -2124,7 +2105,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -2155,13 +2136,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q"+imageOrder[index]+"-2",
+       name: "q"+imageOrder[index]+"-02",
        title: "Explain how you identified the activity.",
        isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q"+imageOrder[index]+"-3",
+       name: "q"+imageOrder[index]+"-03",
        width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -2199,7 +2180,7 @@ var surveyJSON =
         {
          type: "expression",
          text: "Please select at least one cell.",
-         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+         expression: "{q"+imageOrder[index]+"-03.1.A} = true or {q"+imageOrder[index]+"-03.1.B} = true or {q"+imageOrder[index]+"-03.1.C} = true or {q"+imageOrder[index]+"-03.1.D} = true or {q"+imageOrder[index]+"-03.1.E} = true or {q"+imageOrder[index]+"-03.2.A} = true or {q"+imageOrder[index]+"-03.2.B} = true or {q"+imageOrder[index]+"-03.2.C} = true or {q"+imageOrder[index]+"-03.2.D} = true or {q"+imageOrder[index]+"-03.2.E} = true or {q"+imageOrder[index]+"-03.3.A} = true or {q"+imageOrder[index]+"-03.3.B} = true or {q"+imageOrder[index]+"-03.3.C} = true or {q"+imageOrder[index]+"-03.3.D} = true or {q"+imageOrder[index]+"-03.3.E} = true or {q"+imageOrder[index]+"-03.4.A} = true or {q"+imageOrder[index]+"-03.4.B} = true or {q"+imageOrder[index]+"-03.4.C} = true or {q"+imageOrder[index]+"-03.4.D} = true or {q"+imageOrder[index]+"-03.4.E} = true"
         }
        ],
        columns: [
@@ -2253,7 +2234,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-4",
+       name: "q"+imageOrder[index]+"-04",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -2263,7 +2244,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-5",
+       name: "q"+imageOrder[index]+"-05",
        visible: withHeatmap,
        title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
@@ -2274,9 +2255,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-6",
+       name: "q"+imageOrder[index]+"-06",
        visible: isIntel,
-       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       title: "I do not mind viewing and storing my wearable camera images blurred as shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -2285,7 +2266,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-7",
+       name: "q"+imageOrder[index]+"-07",
        visible: isPrivacy,
        title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
        isRequired: true,
@@ -2299,13 +2280,13 @@ var surveyJSON =
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-8",
+     name: "q"+imageOrder[index]+"-08",
      title: "Explain why you found it easy or difficult to identify the activity.",
      isRequired: true,
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-9",
+     name: "q"+imageOrder[index]+"-09",
      visible: isIntel,
      title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
      isRequired: true,
@@ -2402,11 +2383,11 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_9",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities. <br/><span style=\"color:red\">Note: you must select <strong>at least one activity but not too many</strong> as NOT very unlikely. You might be disqualified from the HIT if you don’t pay enough attention. Please choose carefully. </span></i> "
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -2423,7 +2404,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -2521,7 +2502,7 @@ var surveyJSON =
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -2538,7 +2519,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -2569,13 +2550,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q"+imageOrder[index]+"-2",
+       name: "q"+imageOrder[index]+"-02",
        title: "Explain how you identified the activity.",
        isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q"+imageOrder[index]+"-3",
+       name: "q"+imageOrder[index]+"-03",
        width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -2613,7 +2594,7 @@ var surveyJSON =
         {
          type: "expression",
          text: "Please select at least one cell.",
-         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+         expression: "{q"+imageOrder[index]+"-03.1.A} = true or {q"+imageOrder[index]+"-03.1.B} = true or {q"+imageOrder[index]+"-03.1.C} = true or {q"+imageOrder[index]+"-03.1.D} = true or {q"+imageOrder[index]+"-03.1.E} = true or {q"+imageOrder[index]+"-03.2.A} = true or {q"+imageOrder[index]+"-03.2.B} = true or {q"+imageOrder[index]+"-03.2.C} = true or {q"+imageOrder[index]+"-03.2.D} = true or {q"+imageOrder[index]+"-03.2.E} = true or {q"+imageOrder[index]+"-03.3.A} = true or {q"+imageOrder[index]+"-03.3.B} = true or {q"+imageOrder[index]+"-03.3.C} = true or {q"+imageOrder[index]+"-03.3.D} = true or {q"+imageOrder[index]+"-03.3.E} = true or {q"+imageOrder[index]+"-03.4.A} = true or {q"+imageOrder[index]+"-03.4.B} = true or {q"+imageOrder[index]+"-03.4.C} = true or {q"+imageOrder[index]+"-03.4.D} = true or {q"+imageOrder[index]+"-03.4.E} = true"
         }
        ],
        columns: [
@@ -2667,7 +2648,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-4",
+       name: "q"+imageOrder[index]+"-04",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -2677,7 +2658,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-5",
+       name: "q"+imageOrder[index]+"-05",
        visible: withHeatmap,
        title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
@@ -2688,9 +2669,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-6",
+       name: "q"+imageOrder[index]+"-06",
        visible: isIntel,
-       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       title: "I do not mind viewing and storing my wearable camera images blurred as shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -2699,7 +2680,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-7",
+       name: "q"+imageOrder[index]+"-07",
        visible: isPrivacy,
        title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
        isRequired: true,
@@ -2713,13 +2694,13 @@ var surveyJSON =
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-8",
+     name: "q"+imageOrder[index]+"-08",
      title: "Explain why you found it easy or difficult to identify the activity.",
      isRequired: true,
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-9",
+     name: "q"+imageOrder[index]+"-09",
      visible: isIntel,
      title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
      isRequired: true,
@@ -2815,11 +2796,11 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_9",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities. <br/><span style=\"color:red\">Note: you must select <strong>at least one activity but not too many</strong> as NOT very unlikely. You might be disqualified from the HIT if you don’t pay enough attention. Please choose carefully. </span></i> "
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -2836,7 +2817,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -2934,7 +2915,7 @@ var surveyJSON =
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -2951,7 +2932,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -2982,13 +2963,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q"+imageOrder[index]+"-2",
+       name: "q"+imageOrder[index]+"-02",
        title: "Explain how you identified the activity.",
        isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q"+imageOrder[index]+"-3",
+       name: "q"+imageOrder[index]+"-03",
        width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -3026,7 +3007,7 @@ var surveyJSON =
         {
          type: "expression",
          text: "Please select at least one cell.",
-         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+         expression: "{q"+imageOrder[index]+"-03.1.A} = true or {q"+imageOrder[index]+"-03.1.B} = true or {q"+imageOrder[index]+"-03.1.C} = true or {q"+imageOrder[index]+"-03.1.D} = true or {q"+imageOrder[index]+"-03.1.E} = true or {q"+imageOrder[index]+"-03.2.A} = true or {q"+imageOrder[index]+"-03.2.B} = true or {q"+imageOrder[index]+"-03.2.C} = true or {q"+imageOrder[index]+"-03.2.D} = true or {q"+imageOrder[index]+"-03.2.E} = true or {q"+imageOrder[index]+"-03.3.A} = true or {q"+imageOrder[index]+"-03.3.B} = true or {q"+imageOrder[index]+"-03.3.C} = true or {q"+imageOrder[index]+"-03.3.D} = true or {q"+imageOrder[index]+"-03.3.E} = true or {q"+imageOrder[index]+"-03.4.A} = true or {q"+imageOrder[index]+"-03.4.B} = true or {q"+imageOrder[index]+"-03.4.C} = true or {q"+imageOrder[index]+"-03.4.D} = true or {q"+imageOrder[index]+"-03.4.E} = true"
         }
        ],
        columns: [
@@ -3080,7 +3061,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-4",
+       name: "q"+imageOrder[index]+"-04",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -3090,7 +3071,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-5",
+       name: "q"+imageOrder[index]+"-05",
        visible: withHeatmap,
        title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
@@ -3101,9 +3082,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-6",
+       name: "q"+imageOrder[index]+"-06",
        visible: isIntel,
-       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       title: "I do not mind viewing and storing my wearable camera images blurred as shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -3112,7 +3093,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-7",
+       name: "q"+imageOrder[index]+"-07",
        visible: isPrivacy,
        title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
        isRequired: true,
@@ -3126,13 +3107,13 @@ var surveyJSON =
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-8",
+     name: "q"+imageOrder[index]+"-08",
      title: "Explain why you found it easy or difficult to identify the activity.",
      isRequired: true,
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-9",
+     name: "q"+imageOrder[index]+"-09",
      visible: isIntel,
      title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
      isRequired: true,
@@ -3229,11 +3210,11 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_9",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities. <br/><span style=\"color:red\">Note: you must select <strong>at least one activity but not too many</strong> as NOT very unlikely. You might be disqualified from the HIT if you don’t pay enough attention. Please choose carefully. </span></i> "
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -3250,7 +3231,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -3275,7 +3256,8 @@ var surveyJSON =
       "Cooking"
      ],
     },
-   ]
+   ],
+   visibleIf: "{question0_0} = true",
   },
   {
    name: "Task 7",
@@ -3347,7 +3329,7 @@ var surveyJSON =
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -3364,7 +3346,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -3395,13 +3377,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q"+imageOrder[index]+"-2",
+       name: "q"+imageOrder[index]+"-02",
        title: "Explain how you identified the activity.",
        isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q"+imageOrder[index]+"-3",
+       name: "q"+imageOrder[index]+"-03",
        width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -3439,7 +3421,7 @@ var surveyJSON =
         {
          type: "expression",
          text: "Please select at least one cell.",
-         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+         expression: "{q"+imageOrder[index]+"-03.1.A} = true or {q"+imageOrder[index]+"-03.1.B} = true or {q"+imageOrder[index]+"-03.1.C} = true or {q"+imageOrder[index]+"-03.1.D} = true or {q"+imageOrder[index]+"-03.1.E} = true or {q"+imageOrder[index]+"-03.2.A} = true or {q"+imageOrder[index]+"-03.2.B} = true or {q"+imageOrder[index]+"-03.2.C} = true or {q"+imageOrder[index]+"-03.2.D} = true or {q"+imageOrder[index]+"-03.2.E} = true or {q"+imageOrder[index]+"-03.3.A} = true or {q"+imageOrder[index]+"-03.3.B} = true or {q"+imageOrder[index]+"-03.3.C} = true or {q"+imageOrder[index]+"-03.3.D} = true or {q"+imageOrder[index]+"-03.3.E} = true or {q"+imageOrder[index]+"-03.4.A} = true or {q"+imageOrder[index]+"-03.4.B} = true or {q"+imageOrder[index]+"-03.4.C} = true or {q"+imageOrder[index]+"-03.4.D} = true or {q"+imageOrder[index]+"-03.4.E} = true"
         }
        ],
        columns: [
@@ -3493,7 +3475,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-4",
+       name: "q"+imageOrder[index]+"-04",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -3503,7 +3485,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-5",
+       name: "q"+imageOrder[index]+"-05",
        visible: withHeatmap,
        title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
@@ -3514,9 +3496,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-6",
+       name: "q"+imageOrder[index]+"-06",
        visible: isIntel,
-       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       title: "I do not mind viewing and storing my wearable camera images blurred as shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -3525,7 +3507,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-7",
+       name: "q"+imageOrder[index]+"-07",
        visible: isPrivacy,
        title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
        isRequired: true,
@@ -3539,13 +3521,13 @@ var surveyJSON =
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-8",
+     name: "q"+imageOrder[index]+"-08",
      title: "Explain why you found it easy or difficult to identify the activity.",
      isRequired: true,
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-9",
+     name: "q"+imageOrder[index]+"-09",
      visible: isIntel,
      title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
      isRequired: true,
@@ -3641,11 +3623,11 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_9",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities. <br/><span style=\"color:red\">Note: you must select <strong>at least one activity but not too many</strong> as NOT very unlikely. You might be disqualified from the HIT if you don’t pay enough attention. Please choose carefully. </span></i> "
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -3662,7 +3644,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -3760,7 +3742,7 @@ var surveyJSON =
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -3777,7 +3759,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -3808,13 +3790,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q"+imageOrder[index]+"-2",
+       name: "q"+imageOrder[index]+"-02",
        title: "Explain how you identified the activity.",
        isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q"+imageOrder[index]+"-3",
+       name: "q"+imageOrder[index]+"-03",
        width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -3852,7 +3834,7 @@ var surveyJSON =
         {
          type: "expression",
          text: "Please select at least one cell.",
-         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+         expression: "{q"+imageOrder[index]+"-03.1.A} = true or {q"+imageOrder[index]+"-03.1.B} = true or {q"+imageOrder[index]+"-03.1.C} = true or {q"+imageOrder[index]+"-03.1.D} = true or {q"+imageOrder[index]+"-03.1.E} = true or {q"+imageOrder[index]+"-03.2.A} = true or {q"+imageOrder[index]+"-03.2.B} = true or {q"+imageOrder[index]+"-03.2.C} = true or {q"+imageOrder[index]+"-03.2.D} = true or {q"+imageOrder[index]+"-03.2.E} = true or {q"+imageOrder[index]+"-03.3.A} = true or {q"+imageOrder[index]+"-03.3.B} = true or {q"+imageOrder[index]+"-03.3.C} = true or {q"+imageOrder[index]+"-03.3.D} = true or {q"+imageOrder[index]+"-03.3.E} = true or {q"+imageOrder[index]+"-03.4.A} = true or {q"+imageOrder[index]+"-03.4.B} = true or {q"+imageOrder[index]+"-03.4.C} = true or {q"+imageOrder[index]+"-03.4.D} = true or {q"+imageOrder[index]+"-03.4.E} = true"
         }
        ],
        columns: [
@@ -3906,7 +3888,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-4",
+       name: "q"+imageOrder[index]+"-04",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -3916,7 +3898,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-5",
+       name: "q"+imageOrder[index]+"-05",
        visible: withHeatmap,
        title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
@@ -3927,9 +3909,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-6",
+       name: "q"+imageOrder[index]+"-06",
        visible: isIntel,
-       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       title: "I do not mind viewing and storing my wearable camera images blurred as shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -3938,7 +3920,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-7",
+       name: "q"+imageOrder[index]+"-07",
        visible: isPrivacy,
        title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
        isRequired: true,
@@ -3952,13 +3934,13 @@ var surveyJSON =
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-8",
+     name: "q"+imageOrder[index]+"-08",
      title: "Explain why you found it easy or difficult to identify the activity.",
      isRequired: true,
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-9",
+     name: "q"+imageOrder[index]+"-09",
      visible: isIntel,
      title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
      isRequired: true,
@@ -4055,11 +4037,11 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_9",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities. <br/><span style=\"color:red\">Note: you must select <strong>at least one activity but not too many</strong> as NOT very unlikely. You might be disqualified from the HIT if you don’t pay enough attention. Please choose carefully. </span></i> "
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -4076,7 +4058,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -4174,7 +4156,7 @@ var surveyJSON =
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -4191,7 +4173,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -4222,13 +4204,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q"+imageOrder[index]+"-2",
+       name: "q"+imageOrder[index]+"-02",
        title: "Explain how you identified the activity.",
        isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q"+imageOrder[index]+"-3",
+       name: "q"+imageOrder[index]+"-03",
        width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -4266,7 +4248,7 @@ var surveyJSON =
         {
          type: "expression",
          text: "Please select at least one cell.",
-         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+         expression: "{q"+imageOrder[index]+"-03.1.A} = true or {q"+imageOrder[index]+"-03.1.B} = true or {q"+imageOrder[index]+"-03.1.C} = true or {q"+imageOrder[index]+"-03.1.D} = true or {q"+imageOrder[index]+"-03.1.E} = true or {q"+imageOrder[index]+"-03.2.A} = true or {q"+imageOrder[index]+"-03.2.B} = true or {q"+imageOrder[index]+"-03.2.C} = true or {q"+imageOrder[index]+"-03.2.D} = true or {q"+imageOrder[index]+"-03.2.E} = true or {q"+imageOrder[index]+"-03.3.A} = true or {q"+imageOrder[index]+"-03.3.B} = true or {q"+imageOrder[index]+"-03.3.C} = true or {q"+imageOrder[index]+"-03.3.D} = true or {q"+imageOrder[index]+"-03.3.E} = true or {q"+imageOrder[index]+"-03.4.A} = true or {q"+imageOrder[index]+"-03.4.B} = true or {q"+imageOrder[index]+"-03.4.C} = true or {q"+imageOrder[index]+"-03.4.D} = true or {q"+imageOrder[index]+"-03.4.E} = true"
         }
        ],
        columns: [
@@ -4320,7 +4302,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-4",
+       name: "q"+imageOrder[index]+"-04",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -4330,7 +4312,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-5",
+       name: "q"+imageOrder[index]+"-05",
        visible: withHeatmap,
        title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
@@ -4341,9 +4323,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-6",
+       name: "q"+imageOrder[index]+"-06",
        visible: isIntel,
-       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       title: "I do not mind viewing and storing my wearable camera images blurred as shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -4352,7 +4334,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-7",
+       name: "q"+imageOrder[index]+"-07",
        visible: isPrivacy,
        title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
        isRequired: true,
@@ -4366,13 +4348,13 @@ var surveyJSON =
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-8",
+     name: "q"+imageOrder[index]+"-08",
      title: "Explain why you found it easy or difficult to identify the activity.",
      isRequired: true,
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-9",
+     name: "q"+imageOrder[index]+"-09",
      visible: isIntel,
      title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
      isRequired: true,
@@ -4468,11 +4450,11 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_9",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities. <br/><span style=\"color:red\">Note: you must select <strong>at least one activity but not too many</strong> as NOT very unlikely. You might be disqualified from the HIT if you don’t pay enough attention. Please choose carefully. </span></i> "
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -4489,7 +4471,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -4587,7 +4569,7 @@ var surveyJSON =
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -4604,7 +4586,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -4635,13 +4617,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q"+imageOrder[index]+"-2",
+       name: "q"+imageOrder[index]+"-02",
        title: "Explain how you identified the activity.",
        isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q"+imageOrder[index]+"-3",
+       name: "q"+imageOrder[index]+"-03",
        width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -4679,7 +4661,7 @@ var surveyJSON =
         {
          type: "expression",
          text: "Please select at least one cell.",
-         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+         expression: "{q"+imageOrder[index]+"-03.1.A} = true or {q"+imageOrder[index]+"-03.1.B} = true or {q"+imageOrder[index]+"-03.1.C} = true or {q"+imageOrder[index]+"-03.1.D} = true or {q"+imageOrder[index]+"-03.1.E} = true or {q"+imageOrder[index]+"-03.2.A} = true or {q"+imageOrder[index]+"-03.2.B} = true or {q"+imageOrder[index]+"-03.2.C} = true or {q"+imageOrder[index]+"-03.2.D} = true or {q"+imageOrder[index]+"-03.2.E} = true or {q"+imageOrder[index]+"-03.3.A} = true or {q"+imageOrder[index]+"-03.3.B} = true or {q"+imageOrder[index]+"-03.3.C} = true or {q"+imageOrder[index]+"-03.3.D} = true or {q"+imageOrder[index]+"-03.3.E} = true or {q"+imageOrder[index]+"-03.4.A} = true or {q"+imageOrder[index]+"-03.4.B} = true or {q"+imageOrder[index]+"-03.4.C} = true or {q"+imageOrder[index]+"-03.4.D} = true or {q"+imageOrder[index]+"-03.4.E} = true"
         }
        ],
        columns: [
@@ -4733,7 +4715,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-4",
+       name: "q"+imageOrder[index]+"-04",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -4743,7 +4725,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-5",
+       name: "q"+imageOrder[index]+"-05",
        visible: withHeatmap,
        title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
@@ -4754,9 +4736,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-6",
+       name: "q"+imageOrder[index]+"-06",
        visible: isIntel,
-       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       title: "I do not mind viewing and storing my wearable camera images blurred as shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -4765,7 +4747,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-7",
+       name: "q"+imageOrder[index]+"-07",
        visible: isPrivacy,
        title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
        isRequired: true,
@@ -4779,13 +4761,13 @@ var surveyJSON =
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-8",
+     name: "q"+imageOrder[index]+"-08",
      title: "Explain why you found it easy or difficult to identify the activity.",
      isRequired: true,
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-9",
+     name: "q"+imageOrder[index]+"-09",
      visible: isIntel,
      title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
      isRequired: true,
@@ -4881,11 +4863,11 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_9",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities. <br/><span style=\"color:red\">Note: you must select <strong>at least one activity but not too many</strong> as NOT very unlikely. You might be disqualified from the HIT if you don’t pay enough attention. Please choose carefully. </span></i> "
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -4902,7 +4884,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -5000,7 +4982,7 @@ var surveyJSON =
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -5017,7 +4999,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -5048,13 +5030,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q"+imageOrder[index]+"-2",
+       name: "q"+imageOrder[index]+"-02",
        title: "Explain how you identified the activity.",
        isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q"+imageOrder[index]+"-3",
+       name: "q"+imageOrder[index]+"-03",
        width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -5092,7 +5074,7 @@ var surveyJSON =
         {
          type: "expression",
          text: "Please select at least one cell.",
-         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+         expression: "{q"+imageOrder[index]+"-03.1.A} = true or {q"+imageOrder[index]+"-03.1.B} = true or {q"+imageOrder[index]+"-03.1.C} = true or {q"+imageOrder[index]+"-03.1.D} = true or {q"+imageOrder[index]+"-03.1.E} = true or {q"+imageOrder[index]+"-03.2.A} = true or {q"+imageOrder[index]+"-03.2.B} = true or {q"+imageOrder[index]+"-03.2.C} = true or {q"+imageOrder[index]+"-03.2.D} = true or {q"+imageOrder[index]+"-03.2.E} = true or {q"+imageOrder[index]+"-03.3.A} = true or {q"+imageOrder[index]+"-03.3.B} = true or {q"+imageOrder[index]+"-03.3.C} = true or {q"+imageOrder[index]+"-03.3.D} = true or {q"+imageOrder[index]+"-03.3.E} = true or {q"+imageOrder[index]+"-03.4.A} = true or {q"+imageOrder[index]+"-03.4.B} = true or {q"+imageOrder[index]+"-03.4.C} = true or {q"+imageOrder[index]+"-03.4.D} = true or {q"+imageOrder[index]+"-03.4.E} = true"
         }
        ],
        columns: [
@@ -5146,7 +5128,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-4",
+       name: "q"+imageOrder[index]+"-04",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -5156,7 +5138,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-5",
+       name: "q"+imageOrder[index]+"-05",
        visible: withHeatmap,
        title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
@@ -5167,9 +5149,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-6",
+       name: "q"+imageOrder[index]+"-06",
        visible: isIntel,
-       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       title: "I do not mind viewing and storing my wearable camera images blurred as shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -5178,7 +5160,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-7",
+       name: "q"+imageOrder[index]+"-07",
        visible: isPrivacy,
        title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
        isRequired: true,
@@ -5192,13 +5174,13 @@ var surveyJSON =
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-8",
+     name: "q"+imageOrder[index]+"-08",
      title: "Explain why you found it easy or difficult to identify the activity.",
      isRequired: true,
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-9",
+     name: "q"+imageOrder[index]+"-09",
      visible: isIntel,
      title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
      isRequired: true,
@@ -5294,11 +5276,11 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_9",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities. <br/><span style=\"color:red\">Note: you must select <strong>at least one activity but not too many</strong> as NOT very unlikely. You might be disqualified from the HIT if you don’t pay enough attention. Please choose carefully. </span></i> "
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -5315,7 +5297,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -5413,7 +5395,7 @@ var surveyJSON =
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -5430,7 +5412,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -5461,13 +5443,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q"+imageOrder[index]+"-2",
+       name: "q"+imageOrder[index]+"-02",
        title: "Explain how you identified the activity.",
        isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q"+imageOrder[index]+"-3",
+       name: "q"+imageOrder[index]+"-03",
        width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -5505,7 +5487,7 @@ var surveyJSON =
         {
          type: "expression",
          text: "Please select at least one cell.",
-         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+         expression: "{q"+imageOrder[index]+"-03.1.A} = true or {q"+imageOrder[index]+"-03.1.B} = true or {q"+imageOrder[index]+"-03.1.C} = true or {q"+imageOrder[index]+"-03.1.D} = true or {q"+imageOrder[index]+"-03.1.E} = true or {q"+imageOrder[index]+"-03.2.A} = true or {q"+imageOrder[index]+"-03.2.B} = true or {q"+imageOrder[index]+"-03.2.C} = true or {q"+imageOrder[index]+"-03.2.D} = true or {q"+imageOrder[index]+"-03.2.E} = true or {q"+imageOrder[index]+"-03.3.A} = true or {q"+imageOrder[index]+"-03.3.B} = true or {q"+imageOrder[index]+"-03.3.C} = true or {q"+imageOrder[index]+"-03.3.D} = true or {q"+imageOrder[index]+"-03.3.E} = true or {q"+imageOrder[index]+"-03.4.A} = true or {q"+imageOrder[index]+"-03.4.B} = true or {q"+imageOrder[index]+"-03.4.C} = true or {q"+imageOrder[index]+"-03.4.D} = true or {q"+imageOrder[index]+"-03.4.E} = true"
         }
        ],
        columns: [
@@ -5559,7 +5541,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-4",
+       name: "q"+imageOrder[index]+"-04",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -5569,7 +5551,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-5",
+       name: "q"+imageOrder[index]+"-05",
        visible: withHeatmap,
        title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
@@ -5580,9 +5562,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-6",
+       name: "q"+imageOrder[index]+"-06",
        visible: isIntel,
-       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       title: "I do not mind viewing and storing my wearable camera images blurred as shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -5591,7 +5573,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-7",
+       name: "q"+imageOrder[index]+"-07",
        visible: isPrivacy,
        title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
        isRequired: true,
@@ -5605,13 +5587,13 @@ var surveyJSON =
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-8",
+     name: "q"+imageOrder[index]+"-08",
      title: "Explain why you found it easy or difficult to identify the activity.",
      isRequired: true,
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-9",
+     name: "q"+imageOrder[index]+"-09",
      visible: isIntel,
      title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
      isRequired: true,
@@ -5708,11 +5690,11 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_9",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities. <br/><span style=\"color:red\">Note: you must select <strong>at least one activity but not too many</strong> as NOT very unlikely. You might be disqualified from the HIT if you don’t pay enough attention. Please choose carefully. </span></i> "
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -5729,7 +5711,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -5827,7 +5809,7 @@ var surveyJSON =
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -5844,7 +5826,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -5875,13 +5857,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q"+imageOrder[index]+"-2",
+       name: "q"+imageOrder[index]+"-02",
        title: "Explain how you identified the activity.",
        isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q"+imageOrder[index]+"-3",
+       name: "q"+imageOrder[index]+"-03",
        width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -5919,7 +5901,7 @@ var surveyJSON =
         {
          type: "expression",
          text: "Please select at least one cell.",
-         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+         expression: "{q"+imageOrder[index]+"-03.1.A} = true or {q"+imageOrder[index]+"-03.1.B} = true or {q"+imageOrder[index]+"-03.1.C} = true or {q"+imageOrder[index]+"-03.1.D} = true or {q"+imageOrder[index]+"-03.1.E} = true or {q"+imageOrder[index]+"-03.2.A} = true or {q"+imageOrder[index]+"-03.2.B} = true or {q"+imageOrder[index]+"-03.2.C} = true or {q"+imageOrder[index]+"-03.2.D} = true or {q"+imageOrder[index]+"-03.2.E} = true or {q"+imageOrder[index]+"-03.3.A} = true or {q"+imageOrder[index]+"-03.3.B} = true or {q"+imageOrder[index]+"-03.3.C} = true or {q"+imageOrder[index]+"-03.3.D} = true or {q"+imageOrder[index]+"-03.3.E} = true or {q"+imageOrder[index]+"-03.4.A} = true or {q"+imageOrder[index]+"-03.4.B} = true or {q"+imageOrder[index]+"-03.4.C} = true or {q"+imageOrder[index]+"-03.4.D} = true or {q"+imageOrder[index]+"-03.4.E} = true"
         }
        ],
        columns: [
@@ -5973,7 +5955,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-4",
+       name: "q"+imageOrder[index]+"-04",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -5983,7 +5965,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-5",
+       name: "q"+imageOrder[index]+"-05",
        visible: withHeatmap,
        title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
@@ -5994,9 +5976,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-6",
+       name: "q"+imageOrder[index]+"-06",
        visible: isIntel,
-       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       title: "I do not mind viewing and storing my wearable camera images blurred as shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -6005,7 +5987,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-7",
+       name: "q"+imageOrder[index]+"-07",
        visible: isPrivacy,
        title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
        isRequired: true,
@@ -6019,13 +6001,13 @@ var surveyJSON =
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-8",
+     name: "q"+imageOrder[index]+"-08",
      title: "Explain why you found it easy or difficult to identify the activity.",
      isRequired: true,
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-9",
+     name: "q"+imageOrder[index]+"-09",
      visible: isIntel,
      title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
      isRequired: true,
@@ -6121,11 +6103,11 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_9",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities. <br/><span style=\"color:red\">Note: you must select <strong>at least one activity but not too many</strong> as NOT very unlikely. You might be disqualified from the HIT if you don’t pay enough attention. Please choose carefully. </span></i> "
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -6142,7 +6124,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -6240,7 +6222,7 @@ var surveyJSON =
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -6257,7 +6239,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -6288,13 +6270,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q"+imageOrder[index]+"-2",
+       name: "q"+imageOrder[index]+"-02",
        title: "Explain how you identified the activity.",
        isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q"+imageOrder[index]+"-3",
+       name: "q"+imageOrder[index]+"-03",
        width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -6332,7 +6314,7 @@ var surveyJSON =
         {
          type: "expression",
          text: "Please select at least one cell.",
-         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+         expression: "{q"+imageOrder[index]+"-03.1.A} = true or {q"+imageOrder[index]+"-03.1.B} = true or {q"+imageOrder[index]+"-03.1.C} = true or {q"+imageOrder[index]+"-03.1.D} = true or {q"+imageOrder[index]+"-03.1.E} = true or {q"+imageOrder[index]+"-03.2.A} = true or {q"+imageOrder[index]+"-03.2.B} = true or {q"+imageOrder[index]+"-03.2.C} = true or {q"+imageOrder[index]+"-03.2.D} = true or {q"+imageOrder[index]+"-03.2.E} = true or {q"+imageOrder[index]+"-03.3.A} = true or {q"+imageOrder[index]+"-03.3.B} = true or {q"+imageOrder[index]+"-03.3.C} = true or {q"+imageOrder[index]+"-03.3.D} = true or {q"+imageOrder[index]+"-03.3.E} = true or {q"+imageOrder[index]+"-03.4.A} = true or {q"+imageOrder[index]+"-03.4.B} = true or {q"+imageOrder[index]+"-03.4.C} = true or {q"+imageOrder[index]+"-03.4.D} = true or {q"+imageOrder[index]+"-03.4.E} = true"
         }
        ],
        columns: [
@@ -6386,7 +6368,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-4",
+       name: "q"+imageOrder[index]+"-04",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -6396,7 +6378,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-5",
+       name: "q"+imageOrder[index]+"-05",
        visible: withHeatmap,
        title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
@@ -6407,9 +6389,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-6",
+       name: "q"+imageOrder[index]+"-06",
        visible: isIntel,
-       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       title: " I do not mind viewing and storing my wearable camera images blurred as shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -6418,7 +6400,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-7",
+       name: "q"+imageOrder[index]+"-07",
        visible: isPrivacy,
        title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
        isRequired: true,
@@ -6432,13 +6414,13 @@ var surveyJSON =
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-8",
+     name: "q"+imageOrder[index]+"-08",
      title: "Explain why you found it easy or difficult to identify the activity.",
      isRequired: true,
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-9",
+     name: "q"+imageOrder[index]+"-09",
      visible: isIntel,
      title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
      isRequired: true,
@@ -6534,11 +6516,11 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_9",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities. <br/><span style=\"color:red\">Note: you must select <strong>at least one activity but not too many</strong> as NOT very unlikely. You might be disqualified from the HIT if you don’t pay enough attention. Please choose carefully. </span></i> "
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -6555,7 +6537,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -6653,7 +6635,7 @@ var surveyJSON =
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -6670,7 +6652,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -6701,13 +6683,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q"+imageOrder[index]+"-2",
+       name: "q"+imageOrder[index]+"-02",
        title: "Explain how you identified the activity.",
        isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q"+imageOrder[index]+"-3",
+       name: "q"+imageOrder[index]+"-03",
        width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -6745,7 +6727,7 @@ var surveyJSON =
         {
          type: "expression",
          text: "Please select at least one cell.",
-         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+         expression: "{q"+imageOrder[index]+"-03.1.A} = true or {q"+imageOrder[index]+"-03.1.B} = true or {q"+imageOrder[index]+"-03.1.C} = true or {q"+imageOrder[index]+"-03.1.D} = true or {q"+imageOrder[index]+"-03.1.E} = true or {q"+imageOrder[index]+"-03.2.A} = true or {q"+imageOrder[index]+"-03.2.B} = true or {q"+imageOrder[index]+"-03.2.C} = true or {q"+imageOrder[index]+"-03.2.D} = true or {q"+imageOrder[index]+"-03.2.E} = true or {q"+imageOrder[index]+"-03.3.A} = true or {q"+imageOrder[index]+"-03.3.B} = true or {q"+imageOrder[index]+"-03.3.C} = true or {q"+imageOrder[index]+"-03.3.D} = true or {q"+imageOrder[index]+"-03.3.E} = true or {q"+imageOrder[index]+"-03.4.A} = true or {q"+imageOrder[index]+"-03.4.B} = true or {q"+imageOrder[index]+"-03.4.C} = true or {q"+imageOrder[index]+"-03.4.D} = true or {q"+imageOrder[index]+"-03.4.E} = true"
         }
        ],
        columns: [
@@ -6799,7 +6781,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-4",
+       name: "q"+imageOrder[index]+"-04",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -6809,7 +6791,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-5",
+       name: "q"+imageOrder[index]+"-05",
        visible: withHeatmap,
        title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
@@ -6820,9 +6802,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-6",
+       name: "q"+imageOrder[index]+"-06",
        visible: isIntel,
-       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       title: " I do not mind viewing and storing my wearable camera images blurred as shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -6831,7 +6813,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-7",
+       name: "q"+imageOrder[index]+"-07",
        visible: isPrivacy,
        title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
        isRequired: true,
@@ -6845,13 +6827,13 @@ var surveyJSON =
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-8",
+     name: "q"+imageOrder[index]+"-08",
      title: "Explain why you found it easy or difficult to identify the activity.",
      isRequired: true,
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-9",
+     name: "q"+imageOrder[index]+"-09",
      visible: isIntel,
      title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
      isRequired: true,
@@ -6947,11 +6929,11 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_9",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities. <br/><span style=\"color:red\">Note: you must select <strong>at least one activity but not too many</strong> as NOT very unlikely. You might be disqualified from the HIT if you don’t pay enough attention. Please choose carefully. </span></i> "
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -6968,7 +6950,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -7066,7 +7048,7 @@ var surveyJSON =
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -7083,7 +7065,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -7114,13 +7096,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q"+imageOrder[index]+"-2",
+       name: "q"+imageOrder[index]+"-02",
        title: "Explain how you identified the activity.",
        isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q"+imageOrder[index]+"-3",
+       name: "q"+imageOrder[index]+"-03",
        width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -7158,7 +7140,7 @@ var surveyJSON =
         {
          type: "expression",
          text: "Please select at least one cell.",
-         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+         expression: "{q"+imageOrder[index]+"-03.1.A} = true or {q"+imageOrder[index]+"-03.1.B} = true or {q"+imageOrder[index]+"-03.1.C} = true or {q"+imageOrder[index]+"-03.1.D} = true or {q"+imageOrder[index]+"-03.1.E} = true or {q"+imageOrder[index]+"-03.2.A} = true or {q"+imageOrder[index]+"-03.2.B} = true or {q"+imageOrder[index]+"-03.2.C} = true or {q"+imageOrder[index]+"-03.2.D} = true or {q"+imageOrder[index]+"-03.2.E} = true or {q"+imageOrder[index]+"-03.3.A} = true or {q"+imageOrder[index]+"-03.3.B} = true or {q"+imageOrder[index]+"-03.3.C} = true or {q"+imageOrder[index]+"-03.3.D} = true or {q"+imageOrder[index]+"-03.3.E} = true or {q"+imageOrder[index]+"-03.4.A} = true or {q"+imageOrder[index]+"-03.4.B} = true or {q"+imageOrder[index]+"-03.4.C} = true or {q"+imageOrder[index]+"-03.4.D} = true or {q"+imageOrder[index]+"-03.4.E} = true"
         }
        ],
        columns: [
@@ -7212,7 +7194,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-4",
+       name: "q"+imageOrder[index]+"-04",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -7222,7 +7204,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-5",
+       name: "q"+imageOrder[index]+"-05",
        visible: withHeatmap,
        title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
@@ -7233,9 +7215,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-6",
+       name: "q"+imageOrder[index]+"-06",
        visible: isIntel,
-       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       title: " I do not mind viewing and storing my wearable camera images blurred as shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -7244,7 +7226,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-7",
+       name: "q"+imageOrder[index]+"-07",
        visible: isPrivacy,
        title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
        isRequired: true,
@@ -7258,13 +7240,13 @@ var surveyJSON =
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-8",
+     name: "q"+imageOrder[index]+"-08",
      title: "Explain why you found it easy or difficult to identify the activity.",
      isRequired: true,
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-9",
+     name: "q"+imageOrder[index]+"-09",
      visible: isIntel,
      title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
      isRequired: true,
@@ -7361,11 +7343,11 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_9",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities. <br/><span style=\"color:red\">Note: you must select <strong>at least one activity but not too many</strong> as NOT very unlikely. You might be disqualified from the HIT if you don’t pay enough attention. Please choose carefully. </span></i> "
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -7382,7 +7364,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -7480,7 +7462,7 @@ var surveyJSON =
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -7497,7 +7479,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -7528,13 +7510,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q"+imageOrder[index]+"-2",
+       name: "q"+imageOrder[index]+"-02",
        title: "Explain how you identified the activity.",
        isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q"+imageOrder[index]+"-3",
+       name: "q"+imageOrder[index]+"-03",
        width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -7572,7 +7554,7 @@ var surveyJSON =
         {
          type: "expression",
          text: "Please select at least one cell.",
-         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+         expression: "{q"+imageOrder[index]+"-03.1.A} = true or {q"+imageOrder[index]+"-03.1.B} = true or {q"+imageOrder[index]+"-03.1.C} = true or {q"+imageOrder[index]+"-03.1.D} = true or {q"+imageOrder[index]+"-03.1.E} = true or {q"+imageOrder[index]+"-03.2.A} = true or {q"+imageOrder[index]+"-03.2.B} = true or {q"+imageOrder[index]+"-03.2.C} = true or {q"+imageOrder[index]+"-03.2.D} = true or {q"+imageOrder[index]+"-03.2.E} = true or {q"+imageOrder[index]+"-03.3.A} = true or {q"+imageOrder[index]+"-03.3.B} = true or {q"+imageOrder[index]+"-03.3.C} = true or {q"+imageOrder[index]+"-03.3.D} = true or {q"+imageOrder[index]+"-03.3.E} = true or {q"+imageOrder[index]+"-03.4.A} = true or {q"+imageOrder[index]+"-03.4.B} = true or {q"+imageOrder[index]+"-03.4.C} = true or {q"+imageOrder[index]+"-03.4.D} = true or {q"+imageOrder[index]+"-03.4.E} = true"
         }
        ],
        columns: [
@@ -7626,7 +7608,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-4",
+       name: "q"+imageOrder[index]+"-04",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -7636,7 +7618,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-5",
+       name: "q"+imageOrder[index]+"-05",
        visible: withHeatmap,
        title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
@@ -7647,9 +7629,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-6",
+       name: "q"+imageOrder[index]+"-06",
        visible: isIntel,
-       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       title: " I do not mind viewing and storing my wearable camera images blurred as shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -7658,7 +7640,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-7",
+       name: "q"+imageOrder[index]+"-07",
        visible: isPrivacy,
        title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
        isRequired: true,
@@ -7672,13 +7654,13 @@ var surveyJSON =
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-8",
+     name: "q"+imageOrder[index]+"-08",
      title: "Explain why you found it easy or difficult to identify the activity.",
      isRequired: true,
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-9",
+     name: "q"+imageOrder[index]+"-09",
      visible: isIntel,
      title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
      isRequired: true,
@@ -7774,11 +7756,11 @@ var surveyJSON =
     {
      type: "html",
      name: "question1_9",
-     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities and <span style=\"color:red\">you must select at least ONE activity as NOT very unlikely. You may select more than one as more likely. </span></i> "
+     html: "<span style=\"font-weight:600;\">Which activity do you think "+(isIntel?"you were doing when the Smart Camera took the photo":"the Smart Camera wearer was doing")+"?</span> <br/><i style='font-size:smaller; font-weight:normal'> Hint: it is ONE of the following activities. <br/><span style=\"color:red\">Note: you must select <strong>at least one activity but not too many</strong> as NOT very unlikely. You might be disqualified from the HIT if you don’t pay enough attention. Please choose carefully. </span></i> "
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -7795,7 +7777,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -7893,7 +7875,7 @@ var surveyJSON =
     },
     {
      type: "matrix",
-     name: "q"+imageOrder[index]+"-1",
+     name: "q"+imageOrder[index]+"-01",
      defaultValue: {
       "Walking Outdoors": "Very Unlikely<br/>1",
       Biking: "Very Unlikely<br/>1",
@@ -7910,7 +7892,7 @@ var surveyJSON =
       {
        type: "expression",
        text: "Please select at least one activity as NOT very unlikely.",
-       expression: "{q"+imageOrder[index]+"-1.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-1.Cooking} <> \"Very Unlikely<br/>1\""
+       expression: "{q"+imageOrder[index]+"-01.Walking Outdoors} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Biking} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Public Transport} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Eating} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Shopping} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Talking and Socializing} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Watching TV} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cleaning and chores} <> \"Very Unlikely<br/>1\"\nor {q"+imageOrder[index]+"-01.Cooking} <> \"Very Unlikely<br/>1\""
       }
      ],
      titleLocation: "hidden",
@@ -7941,13 +7923,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "q"+imageOrder[index]+"-2",
+       name: "q"+imageOrder[index]+"-02",
        title: "Explain how you identified the activity.",
        isRequired: true,
       },
       {
        type: "matrixdropdown",
-       name: "q"+imageOrder[index]+"-3",
+       name: "q"+imageOrder[index]+"-03",
        width: "21em",
        title: "Please indicate which parts of the image that <i><strong>you think</strong></i> are most important to identifying the activity. <br/><i style='font-size:smaller; font-weight:normal'>Please check the box(es) corresponding to each cell on the photo that you want to select. You may select more than one box.</i>",
        defaultValue: {
@@ -7985,7 +7967,7 @@ var surveyJSON =
         {
          type: "expression",
          text: "Please select at least one cell.",
-         expression: "{q"+imageOrder[index]+"-3.1.A} = true or {q"+imageOrder[index]+"-3.1.B} = true or {q"+imageOrder[index]+"-3.1.C} = true or {q"+imageOrder[index]+"-3.1.D} = true or {q"+imageOrder[index]+"-3.1.E} = true or {q"+imageOrder[index]+"-3.2.A} = true or {q"+imageOrder[index]+"-3.2.B} = true or {q"+imageOrder[index]+"-3.2.C} = true or {q"+imageOrder[index]+"-3.2.D} = true or {q"+imageOrder[index]+"-3.2.E} = true or {q"+imageOrder[index]+"-3.3.A} = true or {q"+imageOrder[index]+"-3.3.B} = true or {q"+imageOrder[index]+"-3.3.C} = true or {q"+imageOrder[index]+"-3.3.D} = true or {q"+imageOrder[index]+"-3.3.E} = true or {q"+imageOrder[index]+"-3.4.A} = true or {q"+imageOrder[index]+"-3.4.B} = true or {q"+imageOrder[index]+"-3.4.C} = true or {q"+imageOrder[index]+"-3.4.D} = true or {q"+imageOrder[index]+"-3.4.E} = true"
+         expression: "{q"+imageOrder[index]+"-03.1.A} = true or {q"+imageOrder[index]+"-03.1.B} = true or {q"+imageOrder[index]+"-03.1.C} = true or {q"+imageOrder[index]+"-03.1.D} = true or {q"+imageOrder[index]+"-03.1.E} = true or {q"+imageOrder[index]+"-03.2.A} = true or {q"+imageOrder[index]+"-03.2.B} = true or {q"+imageOrder[index]+"-03.2.C} = true or {q"+imageOrder[index]+"-03.2.D} = true or {q"+imageOrder[index]+"-03.2.E} = true or {q"+imageOrder[index]+"-03.3.A} = true or {q"+imageOrder[index]+"-03.3.B} = true or {q"+imageOrder[index]+"-03.3.C} = true or {q"+imageOrder[index]+"-03.3.D} = true or {q"+imageOrder[index]+"-03.3.E} = true or {q"+imageOrder[index]+"-03.4.A} = true or {q"+imageOrder[index]+"-03.4.B} = true or {q"+imageOrder[index]+"-03.4.C} = true or {q"+imageOrder[index]+"-03.4.D} = true or {q"+imageOrder[index]+"-03.4.E} = true"
         }
        ],
        columns: [
@@ -8039,7 +8021,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-4",
+       name: "q"+imageOrder[index]+"-04",
        title: "It is easy to identify the wearer’s activity in the photo.",
        isRequired: true,
        rateMin: -3,
@@ -8049,7 +8031,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-5",
+       name: "q"+imageOrder[index]+"-05",
        visible: withHeatmap,
        title: "The heatmap is helpful for me to identify the Smart Camera wearer’s activity.",
        isRequired: true,
@@ -8060,9 +8042,9 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-6",
+       name: "q"+imageOrder[index]+"-06",
        visible: isIntel,
-       title: "I am willing to blur my wearable camera images to the level shown to protect the privacy of bystanders.",
+       title: "I do not mind viewing and storing my wearable camera images blurred as shown to protect the privacy of bystanders.",
        isRequired: true,
        rateMin: -3,
        rateMax: 3,
@@ -8071,7 +8053,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "q"+imageOrder[index]+"-7",
+       name: "q"+imageOrder[index]+"-07",
        visible: isPrivacy,
        title: imageOrder[index]+"I am comfortable to be captured by someone else's wearable camera in a similar photo like the one shown.",
        isRequired: true,
@@ -8085,13 +8067,13 @@ var surveyJSON =
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-8",
+     name: "q"+imageOrder[index]+"-08",
      title: "Explain why you found it easy or difficult to identify the activity.",
      isRequired: true,
     },
     {
      type: "text",
-     name: "q"+imageOrder[index]+"-9",
+     name: "q"+imageOrder[index]+"-09",
      visible: isIntel,
      title: "Explain why you are willing or not willing to blur your images to the level shown to protect the privacy of bystanders.",
      isRequired: true,
@@ -8118,13 +8100,13 @@ var surveyJSON =
      elements: [
       {
        type: "text",
-       name: "qP-1",
+       name: "qP-01",
        title: "Enter your Mturk ID",
        isRequired: true
       },
       {
        type: "radiogroup",
-       name: "qP-2",
+       name: "qP-02",
        title: "Which category below includes your age?",
        isRequired: true,
        choices: [
@@ -8139,17 +8121,17 @@ var surveyJSON =
       },
       {
        type: "radiogroup",
-       name: "qP-3",
+       name: "qP-03",
        title: "What is your gender?",
        isRequired: true,
        hasOther: true,
        choices: [
         {
-         value: "item1",
+         value: "Female",
          text: "Female"
         },
         {
-         value: "item2",
+         value: "Male",
          text: "Male"
         }
        ],
@@ -8157,7 +8139,7 @@ var surveyJSON =
       },
       {
        type: "radiogroup",
-       name: "qP-4",
+       name: "qP-04",
        title: "What is the highest level of school you have completed or the highest degree you have received?",
        isRequired: true,
        choices: [
@@ -8171,7 +8153,7 @@ var surveyJSON =
       },
       {
        type: "radiogroup",
-       name: "qP-5",
+       name: "qP-05",
        title: "Which of the following categories best describes your employment status?",
        isRequired: true,
        hasOther: true,
@@ -8192,7 +8174,7 @@ var surveyJSON =
      elements: [
       {
        type: "rating",
-       name: "qP-6",
+       name: "qP-06",
        title: "I consider myself to be a technology-savvy person.",
        isRequired: true,
        rateMin: -3,
@@ -8202,7 +8184,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "qP-7",
+       name: "qP-07",
        title: "I have no problem understanding photographs.",
        isRequired: true,
        rateMin: -3,
@@ -8212,7 +8194,7 @@ var surveyJSON =
       },
       {
        type: "rating",
-       name: "qP-8",
+       name: "qP-08",
        title: "I do not like to be photographed without my knowledge.",
        isRequired: true,
        rateMin: -3,
@@ -8241,7 +8223,6 @@ var surveyJSON =
  showQuestionNumbers: "off",
  showProgressBar: "top",
  firstPageIsStarted: true,
- // completedHtml: "{qP-1} notempty"?"<h3>Thank you for completing our survey.</h3><br><h3>Your response has been recorded.</h3><br><br><br><h4>Your MTurk completion code is: "+completeCode+"</h4>":"<h3>Sorry, you didn't complete our survey.</h3>",
 }
 
 
@@ -8263,7 +8244,6 @@ function renderTime(val) {
 
 /* For Timer */
 function timerCallback() {
-    /* Page4 <-> Warmup, Page7-42 correspond to Task1-18, Page43 <-> Post */
     var page = survey.currentPage
     if(!page) return
     var valueName = "PageNo" + survey.pages.indexOf(page)
@@ -8274,11 +8254,68 @@ function timerCallback() {
     renderTime(seconds)
 }
 
+/* Write Timer result for each Img */
+function countImageTime(){
+    var pageList = ["intro", "consent", "training", "screeningQuiz", "quizFail", "surveyStart", "demographics"];
+    for (var i = 0; i < pageList.length - 1; i++){
+        survey.setValue(pageList[i], survey.getValue("PageNo"+Number(i+1)));
+    }
+    survey.setValue("quizFail", 0);
+    survey.setValue("_qcond", condIndex);               /* conditional index */
+    survey.setValue("_qintel", isIntel?"I":"P");        /* privacy or intelligibility*/
+    for (var i = 0; i < imageOrder.length; i++) {
+        survey.setValue("img"+imageOrder[i]+"_activity", survey.getValue("PageNo"+Number(i*2+7)));
+        survey.setValue("img"+imageOrder[i]+"_activityOpinion", survey.getValue("PageNo"+Number(i*2+8)));  
+    }
+    survey.setValue(pageList[pageList.length - 1], survey.getValue("PageNo"+Number(pageList.length+(2*imageOrder.length))));
+}
+
+function measureDist(ytrue, ypred){
+    var distance = 0
+    var rowIndex = ["A","B","C","D","E"];
+    for (var i = 0; i < 4; ++i) {
+        for (var j = 0; j < 5; ++j){
+            if (ytrue[i+1][rowIndex[j]] != ypred[i+1][rowIndex[j]]){ distance++; }
+        }
+    }
+    return distance;
+}
+
+function calculateGridGT(jsonName, flag){
+    var jsonFile = $.ajax({url:jsonName, async:false});
+    var GTvalues = JSON.parse(jsonFile.responseText);
+  
+    for (var i = 0; i < imageOrder.length; ++i){
+        var imgIndex = imageOrder[i];
+        var GTvalue = GTvalues[imgIndex+"_cam"]
+        var userSelect = survey.getValue("q"+imgIndex+"-03");
+        var score = measureDist(GTvalue, userSelect);
+        if (flag == 1){
+            survey.setValue("q"+imgIndex+"-03-scoreGT", score);
+        }
+        else{
+            survey.setValue("q"+imgIndex+"-03-scoreHeatmap", score);
+        }
+    }    
+}
+
+function addGridScore(){
+    calculateGridGT("score9_Th50.json", 1);
+    if(withBlur){
+        if(condIndex == 1 || condIndex == 5 || condIndex == 9){
+            calculateGridGT("score9_Th50.json", 0);
+        } 
+        else{
+            calculateGridGT("score"+condIndex+"_Th50.json", 0);
+        }     
+    }
+}
+
 /* Sending Result */
 function sendDataToServer(survey) {
-    survey.sendResult('f8f2dbd5-79d2-49cc-9e5e-3a8e5b17716e');            /* For runtime new*/
-    // survey.sendResult('4b4b863d-4716-4b18-ad18-562ddffd999c');          /* For runtime*/
-    // survey.sendResult('e0d67775-bf80-4ee4-b307-15fe60ab670f');        /* For debug*/
+    survey.sendResult('d6f659c0-c240-4f24-afd5-b0f3d7678b9a');          /* For runtime */
+    // survey.sendResult('f8f2dbd5-79d2-49cc-9e5e-3a8e5b17716e');            /* For pilot*/
+    // survey.sendResult('e0d67775-bf80-4ee4-b307-15fe60ab670f');          /* For debug*/
 }
 
 /* For Timer */
@@ -8288,10 +8325,13 @@ survey.onCurrentPageChanged.add(function(){
 
 /* Sending Result */
 survey.onComplete.add(function(survey, options) {
-    survey.setValue("imageOrder", imageMap)
-    survey.setValue("qcond", condIndex)       /* conditional index */
-    survey.setValue("qintel", Number(isIntel))        /* privacy or intelligibility*/
-    sendDataToServer(survey)
+    var completed = survey.getValue("qP-01");
+    addGridScore();
+    countImageTime();
+    // console.log(result);
+    if(typeof(completed)!="undefined"&&completed!=null) {
+        sendDataToServer(survey);
+    }
 });
 
 /* Create showdown markdown converter
@@ -8304,7 +8344,7 @@ survey.onTextMarkdown.add(function(survey, options){
 });
 
 survey.onUpdateQuestionCssClasses.add(function (survey, options) {
-    var classes = options.cssClasses
+    var classes = options.cssClasses;
 });
 
 /* For Layout */
