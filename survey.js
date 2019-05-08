@@ -8327,9 +8327,9 @@ survey.onCurrentPageChanged.add(function(){
 survey.onComplete.add(function(survey, options) {
     var completed = survey.getValue("qP-01");
     addGridScore();
+    countImageTime();
     // console.log(result);
     if(typeof(completed)!="undefined"&&completed!=null) {
-        countImageTime();
         sendDataToServer(survey);
     }
 });
