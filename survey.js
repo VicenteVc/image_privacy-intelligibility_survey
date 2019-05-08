@@ -40,7 +40,7 @@ console.log("camCond: "+camCond)
 console.log("imgCond: "+imgCond)
 console.log("withBlur: "+withBlur)
 console.log("withHeatmap: "+withHeatmap)
-console.log("completeCode: "+completeCode)
+// console.log("completeCode: "+completeCode)
 console.log("imageOrder: "+imageOrder)
 /* for debug */
 
