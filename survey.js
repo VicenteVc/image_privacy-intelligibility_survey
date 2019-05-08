@@ -8267,7 +8267,7 @@ function countImageTime(){
         survey.setValue("img"+imageOrder[i]+"_activityOpinion", survey.getValue("PageNo"+Number(i*2+8)));  
     }
     survey.setValue(pageList[pageList.length - 1], survey.getValue("PageNo"+Number(pageList.length+(2*imageOrder.length))));
-    survey.addValue("code", completeCode);
+    survey.setValue("code", completeCode);
 }
 
 function measureDist(ytrue, ypred){
