@@ -8267,6 +8267,7 @@ function countImageTime(){
         survey.setValue("img"+imageOrder[i]+"_activityOpinion", survey.getValue("PageNo"+Number(i*2+8)));  
     }
     survey.setValue(pageList[pageList.length - 1], survey.getValue("PageNo"+Number(pageList.length+(2*imageOrder.length))));
+    survey.addValue("code", completeCode);
 }
 
 function measureDist(ytrue, ypred){
@@ -8326,9 +8327,9 @@ survey.onCurrentPageChanged.add(function(){
 survey.onComplete.add(function(survey, options) {
     var completed = survey.getValue("qP-01");
     addGridScore();
-    countImageTime();
     // console.log(result);
     if(typeof(completed)!="undefined"&&completed!=null) {
+        countImageTime();
         sendDataToServer(survey);
     }
 });
