@@ -642,7 +642,7 @@ var surveyJSON =
     {
      type: "html",
      name: "question1",
-     html: "<h3 style=\"font-weight:500;\">Next, you will see a series 15 of images and answer several questions for each image. There are 15 pages and 1 page for each image. </h3> \n<p>&nbsp;</p>\n<h4 style=\"font-weight: 500;color:red;\"> Please put your best effort to answer the questions <strong>accurately</strong> and <strong>quickly</strong>. For correct and quick answers, you can receive a bonus up to US$1.50. </h4>\n\n\n"
+     html: "<h3 style=\"font-weight:500;\">Next, you will see a series 18 of images and answer several questions for each image. There are 18 pages and 1 page for each image. </h3> \n<p>&nbsp;</p>\n<h4 style=\"font-weight: 500;color:red;\"> Please put your best effort to answer the questions <strong>accurately</strong> and <strong>quickly</strong>. For correct and quick answers, you can receive a bonus up to US$1.50. </h4>\n\n\n"
     },
    ],
    // visibleIf: withHeatmap?"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true \nand {q0_4.2.B} = true\nand {q0_4.3.B} = true":"{q0_1} = \"Bus\" \nand {q0_2} = \"Riding a bike\" \nand {q0_3.2.C} = true\nand {q0_3.2.D} = true",
