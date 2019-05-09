@@ -8301,7 +8301,7 @@ function calculateGridGT(jsonName, flag){
 
 function addGridScore(){
     calculateGridGT("score9_Th50.json", 1);
-    if(withBlur){
+    if(withHeatmap){
         if(condIndex == 1 || condIndex == 5 || condIndex == 9){
             calculateGridGT("score9_Th50.json", 0);
         } 
