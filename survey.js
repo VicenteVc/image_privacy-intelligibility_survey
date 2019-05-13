@@ -1,11 +1,24 @@
 
 var isPilot = true;
-var isPrivacy = (Math.random() > 0.5);
-var isIntel = Boolean(1 - isPrivacy);
+var condIndex;
+var isPrivacy;
+var rand = Math.floor(Math.random() * 3);
+if (rand == 0) { 
+  condIndex = 2;
+  isPrivacy = 0;
+}
+else if (rand == 1) { 
+  condIndex = 6;
+  isPrivacy = 0;
+}
+else{
+  condIndex = 8;
+  isPrivacy = 1;
+}
 
+// var isPrivacy = (Math.random() > 0.5);
+var isIntel = Boolean(1 - isPrivacy);
 // var condIndex = Math.floor(Math.random() * 10);
-// var condIndex = Math.floor(Math.random() * 2);
-var condIndex = 2;
 // var condIndex = Math.floor(Math.random() * 3);        /* Control the condition: Strong blur level*/
 
 var imgCond = parseInt(condIndex / 4);
