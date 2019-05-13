@@ -1,18 +1,7 @@
 
 var isPilot = true;
-var condIndex;
-var isPrivacy;
-var rand = Math.floor(Math.random() * 3);
-if (rand <= 1) { 
-  condIndex = 2;
-  isPrivacy = 0;
-}
-else if (rand == 2) { 
-  condIndex = 6;
-  isPrivacy = (Math.random() > 0.5);
-}
-
-// var isPrivacy = (Math.random() > 0.5);
+var condIndex = 6;
+var isPrivacy = (Math.random() > 0.5);
 var isIntel = Boolean(1 - isPrivacy);
 // var condIndex = Math.floor(Math.random() * 10);
 // var condIndex = Math.floor(Math.random() * 3);        /* Control the condition: Strong blur level*/
