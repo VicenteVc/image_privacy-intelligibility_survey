@@ -2,19 +2,20 @@
 var isPilot = true;
 var condIndex;
 var isPrivacy;
-var rand = Math.floor(Math.random() * 3);
-if (rand == 0) { 
+var rand = Math.floor(Math.random() * 5);
+if (rand <= 1) { 
   condIndex = 2;
-  isPrivacy = 0;
+  isPrivacy = (Math.random() > 0.5);
 }
-else if (rand == 1) { 
-  condIndex = 6;
-  isPrivacy = 0;
-}
-else{
+else if (rand == 2) { 
   condIndex = 8;
   isPrivacy = 1;
 }
+else{
+  condIndex = 9;
+  isPrivacy = 0;
+}
+console.log(1 <= 1);
 
 // var isPrivacy = (Math.random() > 0.5);
 var isIntel = Boolean(1 - isPrivacy);
