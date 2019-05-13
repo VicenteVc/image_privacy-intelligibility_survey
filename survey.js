@@ -8,8 +8,8 @@ if (rand <= 1) {
   isPrivacy = (Math.random() > 0.5);
 }
 else if (rand == 2) { 
-  condIndex = 8;
-  isPrivacy = 1;
+  condIndex = 6;
+  isPrivacy = (Math.random() > 0.5);
 }
 else{
   condIndex = 9;
