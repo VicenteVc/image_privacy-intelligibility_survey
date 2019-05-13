@@ -5,7 +5,7 @@ var isPrivacy;
 var rand = Math.floor(Math.random() * 3);
 if (rand <= 1) { 
   condIndex = 2;
-  isPrivacy = (Math.random() > 0.5);
+  isPrivacy = 0;
 }
 else if (rand == 2) { 
   condIndex = 6;
