@@ -2,7 +2,8 @@
 var isPilot = true;
 var isPrivacy = (Math.random() > 0.5);
 var isIntel = Boolean(1 - isPrivacy);
-var isForget = (Math.random() > 0.5);
+// var isForget = (Math.random() > 0.5);
+var isForget = 1;
 var isRemember = Boolean(1 - isForget);
 
 // var condIndex = Math.floor(Math.random() * 10);
